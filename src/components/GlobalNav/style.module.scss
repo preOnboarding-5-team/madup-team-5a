@@ -1,0 +1,57 @@
+@use 'styles/constants/colors';
+
+.globalNavBar {
+    position: absolute;
+    width: 1120px;
+    height: 80px;
+    left: 320px;
+    top: 0px;
+    
+  background-color: colors.$BG_G;
+
+  .contentContainer {
+    position: absolute;
+    top: 20px;
+    left: 870px;
+    width: 210px;
+    height: 40px;
+
+    .new {
+      position: absolute;
+      right: 219px;
+      bottom: 44px;
+      width: 5px;
+      height: 5px;
+      background: #ea3a4b;
+      border-radius: 50%;
+    }
+
+    .notify {
+      position: absolute;
+      right: 226px;
+      bottom: 28px;
+      width: 24px;
+      height: 24px;
+    }
+
+    .setting {
+      position: absolute;
+      right: 172px;
+      bottom: 28px;
+      width: 24px;
+      height: 24px;
+    }
+
+    .myPage {
+      position: absolute;
+      top: 20px;
+      left: 978px;
+      width: 102px;
+      height: 40px;
+    }
+  }
+
+  .horizonBar {
+
+  }
+}

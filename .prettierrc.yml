@@ -1,0 +1,6 @@
+printWidth: 120
+proseWrap: never
+singleQuote: true
+htmlWhitespaceSensitivity: 'css'
+endOfLine: 'auto'
+tabWidth: 2

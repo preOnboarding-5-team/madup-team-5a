@@ -1,0 +1,21 @@
+@use 'styles/constants/colors';
+@use 'styles/mixins/position';
+@use 'styles/mixins/flexbox';
+
+.sideNavWrapper {
+  float: left;
+  width: 320px;
+  height: 2598px;
+  background-color: red;
+
+  .sideNavHeader {
+    width: 100%;
+    height: 150px;
+
+    .logo {
+      width: 124px;
+      height: 30px;
+      padding: 60px 156px 60px 40px;
+    }
+  }
+}
