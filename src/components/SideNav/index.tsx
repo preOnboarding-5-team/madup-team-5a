@@ -4,9 +4,8 @@ const SideNav = () => {
   return (
     <nav className={styles.sideNavWrapper}>
       <div className={styles.sideNavHeader}>
-        <div className={styles.logo}></div>
+        <div className={styles.logo} />
       </div>
-      
     </nav>
   );
 };

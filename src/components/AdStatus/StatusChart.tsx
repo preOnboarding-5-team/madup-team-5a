@@ -1,25 +1,25 @@
-import { VictoryChart, VictoryLine, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer } from 'victory'
-import { ScalePropType } from 'victory-core'
+import { VictoryChart, VictoryLine, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
+import { ScalePropType } from 'victory-core';
 
 // import { ChartDataItem } from 'types/corona'
 // import { csvToArray, convertData } from './utils'
-import { COLORS } from './coronaChartOption'
+import { COLORS } from './coronaChartOption';
 
-import styles from './corona.module.scss'
+import styles from './corona.module.scss';
 
 interface Props {
-    csvData?: string
-  }
+  csvData?: string;
+}
 
-const StatusChart = ({ csvData }: Props) => {
-    return (
-        <section className={styles.chart}>
+function StatusChart({ csvData }: Props) {
+  return (
+    <section className={styles.chart}>
       <div className={styles.centering}>
         <VictoryChart
           theme={VictoryTheme.material}
           containerComponent={
             <VictoryVoronoiContainer
-              voronoiDimension='x'
+              voronoiDimension="x"
               labels={({ datum }) => `${datum.childName}: ${datum.y}`}
               labelComponent={<VictoryTooltip cornerRadius={0} flyoutStyle={{ fill: 'white' }} />}
             />
@@ -27,7 +27,7 @@ const StatusChart = ({ csvData }: Props) => {
           {...options}
         >
           <VictoryLine
-            name='confirmed'
+            name="confirmed"
             style={{
               data: { stroke: COLORS.YELLOW },
               parent: { border: '1px solid #ccc' },
@@ -35,7 +35,7 @@ const StatusChart = ({ csvData }: Props) => {
             data={confirmed}
           />
           <VictoryLine
-            name='critical'
+            name="critical"
             animate={{
               duration: 2000,
               onLoad: { duration: 1000 },
@@ -47,7 +47,7 @@ const StatusChart = ({ csvData }: Props) => {
             data={critical}
           />
           <VictoryLine
-            name='death'
+            name="death"
             animate={{
               duration: 2000,
               onLoad: { duration: 1500 },
@@ -59,7 +59,7 @@ const StatusChart = ({ csvData }: Props) => {
             data={death}
           />
           <VictoryLine
-            name='negative'
+            name="negative"
             animate={{
               duration: 2000,
               onLoad: { duration: 500 },
@@ -71,7 +71,7 @@ const StatusChart = ({ csvData }: Props) => {
             data={negative}
           />
           <VictoryLine
-            name='released'
+            name="released"
             animate={{
               duration: 2000,
               onLoad: { duration: 500 },
@@ -83,7 +83,7 @@ const StatusChart = ({ csvData }: Props) => {
             data={released}
           />
           <VictoryLine
-            name='tested'
+            name="tested"
             animate={{
               duration: 2000,
               onLoad: { duration: 500 },
@@ -97,7 +97,7 @@ const StatusChart = ({ csvData }: Props) => {
         </VictoryChart>
       </div>
     </section>
-    );
-};
+  );
+}
 
 export default StatusChart;
