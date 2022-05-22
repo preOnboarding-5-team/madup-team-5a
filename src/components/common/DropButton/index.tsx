@@ -1,5 +1,5 @@
 const DropButton = () => {
-  return <div></div>;
+  return <div />;
 };
 
 export default DropButton;

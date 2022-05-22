@@ -6,7 +6,7 @@ import SideNav from 'components/SideNav';
 
 import 'styles/globals.scss';
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <RecoilRoot>
       <SideNav />
@@ -14,6 +14,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
     </RecoilRoot>
   );
-}
+};
 
 export default MyApp;
