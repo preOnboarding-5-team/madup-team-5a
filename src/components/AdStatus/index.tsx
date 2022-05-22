@@ -1,5 +1,5 @@
-const AdStatus = () => {
-  return <div></div>;
-};
+function AdStatus() {
+  return <div />;
+}
 
 export default AdStatus;
