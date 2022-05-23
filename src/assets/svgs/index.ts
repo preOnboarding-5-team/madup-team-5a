@@ -16,6 +16,7 @@ import DownPolygon from './Polygon 2.svg';
 import Circle from './Ellipse 74.svg';
 
 import DropIcon from './expand_more.svg';
+import AddIcon from './add.svg';
 
 export {
   NotifyIcon,
@@ -28,4 +29,5 @@ export {
   DownPolygon,
   Circle,
   DropIcon,
+  AddIcon,
 };

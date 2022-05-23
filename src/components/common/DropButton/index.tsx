@@ -2,18 +2,19 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 import type { PropsWithChildren, Dispatch, SetStateAction } from 'react';
 import cx from 'classnames';
 import { DropIcon } from 'assets/svgs';
-import { ColorIndicator } from './components';
+import ColorIndicator from './ColorIndicator';
 import styles from './style.module.scss';
+import AddMenu from './AddMenu';
 
 const DropButton = ({
   className,
   dropItems,
-  currentIdx,
   setCurrentIdx,
   larger = false,
   optional = false,
+  additional = false,
 }: DropButtonProps) => {
-  const [topIdx, setTopIdx] = useState(currentIdx);
+  const [topIdx, setTopIdx] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
   const outerRef = useRef<HTMLDivElement>(null);
@@ -35,7 +36,7 @@ const DropButton = ({
   const dropItemsToRender = useMemo<DropItem[]>(() => {
     const noneMenu = { title: '선택 안 함' };
     if (optional) return [noneMenu, ...dropItems];
-    return [...dropItems];
+    return dropItems;
   }, [dropItems, optional]);
 
   const handleClickTop = () => {
@@ -48,6 +49,8 @@ const DropButton = ({
     setIsOpen(false);
   };
 
+  const handleClickAdd = () => {};
+
   const dropMenu = (
     <ul className={styles.dropMenu}>
       {[...dropItemsToRender.slice(0, topIdx), ...dropItemsToRender.slice(topIdx + 1)].map(({ color, title }, idx) => {
@@ -56,7 +59,7 @@ const DropButton = ({
           <li
             className={cx(styles.menu, {
               [styles.largerMenu]: larger,
-              [styles.roundBottom]: idx === dropItemsToRender.length - 1,
+              [styles.roundBottom]: !additional && idx === dropItemsToRender.length - 1,
             })}
             key={key}
           >
@@ -75,6 +78,7 @@ const DropButton = ({
           </li>
         );
       })}
+      {additional && <AddMenu larger={larger} onClick={handleClickAdd} />}
     </ul>
   );
 
@@ -102,10 +106,10 @@ const DropButton = ({
 
 type DropButtonProps = PropsWithChildren<{
   dropItems: DropItem[];
-  currentIdx: number;
   setCurrentIdx: Dispatch<SetStateAction<number>>;
   larger?: boolean;
   optional?: boolean;
+  additional?: boolean;
   className?: string;
 }>;
 

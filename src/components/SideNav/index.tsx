@@ -8,30 +8,33 @@ import styles from './style.module.scss';
 const DUMMY: DropItem[] = [
   {
     color: 'blue',
-    title: '항목 없음',
-  },
-  {
-    title: '제목',
-  },
-  {
-    color: 'red',
-    title: '항목 없음',
+    title: 'title0',
   },
   {
     color: 'blue',
-    title: '항목 없음',
-  },
-  {
-    title: '제목',
+    title: 'title1',
   },
   {
     color: 'red',
-    title: '항목 없음',
+    title: 'title2',
+  },
+  {
+    color: 'darkblue',
+    title: 'title3',
+  },
+  {
+    color: 'blue',
+    title: 'title4',
+  },
+  {
+    color: '#ababed',
+    title: 'title5',
   },
 ];
 
 const SideNav = () => {
   const [currentIdx, setCurrentIdx] = useState(0);
+
   return (
     <nav className={styles.sideNavWrapper}>
       <header className={styles.sideNavHeader}>
@@ -40,8 +43,15 @@ const SideNav = () => {
         </picture>
       </header>
       <main className={styles.sideNavMain}>
-        <DropButton dropItems={DUMMY} currentIdx={currentIdx} setCurrentIdx={setCurrentIdx} />
-        <DropButton dropItems={DUMMY} larger currentIdx={currentIdx} setCurrentIdx={setCurrentIdx} optional />
+        <DropButton
+          dropItems={DUMMY}
+          larger
+          optional
+          additional
+          setCurrentIdx={setCurrentIdx}
+          className={styles.dropButtonTest}
+        />
+        <DropButton dropItems={DUMMY} setCurrentIdx={setCurrentIdx} />
       </main>
     </nav>
   );
