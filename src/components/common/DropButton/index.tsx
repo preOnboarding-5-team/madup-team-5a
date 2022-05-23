@@ -1,11 +1,19 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import type { PropsWithChildren, Dispatch, SetStateAction } from 'react';
 import cx from 'classnames';
 import { DropIcon } from 'assets/svgs';
 import { ColorIndicator } from './components';
 import styles from './style.module.scss';
 
-const DropButton = ({ className, dropItems, currentIdx, setCurrentIdx, larger = false }: DropButtonProps) => {
+const DropButton = ({
+  className,
+  dropItems,
+  currentIdx,
+  setCurrentIdx,
+  larger = false,
+  optional = false,
+}: DropButtonProps) => {
+  const [topIdx, setTopIdx] = useState(currentIdx);
   const [isOpen, setIsOpen] = useState(false);
 
   const outerRef = useRef<HTMLDivElement>(null);
@@ -20,31 +28,41 @@ const DropButton = ({ className, dropItems, currentIdx, setCurrentIdx, larger = 
     return () => document.removeEventListener('click', handleOuterClick);
   }, []);
 
+  useEffect(() => {
+    setCurrentIdx(topIdx - Number(optional));
+  }, [setCurrentIdx, topIdx, optional]);
+
+  const dropItemsToRender = useMemo<DropItem[]>(() => {
+    const noneMenu = { title: '선택 안 함' };
+    if (optional) return [noneMenu, ...dropItems];
+    return [...dropItems];
+  }, [dropItems, optional]);
+
   const handleClickTop = () => {
     setIsOpen((prev) => !prev);
   };
 
   const handleClickItem = (e: React.MouseEvent<HTMLElement>) => {
     if (e.currentTarget.dataset.idx === undefined) return;
-    setCurrentIdx(Number(e.currentTarget.dataset.idx));
+    setTopIdx(Number(e.currentTarget.dataset.idx));
     setIsOpen(false);
   };
 
   const dropMenu = (
     <ul className={styles.dropMenu}>
-      {[...dropItems.slice(0, currentIdx), ...dropItems.slice(currentIdx + 1)].map(({ color, title }, idx) => {
+      {[...dropItemsToRender.slice(0, topIdx), ...dropItemsToRender.slice(topIdx + 1)].map(({ color, title }, idx) => {
         const key = `className-${title}-${idx}`;
         return (
           <li
             className={cx(styles.menu, {
               [styles.largerMenu]: larger,
-              [styles.roundBottom]: idx === dropItems.length - 1,
+              [styles.roundBottom]: idx === dropItemsToRender.length - 1,
             })}
             key={key}
           >
             <div
               className={styles.itemWrapper}
-              data-idx={idx >= currentIdx ? idx + 1 : idx}
+              data-idx={idx >= topIdx ? idx + 1 : idx}
               onClick={handleClickItem}
               role="menuitem"
               tabIndex={-1}
@@ -72,8 +90,8 @@ const DropButton = ({ className, dropItems, currentIdx, setCurrentIdx, larger = 
         tabIndex={-1}
       >
         <div className={styles.item}>
-          {dropItems[currentIdx].color && <ColorIndicator color={dropItems[currentIdx].color as string} />}
-          <p className={styles.title}>{dropItems[currentIdx].title}</p>
+          {dropItemsToRender[topIdx].color && <ColorIndicator color={dropItemsToRender[topIdx].color as string} />}
+          <p className={styles.title}>{dropItemsToRender[topIdx].title}</p>
         </div>
         <DropIcon className={styles.dropIcon} />
       </div>
@@ -83,11 +101,12 @@ const DropButton = ({ className, dropItems, currentIdx, setCurrentIdx, larger = 
 };
 
 type DropButtonProps = PropsWithChildren<{
-  className?: string;
   dropItems: DropItem[];
-  larger?: boolean;
   currentIdx: number;
   setCurrentIdx: Dispatch<SetStateAction<number>>;
+  larger?: boolean;
+  optional?: boolean;
+  className?: string;
 }>;
 
 export default DropButton;

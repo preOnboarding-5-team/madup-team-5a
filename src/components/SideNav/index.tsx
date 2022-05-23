@@ -41,7 +41,7 @@ const SideNav = () => {
       </header>
       <main className={styles.sideNavMain}>
         <DropButton dropItems={DUMMY} currentIdx={currentIdx} setCurrentIdx={setCurrentIdx} />
-        <DropButton dropItems={DUMMY} larger currentIdx={currentIdx} setCurrentIdx={setCurrentIdx} />
+        <DropButton dropItems={DUMMY} larger currentIdx={currentIdx} setCurrentIdx={setCurrentIdx} optional />
       </main>
     </nav>
   );
