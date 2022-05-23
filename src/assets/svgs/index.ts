@@ -1,5 +1,7 @@
-// global navbar
+// global nav
 import NotifyIcon from './icon_notification.svg';
+import SettingIcon from './icon_setting.svg';
+import Profile from './mypage_profile.svg';
 
 // sidebar
 import DashBoardIcon from './icon_menu01_on.svg';
@@ -13,4 +15,5 @@ import DownPolygon from './Polygon 2.svg';
 // circle
 import Circle from './Ellipse 74.svg';
 
-export { NotifyIcon, DashBoardIcon, ManageIcon, GuideIcon, UpPolygon, DownPolygon, Circle };
+export { NotifyIcon, SettingIcon, Profile }; // global nav
+export { DashBoardIcon, ManageIcon, GuideIcon, UpPolygon, DownPolygon, Circle };
