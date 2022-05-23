@@ -1,12 +1,8 @@
 @use 'styles/constants/colors';
 
 .globalNavBar {
-    position: absolute;
-    width: 1120px;
-    height: 80px;
-    left: 320px;
-    top: 0px;
-    
+  width: 1120px;
+  height: 80px;
   background-color: colors.$BG_G;
 
   .contentContainer {

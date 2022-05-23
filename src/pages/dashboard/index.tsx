@@ -1,7 +1,7 @@
 import styles from './style.module.scss';
 
 const DashBoard = () => {
-  return <div className={styles.wrapper}>dashboard page</div>;
+  return <>dashboard page</>;
 };
 
 export default DashBoard;
