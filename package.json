@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "classnames": "^2.3.1",
+    "dayjs": "^1.11.2",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "recoil": "^0.7.3-alpha.2",
-    "victory": "^36.4.0"
+    "victory": "^36.4.0",
+    "victory-core": "^36.4.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.17.0",
