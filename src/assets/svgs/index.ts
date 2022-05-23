@@ -9,13 +9,15 @@ import ManageIcon from './icon_menu02_off.svg';
 import GuideIcon from './img_guide.svg';
 
 // arrow
-import UpPolygon from './Polygon 1.svg';
-import DownPolygon from './Polygon 2.svg';
+import DownPolygon from './Polygon 1.svg';
+import UpPolygon from './Polygon 2.svg';
 
 // circle
 import Circle from './Ellipse 74.svg';
 
 import DropIcon from './expand_more.svg';
+
+import DropdownArrowIcon from './icon_dropdown_arrow.svg';
 
 export {
   NotifyIcon,
@@ -28,4 +30,5 @@ export {
   DownPolygon,
   Circle,
   DropIcon,
+  DropdownArrowIcon,
 };
