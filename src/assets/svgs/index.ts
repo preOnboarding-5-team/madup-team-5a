@@ -16,6 +16,7 @@ import UpPolygon from './Polygon 2.svg';
 import Circle from './Ellipse 74.svg';
 
 import DropIcon from './expand_more.svg';
+import AddIcon from './add.svg';
 
 import DropdownArrowIcon from './icon_dropdown_arrow.svg';
 
@@ -30,5 +31,6 @@ export {
   DownPolygon,
   Circle,
   DropIcon,
+  AddIcon,
   DropdownArrowIcon,
 };
