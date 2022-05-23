@@ -1,4 +1,4 @@
-import { NotifyIcon, SettingIcon, Profile } from '../../assets/svgs';
+import { NotifyIcon, SettingIcon, Profile } from 'assets/svgs';
 import styles from './style.module.scss';
 
 const GlobalNav = () => {
