@@ -1,0 +1,15 @@
+@use 'styles/constants/colors';
+
+.mainWrapper {
+  position: absolute;
+  top: 0;
+  left: 320px;
+  width: calc(100vw - 320px);
+
+  .pageWrapper {
+    width: 1120px;
+    height: 2598px;
+    background-color: colors.$BG_G;
+    border-top: 1px solid black;
+  }
+}

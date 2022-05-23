@@ -1,0 +1,8 @@
+@use 'styles/constants/colors';
+
+.dropButton {
+  width: 123px;
+  height: 40px;
+  border: 1px solid colors.$GREY_50;
+  border-radius: 10px;
+}
