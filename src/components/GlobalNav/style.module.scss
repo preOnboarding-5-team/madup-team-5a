@@ -14,8 +14,8 @@
 
     .new {
       position: absolute;
-      right: 219px;
-      bottom: 44px;
+      top: 6px;
+      left: 21px;
       width: 5px;
       height: 5px;
       background: #ea3a4b;
@@ -24,30 +24,45 @@
 
     .notify {
       position: absolute;
-      right: 226px;
-      bottom: 28px;
+      top: 8px;
+      left: 0;
       width: 24px;
       height: 24px;
     }
 
     .setting {
       position: absolute;
-      right: 172px;
-      bottom: 28px;
+      top: 8px;
+      left: 54px;
       width: 24px;
       height: 24px;
     }
 
     .myPage {
       position: absolute;
-      top: 20px;
-      left: 978px;
+      top: 0;
+      left: 108px;
       width: 102px;
       height: 40px;
+      // @include flexbox.flexbox(center, center);
+
+      .name {
+        position: absolute;
+        top: 12px;
+        left: 50px;
+        width: 54px; // TODO: figma에서는 52px인데 폰트가 없어서 54px로 설정해야 한줄로 들어옴
+        height: 16px;
+
+        // font-family: 'Roboto'; TODO: 폰트 찾아볼 것
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+        color: #3a474e;
+      }
     }
   }
 
   .horizonBar {
-
   }
 }

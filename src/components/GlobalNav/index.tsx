@@ -1,4 +1,4 @@
-import { NotifyIcon } from 'assets/svgs';
+import { NotifyIcon, SettingIcon, Profile } from '../../assets/svgs';
 import styles from './style.module.scss';
 
 const GlobalNav = () => {
@@ -9,10 +9,12 @@ const GlobalNav = () => {
         <li className={styles.notify}>
           <NotifyIcon />
         </li>
-        <li className={styles.setting} />
+        <li className={styles.setting}>
+          <SettingIcon />
+        </li>
         <li className={styles.myPage}>
-          {/* <img className={styles.}>
-          <p className={styles.}></p> */}
+          <Profile />
+          <p className={styles.name}>원티드님</p>
         </li>
       </ul>
       <div className={styles.horizonBar} />
