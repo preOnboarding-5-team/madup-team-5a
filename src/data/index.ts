@@ -42,7 +42,6 @@ function convertFormat(num: number) {
   }
 
   const resultStr = splitNumber.join(',');
-  console.log(resultStr);
 
   return hasZero ? resultStr.substring(0, resultStr.length - 1) + '원' : resultStr + '천원';
 }
