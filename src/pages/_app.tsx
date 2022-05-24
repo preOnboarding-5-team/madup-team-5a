@@ -1,19 +1,18 @@
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 
-import GlobalNav from 'components/GlobalNav';
-import SideNav from 'components/SideNav';
+import Layout from 'components/Layout';
 
 import 'styles/globals.scss';
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <RecoilRoot>
-      <SideNav />
-      <GlobalNav />
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </RecoilRoot>
   );
-}
+};
 
 export default MyApp;

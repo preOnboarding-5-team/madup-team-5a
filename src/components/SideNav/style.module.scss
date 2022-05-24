@@ -3,19 +3,177 @@
 @use 'styles/mixins/flexbox';
 
 .sideNavWrapper {
+  @include flexbox.vertical(baseline, center);
   float: left;
   width: 320px;
   height: 2598px;
-  background-color: red;
+  background-color: colors.$BG_W;
+  box-shadow: 4 0 10 0 colors.$SHADOW_BANNER;
 
   .sideNavHeader {
+    @include flexbox.vertical(center, baseline);
     width: 100%;
     height: 150px;
 
     .logo {
       width: 124px;
       height: 30px;
-      padding: 60px 156px 60px 40px;
+      margin-left: 40px;
+    }
+  }
+
+  .sideNavMain {
+    width: 240px;
+    height: 834px;
+    border-top: 1px solid colors.$GREY_50;
+
+    .title {
+      margin-top: 53px;
+      margin-bottom: 13px;
+      margin-left: 20px;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 14px;
+      color: colors.$GREY_300;
+    }
+
+    .serviceDropButton {
+      position: static;
+      box-sizing: border-box;
+      background: colors.$BG_W;
+      border: 1px solid colors.$GREY_100;
+      border-radius: 10px;
+    }
+
+    // .dropButton {
+    //   width: 240px;
+    //   height: 60px;
+    //   margin-top: 20px;
+    // }
+
+    .adCenter {
+      a {
+        display: flex;
+        align-items: center;
+        width: 240px;
+        height: 60px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 19px;
+        color: colors.$GREY_800;
+        text-decoration: none;
+        border: 1px solid colors.$BG_W;
+        border-radius: 10px;
+
+        &:hover {
+          border: 1px solid colors.$PRIMARY;
+        }
+
+        svg {
+          margin-right: 12px;
+          margin-left: 22px;
+          fill: colors.$GREY_800;
+        }
+
+        &.active {
+          color: colors.$PRIMARY;
+          background: colors.$GREY_50;
+
+          svg {
+            fill: colors.$PRIMARY;
+          }
+        }
+      }
+    }
+
+    .guide {
+      position: absolute;
+      top: 750px;
+      left: 40px;
+      width: 240px;
+      height: 100px;
+      background: colors.$SECONDARY_01;
+      border-radius: 10px;
+
+      .circle {
+        position: absolute;
+        top: 50%;
+        right: 83.33%;
+        transform: translate(50%, -50%);
+      }
+
+      .guideIcon {
+        position: absolute;
+        top: 50%;
+        right: 83.33%;
+        z-index: 100;
+        transform: translate(50%, -50%);
+      }
+
+      .guideTitle {
+        display: flex;
+        align-items: center;
+        margin-top: 30px;
+        margin-left: 68px;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 19px;
+        color: colors.$GREY_800;
+        white-space: nowrap;
+      }
+
+      .guideLink {
+        display: flex;
+        align-items: center;
+        margin-top: 7px;
+        margin-bottom: 30px;
+        margin-left: 68px;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 14px;
+        color: colors.$GREY_300;
+        white-space: nowrap;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .copywrite {
+      position: absolute;
+      top: 890px;
+      left: 60px;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 14px;
+      color: colors.$GREY_300;
+      white-space: nowrap;
+    }
+
+    .tosLink {
+      position: absolute;
+      top: 914px;
+      left: 60px;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 14px;
+      color: colors.$GREY_300;
+      text-decoration: underline;
+
+      &:hover {
+        font-weight: bold;
+      }
     }
   }
 }
+
+// .dropButtonTest {
+//   top: 300px;
+// }
