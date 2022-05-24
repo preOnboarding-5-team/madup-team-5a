@@ -78,11 +78,11 @@ const StatusChart = () => {
   convertDailySub.map((data) => (data.y = data.y / getMax(dailySubData)));
 
   convertWeeklyMain.map((data) => (data.y = data.y / getMax(weeklyMainData)));
-  convertWeeklySub.map((data) => (data.y = data.y / getMax(weeklyMainData)));
-  // console.log(weeklySubData);
-  // console.log(convertWeeklySub);
-  // console.log(getMax(weeklySubData));
-  // console.log(37 / 84);
+  convertWeeklySub.map((data) => (data.y = data.y / getMax(weeklySubData)));
+  console.log(weeklySubData);
+  console.log(convertWeeklySub);
+  console.log(getMax(weeklySubData));
+  console.log(37 / 84);
 
   const handleClick = () => {
     setDayOrWeek((prev) => !prev);
@@ -123,10 +123,6 @@ const StatusChart = () => {
 
           <VictoryLine
             name="main"
-            // animate={{
-            //   duration: 300,
-            //   onLoad: { duration: 300 },
-            // }}
             style={{
               data: { stroke: COLORS.YELLOW },
               parent: { border: '1px solid #ccc' },
@@ -136,10 +132,6 @@ const StatusChart = () => {
           {/* 옵셔널 그래프 */}
           <VictoryLine
             name="sub"
-            animate={{
-              duration: 2000,
-              onLoad: { duration: 1000 },
-            }}
             style={{
               data: { stroke: COLORS.ORANGE },
               parent: { border: '1px solid #ccc' },
@@ -153,3 +145,6 @@ const StatusChart = () => {
   );
 };
 export default StatusChart;
+
+// 카테고리, 서브카테고리, 돈인지 비율인지 state 넘겨받을지 다른파일에서
+// weekly인지 daily인지,
