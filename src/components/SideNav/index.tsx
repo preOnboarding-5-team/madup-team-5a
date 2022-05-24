@@ -7,7 +7,7 @@ import DropButton from 'components/common/DropButton';
 import AdCenter from './AdCenter';
 import styles from './style.module.scss';
 
-const DUMMY: DropItem[] = [
+const SERVICES: DropItem[] = [
   {
     title: '매드업',
   },
@@ -27,7 +27,7 @@ const SideNav = () => {
         <section className={styles.service}>
           <h1 className={styles.title}>서비스</h1>
           <DropButton
-            dropItems={DUMMY}
+            dropItems={SERVICES}
             larger
             additional
             setCurrentIdx={setCurrentIdx}

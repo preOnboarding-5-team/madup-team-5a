@@ -112,7 +112,7 @@
         margin-right: 10px;
       }
 
-      .modal {
+      .menu {
         position: absolute;
         top: 35px;
         left: 842px;
@@ -134,9 +134,7 @@
         }
       }
 
-      .termSelectWrapper {
-        display: flex;
-        flex-direction: row;
+      .termWrapper {
         width: 60px;
         height: 24px;
         margin: auto 0 auto auto;
@@ -146,20 +144,25 @@
           text-decoration: underline;
         }
 
-        .term {
-          width: 26px;
-          height: 16px;
-          margin: 4px 0;
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 500;
-          line-height: 16px;
-          color: colors.$GREY_800;
-          white-space: nowrap;
-        }
+        .termButton {
+          display: flex;
+          flex-direction: row;
 
-        svg {
-          margin: 8px 0 8.59px 16px;
+          .term {
+            width: 26px;
+            height: 16px;
+            margin: 4px 0;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 16px;
+            color: colors.$GREY_800;
+            white-space: nowrap;
+          }
+
+          svg {
+            margin: 8px 0 8.59px 16px;
+          }
         }
       }
     }
