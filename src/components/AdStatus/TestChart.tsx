@@ -1,4 +1,12 @@
-import { VictoryChart, VictoryLine, VictoryTheme, VictoryVoronoiContainer } from 'victory';
+import {
+  VictoryChart,
+  VictoryLine,
+  VictoryAxis,
+  VictoryLabel,
+  LineSegment,
+  VictoryTheme,
+  VictoryVoronoiContainer,
+} from 'victory';
 
 const ROAS = [
   { date: '11월 11일', value: 100 },
@@ -22,21 +30,47 @@ const CLICKS = [
 
 const TestChart = () => {
   const options = {
-    width: 1194,
-    height: 300,
-    padding: {
-      left: 0,
-      top: 0,
-      right: 0,
-      bottom: 10,
-    },
+    width: 960,
+    height: 240,
   };
   return (
     <VictoryChart
+      domainPadding={30}
       theme={VictoryTheme.material}
       containerComponent={<VictoryVoronoiContainer voronoiDimension="x" />}
       {...options}
     >
+      <VictoryAxis
+        style={{
+          axis: { stroke: 'transparent' },
+          ticks: { stroke: 'transparent' },
+          grid: { stroke: 'transparent' },
+          tickLabels: { fontSize: 12, padding: 5, fill: '#94a2ad' },
+        }}
+      />
+      <VictoryAxis
+        dependentAxis
+        orientation="left"
+        tickLabelComponent={<VictoryLabel dy={7} style={{ fontSize: 12, fill: '#94a2ad', textAnchor: 'end' }} />}
+        style={{
+          axis: { stroke: 'transparent' },
+          ticks: { stroke: 'transparent' },
+          grid: { stroke: '#edeff1', strokeDasharray: 0, strokeWidth: 1 },
+        }}
+        offsetX={50}
+      />
+      <VictoryAxis
+        dependentAxis
+        orientation="right"
+        tickLabelComponent={<VictoryLabel dy={7} style={{ fontSize: 12, fill: '#94a2ad', textAnchor: 'end' }} />}
+        style={{
+          axis: { stroke: 'transparent' },
+          ticks: { stroke: 'transparent' },
+          grid: { stroke: '#edeff1', strokeDasharray: 0, strokeWidth: 1 },
+        }}
+        offsetX={50}
+      />
+
       <VictoryLine
         name="ROAS"
         style={{

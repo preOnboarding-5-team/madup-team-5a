@@ -27,8 +27,9 @@
     margin-left: 40px;
     background-color: colors.$BG_W;
     border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(colors.$SHADOW_BANNER, 0.04);
 
-    ul {
+    .statusCardsWrapper {
       display: flex;
       flex-flow: row wrap;
       justify-content: space-between;
@@ -46,12 +47,9 @@
         width: 304px;
         height: 79px;
         padding: 18px 40px;
+        margin-bottom: 20px;
         border: 0.5px solid colors.$GREY_50;
         border-radius: 10px;
-
-        &.bottom {
-          margin-top: 20px;
-        }
 
         .leftBox {
           h2 {
@@ -104,35 +102,67 @@
     }
 
     .selectWrapper {
+      position: relative;
       display: flex;
       flex-direction: row;
       width: 950px;
       height: 40px;
       margin-top: 42px;
-    }
 
-    .termSelectWrapper {
-      display: flex;
-      flex-direction: row;
-      width: 60px;
-      height: 24px;
-      margin: auto 0 auto auto;
-      vertical-align: middle;
-
-      .term {
-        width: 26px;
-        height: 16px;
-        margin: 4px 0;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 16px;
-        color: colors.$GREY_800;
-        white-space: nowrap;
+      .dropButtonWrapper {
+        position: static;
+        margin-right: 10px;
       }
 
-      svg {
-        margin: 8px 0 8.59px 16px;
+      .modal {
+        position: absolute;
+        top: 35px;
+        left: 842px;
+        z-index: 10000;
+        width: 123px;
+        height: 40px;
+        background: colors.$BG_W;
+        border: 1px solid colors.$GREY_100;
+        border-radius: 10px;
+
+        button {
+          width: 50%;
+          height: 100%;
+          border-radius: 10px;
+
+          &:hover {
+            background: colors.$BG_G;
+          }
+        }
+      }
+
+      .termSelectWrapper {
+        display: flex;
+        flex-direction: row;
+        width: 60px;
+        height: 24px;
+        margin: auto 0 auto auto;
+        vertical-align: middle;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        .term {
+          width: 26px;
+          height: 16px;
+          margin: 4px 0;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 16px;
+          color: colors.$GREY_800;
+          white-space: nowrap;
+        }
+
+        svg {
+          margin: 8px 0 8.59px 16px;
+        }
       }
     }
 
