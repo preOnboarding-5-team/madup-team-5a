@@ -64,5 +64,11 @@
   }
 
   .horizonBar {
+    position: absolute;
+    top: 80px;
+    left: 40px;
+    width: 1040px;
+    height: 0;
+    border: 1px solid #edeff1;
   }
 }
