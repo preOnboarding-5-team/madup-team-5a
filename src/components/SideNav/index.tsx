@@ -59,15 +59,15 @@ const SideNav = () => {
         <section className={styles.guide}>
           <Circle className={styles.circle} />
           <GuideIcon className={styles.guideIcon} />
-          <h1 className={styles.guideTitle}>레버 이용 가이드</h1>
-          <a href="#" className={styles.guideLink}>
+          <p className={styles.guideTitle}>레버 이용 가이드</p>
+          <Link href="#" className={styles.guideLink}>
             시작하기 전에 알아보기
-          </a>
+          </Link>
         </section>
         <p className={styles.copywrite}>레버는 함께 만들어 갑니다.</p>
-        <a href="#" className={styles.tosLink}>
+        <Link href="#" className={styles.tosLink}>
           이용약관
-        </a>
+        </Link>
       </main>
     </nav>
   );
