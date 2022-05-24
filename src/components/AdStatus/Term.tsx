@@ -26,13 +26,14 @@ const Term = () => {
     setTerm('주간');
     setIsOpen(false);
   };
+
   const handleDayClick = () => {
     setTerm('일별');
     setIsOpen(false);
   };
 
-  const modal = (
-    <div className={styles.modal}>
+  const menu = (
+    <div className={styles.menu}>
       <button type="button" onClick={handleWeekClick}>
         주간
       </button>
@@ -43,10 +44,12 @@ const Term = () => {
   );
 
   return (
-    <div role="presentation" ref={outerRef} className={styles.termSelectWrapper} onClick={handleTermClick}>
-      <p className={styles.term}>{term}</p>
-      <DropdownArrowIcon />
-      {isOpen && modal}
+    <div ref={outerRef} className={styles.termWrapper}>
+      <button type="button" className={styles.termButton} onClick={handleTermClick}>
+        <p className={styles.term}>{term}</p>
+        <DropdownArrowIcon />
+        {isOpen && menu}
+      </button>
     </div>
   );
 };

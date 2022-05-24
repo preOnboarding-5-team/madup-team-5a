@@ -1,12 +1,4 @@
-import {
-  VictoryChart,
-  VictoryLine,
-  VictoryAxis,
-  VictoryLabel,
-  LineSegment,
-  VictoryTheme,
-  VictoryVoronoiContainer,
-} from 'victory';
+import { VictoryChart, VictoryLine, VictoryAxis, VictoryLabel, VictoryTheme, VictoryVoronoiContainer } from 'victory';
 
 const ROAS = [
   { date: '11월 11일', value: 100 },
