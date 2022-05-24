@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import type { PropsWithChildren, Dispatch, SetStateAction } from 'react';
+
 import cx from 'classnames';
-import { DropIcon } from 'assets/svgs';
+
 import ColorIndicator from './ColorIndicator';
-import styles from './style.module.scss';
 import AddMenu from './AddMenu';
+import { DropIcon } from 'assets/svgs';
+import styles from './style.module.scss';
 
 const DropButton = ({
   className,

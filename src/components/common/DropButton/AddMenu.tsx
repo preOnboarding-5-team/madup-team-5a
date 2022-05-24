@@ -1,5 +1,7 @@
 import type { MouseEventHandler } from 'react';
+
 import cx from 'classnames';
+
 import { AddIcon } from 'assets/svgs';
 import styles from './style.module.scss';
 
