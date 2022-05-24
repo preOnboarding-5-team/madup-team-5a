@@ -9,19 +9,18 @@ const AdCenter = () => {
   const router = useRouter();
   return (
     <section className={styles.adCenter}>
-      <h1 className={styles.title}>광고 센터</h1>
-
+      <p className={styles.title}>광고 센터</p>
       <Link href="/dashboard">
-        <a href="/dashboard" className={cx({ [styles.active]: router.pathname === '/dashboard' })}>
+        <div className={cx(styles.pageButton, { [styles.active]: router.pathname === '/dashboard' })}>
           <DashBoardIcon />
           대시보드
-        </a>
+        </div>
       </Link>
       <Link href="/manage">
-        <a href="/manage" className={cx({ [styles.active]: router.pathname === '/manage' })}>
+        <div className={cx(styles.pageButton, { [styles.active]: router.pathname === '/manage' })}>
           <ManageIcon />
           광고관리
-        </a>
+        </div>
       </Link>
     </section>
   );

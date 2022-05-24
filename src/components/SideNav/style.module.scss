@@ -28,34 +28,32 @@
     border-top: 1px solid colors.$GREY_50;
 
     .title {
-      margin-top: 53px;
       margin-bottom: 13px;
       margin-left: 20px;
       font-size: 12px;
-      font-style: normal;
+      // font-style: normal;
       font-weight: 700;
-      line-height: 14px;
+      // line-height: 14px;
       color: colors.$GREY_300;
     }
 
-    .serviceDropButton {
-      position: static;
-      box-sizing: border-box;
-      background: colors.$BG_W;
-      border: 1px solid colors.$GREY_100;
-      border-radius: 10px;
+    .service {
+      width: 100%;
+      height: 100px;
+      margin: 53px 0;
+
+      .serviceDropButton {
+        // position: static;
+        // box-sizing: border-box;
+        // background: colors.$BG_W;
+        // border: 1px solid colors.$GREY_100;
+        // border-radius: 10px;
+      }
     }
 
-    // .dropButton {
-    //   width: 240px;
-    //   height: 60px;
-    //   margin-top: 20px;
-    // }
-
     .adCenter {
-      a {
-        display: flex;
-        align-items: center;
+      .pageButton {
+        @include flexbox.horizontal(baseline, center);
         width: 240px;
         height: 60px;
         font-size: 16px;
@@ -64,11 +62,13 @@
         line-height: 19px;
         color: colors.$GREY_800;
         text-decoration: none;
+        cursor: pointer;
         border: 1px solid colors.$BG_W;
         border-radius: 10px;
 
         &:hover {
-          border: 1px solid colors.$PRIMARY;
+          // border: 1px solid colors.$PRIMARY;
+          background-color: rgba(colors.$PRIMARY, 6%);
         }
 
         svg {
@@ -76,14 +76,18 @@
           margin-left: 22px;
           fill: colors.$GREY_800;
         }
+      }
 
-        &.active {
-          color: colors.$PRIMARY;
-          background: colors.$GREY_50;
+      .active {
+        color: colors.$PRIMARY;
+        background: colors.$GREY_50;
 
-          svg {
-            fill: colors.$PRIMARY;
-          }
+        svg {
+          fill: colors.$PRIMARY;
+        }
+
+        &:hover {
+          background-color: colors.$GREY_50;
         }
       }
     }
