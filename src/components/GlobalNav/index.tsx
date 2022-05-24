@@ -1,4 +1,4 @@
-import { NotifyIcon, SettingIcon, Profile } from 'assets/svgs';
+import { NotifyIcon, SettingIcon, ProfileIcon } from '../../assets/svgs';
 import styles from './style.module.scss';
 
 const GlobalNav = () => {
@@ -13,7 +13,7 @@ const GlobalNav = () => {
           <SettingIcon />
         </li>
         <li className={styles.myPage}>
-          <Profile />
+          <ProfileIcon />
           <p className={styles.name}>원티드님</p>
         </li>
       </ul>
