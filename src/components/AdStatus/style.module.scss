@@ -1,0 +1,173 @@
+@use 'styles/constants/colors';
+
+.adManageMainWrapper {
+  box-sizing: border-box;
+  width: 1120px;
+  height: 743px;
+  margin-top: 20px;
+  background-color: colors.$BG_DG;
+
+  h1 {
+    margin-top: 21px;
+    margin-left: 40px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 19px;
+    color: colors.$GREY_800;
+  }
+
+  .adManageMain {
+    width: 1039px;
+    height: 654px;
+    padding: 40px;
+    margin-top: 20px;
+    margin-left: 40px;
+    background-color: colors.$BG_W;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(colors.$SHADOW_BANNER, 0.04);
+
+    .statusCardsWrapper {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      width: 956px;
+      height: 178px;
+      border: 0.5px solid colors.$GREY_50;
+
+      li {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        gap: 146px;
+        align-items: flex-end;
+        justify-content: space-between;
+        width: 304px;
+        height: 79px;
+        padding: 18px 40px;
+        margin-bottom: 20px;
+        border: 0.5px solid colors.$GREY_50;
+        border-radius: 10px;
+
+        .leftBox {
+          h2 {
+            width: 31px;
+            height: 14px;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 14px;
+            color: colors.$GREY_300;
+            white-space: nowrap;
+          }
+
+          .value {
+            width: 40px;
+            height: 19px;
+            margin-top: 10px;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 19px;
+            color: colors.$GREY_800;
+            white-space: nowrap;
+          }
+        }
+
+        .rightBox {
+          display: flex;
+          flex-direction: row;
+
+          svg {
+            width: 10px;
+            height: 8px;
+            transform: translateY(50%);
+          }
+
+          .variance {
+            height: 14px;
+            margin-left: 5px;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 14px;
+            color: colors.$GREY_300;
+            text-align: right;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+
+    .selectWrapper {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      width: 950px;
+      height: 40px;
+      margin-top: 42px;
+
+      .dropButtonWrapper {
+        position: static;
+        margin-right: 10px;
+      }
+
+      .modal {
+        position: absolute;
+        top: 35px;
+        left: 842px;
+        z-index: 10000;
+        width: 123px;
+        height: 40px;
+        background: colors.$BG_W;
+        border: 1px solid colors.$GREY_100;
+        border-radius: 10px;
+
+        button {
+          width: 50%;
+          height: 100%;
+          border-radius: 10px;
+
+          &:hover {
+            background: colors.$BG_G;
+          }
+        }
+      }
+
+      .termSelectWrapper {
+        display: flex;
+        flex-direction: row;
+        width: 60px;
+        height: 24px;
+        margin: auto 0 auto auto;
+        vertical-align: middle;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        .term {
+          width: 26px;
+          height: 16px;
+          margin: 4px 0;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 16px;
+          color: colors.$GREY_800;
+          white-space: nowrap;
+        }
+
+        svg {
+          margin: 8px 0 8.59px 16px;
+        }
+      }
+    }
+
+    .chartWrapper {
+      width: 960px;
+      height: 300px;
+      margin: 40px 0;
+    }
+  }
+}
