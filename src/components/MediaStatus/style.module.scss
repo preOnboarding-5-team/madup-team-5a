@@ -1,0 +1,88 @@
+@use 'styles/constants/colors';
+@use 'styles/mixins/position';
+@use 'styles/mixins/flexbox';
+
+.wrapper {
+  width: 1120px;
+  height: 808px;
+  padding: 0 40px;
+  margin-bottom: 68px;
+
+  .sectionTitle {
+    margin: 20px 0 21px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18.75px;
+  }
+
+  .sectionBody {
+    width: 1040px;
+    height: 718px;
+    padding: 0 40px;
+    background-color: colors.$BG_W;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 4%);
+
+    .sectionBodyInner {
+      @include flexbox.vertical(between, center);
+      width: 100%;
+      height: 100%;
+
+      .chart {
+        width: 100%;
+        height: 368px;
+        margin-top: 40px;
+      }
+
+      table {
+        width: 100%;
+        height: 200px;
+        margin-bottom: 70px;
+        overflow-x: scroll;
+        font-size: 12px;
+
+        tr {
+          height: 40px;
+          line-height: 40px;
+          border-top: 1px solid colors.$GREY_50;
+        }
+
+        thead {
+          color: colors.$GREY_LABEL;
+
+          tr {
+            height: 40px;
+            text-align: right;
+
+            th {
+              width: 120px;
+              padding-right: 10px;
+              color: colors.$GREY_LABEL;
+            }
+          }
+        }
+
+        tbody {
+          color: colors.$GREY_800;
+
+          th {
+            width: 120px;
+            height: 40px;
+            text-align: left;
+          }
+
+          td {
+            width: 120px;
+            padding-right: 10px;
+            text-align: right;
+          }
+
+          .aggRow {
+            color: colors.$PRIMARY;
+            border-bottom: 1px solid colors.$GREY_50;
+          }
+        }
+      }
+    }
+  }
+}

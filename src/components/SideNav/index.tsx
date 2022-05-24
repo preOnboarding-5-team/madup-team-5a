@@ -43,14 +43,7 @@ const SideNav = () => {
         </picture>
       </header>
       <main className={styles.sideNavMain}>
-        <DropButton
-          dropItems={DUMMY}
-          larger
-          optional
-          additional
-          setCurrentIdx={setCurrentIdx}
-          className={styles.dropButtonTest}
-        />
+        <DropButton dropItems={DUMMY} additional setCurrentIdx={setCurrentIdx} className={styles.dropButtonTest} />
         <DropButton dropItems={DUMMY} setCurrentIdx={setCurrentIdx} />
       </main>
     </nav>
