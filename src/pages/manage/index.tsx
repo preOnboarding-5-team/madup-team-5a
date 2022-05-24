@@ -23,6 +23,7 @@ const Manage = () => {
     const key = `ad-card-${card.id}`;
 
     return (
+      // TODO: dl dt dd
       <article key={key} className={styles.adCard}>
         <div data-id={card.id} role="presentation" onClick={onClickAdCard}>
           <form className={styles.adForm}>
