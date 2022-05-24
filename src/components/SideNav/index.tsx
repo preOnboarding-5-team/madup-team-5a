@@ -2,33 +2,14 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 import logo from 'assets/images/Lever_BI 1.png';
+import { GuideIcon, Circle } from 'assets/svgs';
 import DropButton from 'components/common/DropButton';
+import AdCenter from './AdCenter';
 import styles from './style.module.scss';
 
 const DUMMY: DropItem[] = [
   {
-    color: 'blue',
-    title: 'title0',
-  },
-  {
-    color: 'blue',
-    title: 'title1',
-  },
-  {
-    color: 'red',
-    title: 'title2',
-  },
-  {
-    color: 'darkblue',
-    title: 'title3',
-  },
-  {
-    color: 'blue',
-    title: 'title4',
-  },
-  {
-    color: '#ababed',
-    title: 'title5',
+    title: '매드업',
   },
 ];
 
@@ -43,15 +24,29 @@ const SideNav = () => {
         </picture>
       </header>
       <main className={styles.sideNavMain}>
-        <DropButton
-          dropItems={DUMMY}
-          larger
-          optional
-          additional
-          setCurrentIdx={setCurrentIdx}
-          className={styles.dropButtonTest}
-        />
-        <DropButton dropItems={DUMMY} setCurrentIdx={setCurrentIdx} />
+        <section className={styles.service}>
+          <h1 className={styles.title}>서비스</h1>
+          <DropButton
+            dropItems={DUMMY}
+            larger
+            additional
+            setCurrentIdx={setCurrentIdx}
+            className={styles.serviceDropButton}
+          />
+        </section>
+        <AdCenter />
+        <section className={styles.guide}>
+          <Circle className={styles.circle} />
+          <GuideIcon className={styles.guideIcon} />
+          <h1 className={styles.guideTitle}>레버 이용 가이드</h1>
+          <a href="#" className={styles.guideLink}>
+            시작하기 전에 알아보기
+          </a>
+        </section>
+        <p className={styles.copywrite}>레버는 함께 만들어 갑니다.</p>
+        <a href="#" className={styles.tosLink}>
+          이용약관
+        </a>
       </main>
     </nav>
   );
