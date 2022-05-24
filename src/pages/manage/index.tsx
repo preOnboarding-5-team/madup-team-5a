@@ -16,14 +16,15 @@ const Manage = () => {
 
   const onClickAdCard = (e: MouseEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
-    const { id } = target.dataset;
+    target.style.borderColor === '#d1d8dc'
+      ? (target.style.borderColor = '#586cf5')
+      : (target.style.borderColor = '#d1d8dc');
   };
 
   const createAdCard = UPDATED_DATA.map((card) => {
     const key = `ad-card-${card.id}`;
 
     return (
-      // TODO: dl dt dd
       <div data-id={card.id} key={key} className={styles.adCard} role="presentation" onClick={onClickAdCard}>
         <form className={styles.adForm}>
           <legend className={styles.formTitle}>

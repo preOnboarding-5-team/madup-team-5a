@@ -7,13 +7,13 @@ const UPDATED_DATA = ads.map<AdManageFormItemsType>((data) => ({
   ...data,
   status: data.status === 'active' ? '진행중' : '종료',
   adType: data.adType === 'web' ? `웹광고_${data.title}` : `앱광고_${data.title}`,
-  budget: convertBudgetFormat(data.budget),
+  budget: convertFormat(data.budget),
   endDate: data.endDate ? data.endDate.split('T')[0] : null,
   startDate: data.startDate.split('T')[0],
   report: {
     ...data.report,
-    cost: addComma(data.report.cost),
-    convValue: addComma(data.report.convValue),
+    cost: convertFormat(data.report.cost),
+    convValue: convertFormat(data.report.convValue),
     roas: `${addComma(data.report.roas)} %`,
   },
 }));
@@ -23,27 +23,27 @@ function addComma(num: number) {
   return num.toString().replace(regexp, ',');
 }
 
-function convertBudgetFormat(budget: number) {
-  const commaBudget = addComma(budget);
+function convertFormat(num: number) {
+  const commaNumber = addComma(num);
+  if (commaNumber.length < 4) return `${num}원`;
 
-  const tempBudget = commaBudget.split(',');
+  const splitNumber = commaNumber.split(',');
 
-  if (tempBudget.length < 2) return '원';
+  splitNumber.pop();
 
-  tempBudget.pop();
+  const standardNumber = splitNumber[splitNumber.length - 1];
+  let hasZero = false;
+  if (standardNumber.length === 3) {
+    const standardNumberArr = standardNumber.split('');
 
-  const budgetStr = tempBudget[tempBudget.length - 1];
-
-  if (budgetStr.length > 1) {
-    const budgetArr = budgetStr.split('');
-    budgetArr.splice(-1, 0, '만');
-    console.log(budgetArr);
-    tempBudget[tempBudget.length - 1] = budgetArr.join('');
+    standardNumberArr.splice(-1, 0, '만');
+    if (standardNumberArr[standardNumberArr.length - 1] === '0') hasZero = true;
+    splitNumber[splitNumber.length - 1] = standardNumberArr.join('');
   }
-  console.log(tempBudget);
 
-  const resultStr = `${tempBudget.join(',')}천원`;
-  return resultStr;
+  const resultStr = splitNumber.join(',');
+
+  return hasZero ? resultStr.substring(0, resultStr.length - 1) + '원' : resultStr + '천원';
 }
 
 export default UPDATED_DATA;
