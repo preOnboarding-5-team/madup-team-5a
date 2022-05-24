@@ -4361,7 +4361,7 @@ victory-area@^36.4.0:
 
 victory-axis@^36.4.0:
   version "36.4.0"
-  resolved "https://registry.npmjs.org/victory-axis/-/victory-axis-36.4.0.tgz"
+  resolved "https://registry.yarnpkg.com/victory-axis/-/victory-axis-36.4.0.tgz#9c0766ae552fb724d7b862c5efc65e8bb1cb5ebf"
   integrity sha512-eKZJTUwcjBzsEkvmu8nptNioUb9XFfi8mcYzCk5S8WZk/ATz/YkuPw68qEL1+5Qwuk7m6d/qP9Oa1jEYEX1T2g==
   dependencies:
     lodash "^4.17.19"

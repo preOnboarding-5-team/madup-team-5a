@@ -16,6 +16,7 @@
     "react-dom": "18.1.0",
     "recoil": "^0.7.3-alpha.2",
     "victory": "^36.4.0",
+    "victory-axis": "^36.4.0",
     "victory-core": "^36.4.0"
   },
   "devDependencies": {

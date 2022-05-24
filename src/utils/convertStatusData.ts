@@ -1,6 +1,6 @@
 import { Daily } from 'types/trend';
 
-type Data = {
+export type Data = {
   x: string;
   y: number;
 };
@@ -10,7 +10,7 @@ export type Table = {
   [key in TableKey]: Data[];
 };
 
-export const convertData = (data: Daily[]) => {
+export const convertData = (data: Daily[]): Table => {
   const table: Table = {
     click: [],
     imp: [],
