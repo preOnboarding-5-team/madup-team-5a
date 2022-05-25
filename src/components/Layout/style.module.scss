@@ -8,9 +8,14 @@
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 10%);
 
   .mainWrapper {
+    width: calc(100vw - 320px);
+    background-color: colors.$BG_G;
+
     .pageWrapper {
+      width: 100%;
+      min-width: 789px;
+      max-width: 1120px;
       padding-bottom: 98px;
-      background-color: colors.$BG_G;
     }
   }
 }
