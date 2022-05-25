@@ -1,19 +1,8 @@
 import { atom } from 'recoil';
-import { TableKey } from '../_utils/convertStatusData';
-
-export const categoryAtom = atom<TableKey>({
-  key: 'categoryAtom',
-  default: 'click',
-});
-
-export const subCategoryAtom = atom<TableKey>({
-  key: 'subCategoryAtom',
-  default: 'sales',
-});
 
 export const datesAtom = atom<Duration>({
   key: 'datesAtom',
-  default: { start: '2022-02-01', end: '2022-02-04' },
+  default: { start: '2022-02-01', end: '2022-02-10' },
 });
 
 export const weeklyAtom = atom<string[]>({
@@ -24,4 +13,9 @@ export const weeklyAtom = atom<string[]>({
 export const compareDatesAtom = atom<string[]>({
   key: 'compareDatesAtom',
   default: [],
+});
+
+export const dayOrWeeklyAtom = atom<boolean>({
+  key: 'dayOrWeekAtom',
+  default: false,
 });

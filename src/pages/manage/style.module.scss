@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Stylish&display=swap');
 
 .manageWrapper {
-  width: 1120px;
+  width: 100%;
 
   .title {
     position: relative;
@@ -12,25 +12,25 @@
     height: 80px;
     padding-top: 25px;
     padding-left: 40px;
-    background: #f6f7f8;
+    background: colors.$BG_G;
 
     .titleText {
       height: 30px;
       @include font.font('Roboto', '26', '900');
       line-height: 30px;
-      color: #3a474e;
+      color: colors.$GREY_800;
     }
   }
 
   .main {
     width: 100%;
     padding: 30px 40px;
-    background: #f6f7f8;
+    background: colors.$BG_G;
 
     .container {
       min-height: 962px;
       padding: 40px 0;
-      background: #ffffff;
+      background: colors.$BG_W;
       border-radius: 20px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 4%);
 
@@ -42,9 +42,29 @@
           box-sizing: border-box;
           width: 130px;
           margin-left: 40px;
-          background: #ffffff;
+          background: colors.$BG_W;
           border: 1px solid #d1d8dc;
           border-radius: 10px;
+          @include flexbox.flexbox(center, center);
+
+          .dropDownText {
+            height: 16px;
+            margin-right: 19px;
+            font-family: Roboto, sans-serif;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 16px;
+            color: colors.$GREY_800;
+          }
+
+          .dropDownIcon {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+          }
         }
 
         .addButton {
@@ -53,14 +73,14 @@
           padding: 12px 0;
           margin-right: 40px;
           text-align: center;
-          background: #586cf5;
+          background: colors.$PRIMARY;
           border-radius: 10px;
 
           .addButtonText {
             height: 16px;
             @include font.font('Roboto', '14', '700');
             line-height: 16px;
-            color: #ffffff;
+            color: colors.$BG_W;
             text-align: center;
           }
         }

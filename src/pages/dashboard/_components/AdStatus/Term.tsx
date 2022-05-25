@@ -1,4 +1,6 @@
+import { dayOrWeeklyAtom } from 'pages/dashboard/_states/dashboard';
 import React, { useState, useRef, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 
 import { DropdownArrowIcon } from '../../../../assets/svgs';
 import styles from './style.module.scss';
@@ -6,6 +8,9 @@ import styles from './style.module.scss';
 const Term = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [term, setTerm] = useState('주간');
+
+  const [, setDayOrWeekly] = useRecoilState(dayOrWeeklyAtom);
+
   const outerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,10 +29,12 @@ const Term = () => {
 
   const handleWeekClick = () => {
     setTerm('주간');
+    setDayOrWeekly(false);
   };
 
   const handleDayClick = () => {
     setTerm('일별');
+    setDayOrWeekly(true);
   };
 
   const menu = (

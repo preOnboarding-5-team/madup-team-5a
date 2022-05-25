@@ -2,21 +2,19 @@ import { useEffect, useState } from 'react';
 import type { FormEvent, MouseEvent } from 'react';
 import { useRecoilState } from 'recoil';
 import { DropIcon } from 'assets/svgs';
-import dayjs from 'dayjs';
 import cx from 'classnames';
 import type { Dayjs } from 'dayjs';
 import { toDateString, toYearMonth } from 'services/formatDate';
-import { durationState } from 'pages/dashboard/_states/durationState';
+import { datesAtom } from 'pages/dashboard/_states/dashboard';
 import { useCalendarBounds } from 'pages/dashboard/_hooks/useCalendarBounds';
 import styles from './style.module.scss';
 
 const CalenderInput = () => {
-  const [duration, setDuration] = useRecoilState(durationState);
+  const [duration, setDuration] = useRecoilState(datesAtom);
   const [value, setValue] = useState(toYearMonth(duration.start));
   const [selectedStart, setSelectedStart] = useState<Dayjs | null>(null);
   const [selectedEnd, setSelectedEnd] = useState<Dayjs | null>(null);
-  const { firstDayInCalendar, daysInMonth, firstDayOfCurrentMonth, setFirstDayOfCurrentMonth, firstDayOffset } =
-    useCalendarBounds();
+  const { firstDayInCalendar, firstDayOfCurrentMonth, setFirstDayOfCurrentMonth } = useCalendarBounds();
 
   useEffect(() => {
     setValue(toYearMonth(firstDayOfCurrentMonth));

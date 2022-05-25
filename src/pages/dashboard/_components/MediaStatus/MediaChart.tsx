@@ -10,14 +10,14 @@ import {
 } from 'victory';
 import { formatNumber } from 'services/formatNumber';
 import { packMediaData } from 'services/packMediaData';
-import { durationState } from 'pages/dashboard/_states/durationState';
+import { datesAtom } from 'pages/dashboard/_states/dashboard';
 import { mediaChannelsState } from 'pages/dashboard/_states/mediaChannelsState';
 import { mediaChartAttributesState } from 'pages/dashboard/_states/mediaChartAttributesState';
 
 const COLORS = ['#4fadf7', '#85da47', '#ac8af8', '#ffd43b'];
 
 const MediaChart = () => {
-  const duration = useRecoilValue(durationState);
+  const duration = useRecoilValue(datesAtom);
   const attributes = useRecoilValue(mediaChartAttributesState);
   const channels = useRecoilValue(mediaChannelsState);
 
