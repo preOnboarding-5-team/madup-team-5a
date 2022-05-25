@@ -37,6 +37,7 @@ const StatusChart = () => {
   const [mainDataRatio, setMainDataRatio] = useState<Data[]>([]);
   const [subDataRatio, setSubDataRatio] = useState<Data[]>([]);
   const [dateList, setDateList] = useState<string[]>([]);
+  const [diff, setDiff] = useState(0);
 
   const getColor = (idx: number) => {
     if (idx < 0) return '';
@@ -50,6 +51,7 @@ const StatusChart = () => {
     }[categories[idx]];
     return color;
   };
+
   const getData = useCallback(
     (idx: number, date: string | Dayjs) => {
       if (idx < 0) return [];
@@ -57,7 +59,12 @@ const StatusChart = () => {
     },
     [table]
   );
-  const diff = dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') + 1 : 7;
+
+  useEffect(() => {
+    setDiff(dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') + 1 : 7);
+  }, [dayOrWeekly, dates]);
+
+  // const diff = dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') + 1 : 7;
 
   useEffect(() => {
     setDateList([...Array(diff).keys()].map((i) => dayjs(dates.start).add(i, 'day').format('YYYY-MM-DD')));
@@ -66,7 +73,8 @@ const StatusChart = () => {
   useEffect(() => {
     setMainData(dateList.map((date) => getData(mainIdx, date) as Data));
     setSubData(dateList.map((date) => getData(subIdx, date) as Data));
-  }, [dateList, getData, mainIdx, subIdx]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dateList, mainIdx, subIdx]);
 
   useEffect(() => {
     setMainDataRatio(
