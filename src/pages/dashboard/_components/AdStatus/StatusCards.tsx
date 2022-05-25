@@ -7,10 +7,12 @@ import styles from './style.module.scss';
 import TRAND_DATA from 'data/wanted_FE_trend-data-set.json';
 import { datesAtom } from 'pages/dashboard/_states/dashboard';
 import { useRecoilValue } from 'recoil';
+import { comparedDates } from 'pages/dashboard/_utils/comparedDates';
 
 const StatusCards = () => {
   const table = convertData(TRAND_DATA.report.daily as Daily[]);
   const dates = useRecoilValue(datesAtom);
+  const lastDates = comparedDates(dates.start, dates.end);
 
   return (
     <>
