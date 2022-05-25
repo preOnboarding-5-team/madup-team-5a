@@ -1,44 +1,49 @@
-import { MouseEvent, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { adListDataState } from 'pages/manage/_states/adManage';
 import { UPDATED_DATA } from 'data/wanted_FE_ad-list-data-set';
-
-import { AdManageFormItemsType } from 'types/adManage';
+import { useRecoilValue } from 'recoil';
+import { setMainIdx } from 'pages/manage/_states/adManageState';
+// import { Dispatch, MouseEvent, SetStateAction, useEffect, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 
 import cx from 'classnames';
 
+import { AdManageFormItemsType } from 'types/adManage';
 import styles from './style.module.scss';
 
+// interface Props {
+//   dataList: AdManageFormItemsType[];
+//   setDataList: Dispatch<SetStateAction<AdManageFormItemsType[]>>;
+// }
+
 const AdManageList = () => {
-  const [dataList, setDataList] = useRecoilState<AdManageFormItemsType[] | []>(adListDataState);
+  const [dataList, setDataList] = useState<AdManageFormItemsType[]>([]);
+  const dropdownIndex = useRecoilValue<number>(setMainIdx);
 
   useEffect(() => {
-    setDataList(UPDATED_DATA);
+    setDataList([...UPDATED_DATA]);
   }, []);
+  const filtedList = dataList.filter((ad) => {
+    if (dropdownIndex === 0) return true;
+    if (dropdownIndex === 1) return ad.status === '진행중';
+    return ad.status === '종료';
+  });
 
-  // const grids: string[] = new Array(7).fill('line');
-  // const gridLine = grids.map((line, idx) => {
-  //   const key = `gird-line-${idx + 1}`;
-  //   return <div key={key} className={cx(styles.line, styles[line + (idx + 1)])} />;
-  // });
+  // useEffect(() => {
 
-  const onClickAdCard = (e: MouseEvent<HTMLDivElement>) => {
+  //   const newList = dataList.map((data) => ({ ...data, selected: false }));
+  //   if (filtedList.length > 0) filtedList[0].selected = true;
+  // }, [dropdownIndex]);
+
+  const onClickSelectCard = (e: MouseEvent<HTMLDivElement>) => {
     const { id } = e.currentTarget.dataset;
     setDataList((prev) => {
       const targetIndex = prev.findIndex((data) => data.id === Number(id));
-      const newList = dataList.map((data) => {
-        return { ...data, selected: false };
-      });
+      const newList = dataList.map((data) => ({ ...data, selected: false }));
       newList[targetIndex].selected = true;
       return newList;
     });
   };
 
-  const onClickEditAd = (e: MouseEvent<HTMLButtonElement>) => {
-    const { id } = e.currentTarget.dataset;
-  };
-
-  const adCards = dataList.map((card) => {
+  const adCards = filtedList.map((card) => {
     const key = `ad-card-${card.id}`;
 
     return (
@@ -47,7 +52,7 @@ const AdManageList = () => {
         key={key}
         className={cx(styles.adCard, { [styles.selected]: card.selected })}
         role="presentation"
-        onClick={onClickAdCard}
+        onClick={onClickSelectCard}
       >
         <form className={styles.adForm}>
           <legend className={styles.formTitle}>
@@ -92,7 +97,7 @@ const AdManageList = () => {
               <input id={styles.cost} className={styles.costInput} value={card.report.cost} readOnly />
             </li>
           </ul>
-          <button type="button" data-id={card.id} className={styles.edit} onClick={onClickEditAd}>
+          <button aria-label="edit-button" type="button" data-id={card.id} className={styles.edit}>
             <span className={styles.editText}>수정하기</span>
           </button>
         </form>

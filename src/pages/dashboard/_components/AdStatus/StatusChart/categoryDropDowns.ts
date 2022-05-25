@@ -51,3 +51,15 @@ export const subDropDown: DropItem[] = [
     title: '매출',
   },
 ];
+
+export const adStateDropDown: DropItem[] = [
+  {
+    title: '전체',
+  },
+  {
+    title: '진행중',
+  },
+  {
+    title: '종료',
+  },
+];
