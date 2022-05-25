@@ -44,9 +44,10 @@
 의도적으로 딜레이를 줘서 로딩 화면이 보이게끔 하였습니다.
 로딩 에니메이션은 react spinner라이브러리를 사용하였습니다.
 
-![image](https://user-images.githubusercontent.com/64529155/170370323-e0daa1bd-9165-4dbc-b988-9336fd6ab2ff.png)
+![image](https://user-images.githubusercontent.com/64529155/170370427-dee8b5c3-e827-478b-9fae-48cbcf82d155.png)
 
 ### 광고 현황
+
 
 ## Directory
 
