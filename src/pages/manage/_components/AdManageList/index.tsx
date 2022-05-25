@@ -1,7 +1,5 @@
 import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
-import cx from 'classnames';
-
 import AdManageCard from './AdManageCard';
 import styles from './style.module.scss';
 

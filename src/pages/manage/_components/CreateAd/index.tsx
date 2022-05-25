@@ -1,10 +1,27 @@
+import { Dispatch, MouseEvent, SetStateAction, useEffect, useState } from 'react';
+
+import { cx } from '@emotion/css';
+
 import styles from './styles.module.scss';
 
-const CreateAd = () => {
+interface Props {
+  isShow: boolean;
+  setIsShow: Dispatch<SetStateAction<boolean>>;
+}
+
+const CreateAd = ({ isShow, setIsShow }: Props) => {
+  const onClickHide = () => {
+    setIsShow(false);
+  };
   return (
-    <div className={styles.modalWrapper}>
-      <div className={styles.modalBackground}>
-        <div className={styles.modalContent} />
+    <div className={cx(styles.modalWrapper, { [styles.display]: isShow })}>
+      <div className={styles.modal}>
+        <form>
+          <legend>광고 만들기</legend>
+        </form>
+        <button type="button" onClick={onClickHide}>
+          <span>닫기</span>
+        </button>
       </div>
     </div>
   );

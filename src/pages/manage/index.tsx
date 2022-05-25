@@ -13,6 +13,7 @@ const Manage = () => {
   const [dataList, setDataList] = useRecoilState(dataListAtom);
   const [dropdownIndex, setDropdownIndex] = useRecoilState<number>(setCategoryIdx);
   const categoryItem = useRecoilValue<string[]>(categories);
+  const [isShow, setIsShow] = useState(false);
 
   useEffect(() => {
     if (dropdownIndex === 0) {
@@ -32,8 +33,8 @@ const Manage = () => {
     }
   }, [dropdownIndex]);
 
-  const onClickCreateAdd = (e: MouseEvent<HTMLButtonElement>) => {
-    console.log(e);
+  const onClickCreateAdd = () => {
+    setIsShow(true);
   };
 
   return (
@@ -52,7 +53,7 @@ const Manage = () => {
           <AdManageList dataList={dataList} setDataList={setDataList} />
         </div>
       </div>
-      <CreateAd />
+      <CreateAd isShow={isShow} setIsShow={setIsShow} />
     </div>
   );
 };
