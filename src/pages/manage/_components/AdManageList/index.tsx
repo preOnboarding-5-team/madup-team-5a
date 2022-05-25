@@ -1,12 +1,11 @@
-import { UPDATED_DATA } from 'data/wanted_FE_ad-list-data-set';
-import { useRecoilValue } from 'recoil';
-import { setMainIdx } from 'pages/manage/_states/adManageState';
-// import { Dispatch, MouseEvent, SetStateAction, useEffect, useState } from 'react';
 import { MouseEvent, useEffect, useState } from 'react';
-
+import { useRecoilValue } from 'recoil';
 import cx from 'classnames';
 
+import { setMainIdx } from 'pages/manage/_states/adManageState';
+import { UPDATED_DATA } from 'data/wanted_FE_ad-list-data-set';
 import { AdManageFormItemsType } from 'types/adManage';
+
 import styles from './style.module.scss';
 
 // interface Props {
