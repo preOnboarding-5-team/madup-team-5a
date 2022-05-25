@@ -4,7 +4,6 @@
 
 .wrapper {
   position: relative;
-  z-index: levels.$DROPDOWN;
   width: 123px;
   min-height: 40px;
   font-size: 12px; // TODO after font: 14px
@@ -33,8 +32,12 @@
   }
 
   .dropMenu {
+    position: absolute;
+    z-index: levels.$DROPDOWN;
     width: 100%;
-    border-radius: 2px;
+    background-color: colors.$BG_W;
+    border: 1px solid colors.$GREY_100;
+    border-radius: 10px;
   }
 }
 

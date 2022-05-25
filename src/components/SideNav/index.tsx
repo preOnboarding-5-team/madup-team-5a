@@ -7,19 +7,13 @@ import cx from 'classnames';
 import { GuideIcon, Circle, DashBoardIcon, ManageIcon } from 'assets/svgs';
 import logo from 'assets/images/Lever_BI 1.png';
 import DropButton from 'components/common/DropButton';
+import { useRecoilValue } from 'recoil';
+import { serviceListState } from './_states/serviceList';
 import styles from './style.module.scss';
 
-const SERVICES: DropItem[] = [
-  {
-    title: '매드업',
-  },
-  {
-    title: 'abc',
-  },
-];
-
 const SideNav = () => {
-  const [_, setCurrentIdx] = useState(0);
+  const services = useRecoilValue(serviceListState);
+  const [, setCurrentIdx] = useState(0);
   const router = useRouter();
 
   return (
@@ -33,7 +27,7 @@ const SideNav = () => {
         <section className={styles.service}>
           <p className={styles.title}>서비스</p>
           <DropButton
-            dropItems={SERVICES}
+            dropItems={services}
             larger
             additional
             setCurrentIdx={setCurrentIdx}

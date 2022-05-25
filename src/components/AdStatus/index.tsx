@@ -31,8 +31,10 @@ const AdStatus = () => {
           <StatusCards />
         </ul>
         <div className={styles.selectWrapper}>
-          <DropButton dropItems={items} setCurrentIdx={setMainIdx} className={styles.dropButtonWrapper} />
-          <DropButton dropItems={items} setCurrentIdx={setSubIdx} className={styles.dropButtonWrapper} optional />
+          <div className={styles.dropButtons}>
+            <DropButton dropItems={items} setCurrentIdx={setMainIdx} className={styles.dropButton} />
+            <DropButton dropItems={items} setCurrentIdx={setSubIdx} className={styles.dropButton} optional />
+          </div>
           <Term />
         </div>
         <div className={styles.chartWrapper}>

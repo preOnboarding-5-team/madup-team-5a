@@ -33,7 +33,7 @@
       font-size: 12px;
       // font-style: normal;
       font-weight: 700;
-      // line-height: 14px;
+      line-height: 14px;
       color: colors.$GREY_300;
     }
 
@@ -41,14 +41,6 @@
       width: 100%;
       height: 100px;
       margin: 53px 0;
-
-      .serviceDropButton {
-        // position: static;
-        // box-sizing: border-box;
-        // background: colors.$BG_W;
-        // border: 1px solid colors.$GREY_100;
-        // border-radius: 10px;
-      }
     }
 
     .adCenter {
@@ -65,8 +57,10 @@
         text-decoration: none;
         cursor: pointer;
         border-radius: 10px;
+        transition: 150ms;
 
         &:hover {
+          color: colors.$GREY_800;
           // border: 1px solid colors.$PRIMARY;
           background-color: rgba(colors.$PRIMARY, 6%);
         }
@@ -87,6 +81,7 @@
         }
 
         &:hover {
+          color: colors.$PRIMARY;
           background-color: colors.$GREY_50;
         }
       }
