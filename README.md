@@ -16,7 +16,9 @@
  주어진 figma 디자인을 기반으로 클론 코딩을 하였습니다.
 
 ## 실행 화면과 기능
+
 ### 대시보드
+
 #### 차트
 ![image](https://user-images.githubusercontent.com/64529155/170353845-8248a1c4-7672-4f9b-a2a0-54e3a866b2b1.png)
 
@@ -36,6 +38,13 @@
 아래쪽 차트는 선택한 날짜의 광고 현황의 합계가 표시됩니다. 
 
 ![image](https://user-images.githubusercontent.com/64529155/170354195-d8924712-2294-4ac7-ae6c-dda8efaaf9b8.png)
+
+### 로딩 화면 구현
+
+의도적으로 딜레이를 줘서 로딩 화면이 보이게끔 하였습니다.
+로딩 에니메이션은 react spinner라이브러리를 사용하였습니다.
+
+![image](https://user-images.githubusercontent.com/64529155/170370040-55b664ff-23b5-4fc6-8bbf-bc16c25f68df.png)
 
 
 ### 광고 현황
