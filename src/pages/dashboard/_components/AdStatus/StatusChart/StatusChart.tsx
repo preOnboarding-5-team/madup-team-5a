@@ -37,6 +37,7 @@ const StatusChart = () => {
   const [mainDataRatio, setMainDataRatio] = useState<Data[]>([]);
   const [subDataRatio, setSubDataRatio] = useState<Data[]>([]);
   const [dateList, setDateList] = useState<string[]>([]);
+  const [diff, setDiff] = useState(0);
 
   const getColor = (idx: number) => {
     if (idx < 0) return '';
@@ -57,16 +58,19 @@ const StatusChart = () => {
     },
     [table]
   );
-  const diff = dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') + 1 : 7;
+
+  useEffect(() => {
+    setDiff(dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') + 1 : 7);
+  }, [dayOrWeekly, dates]);
 
   useEffect(() => {
     setDateList([...Array(diff).keys()].map((i) => dayjs(dates.start).add(i, 'day').format('YYYY-MM-DD')));
-  }, [dayOrWeekly, dates, diff]);
+  }, [dates, diff]);
 
   useEffect(() => {
     setMainData(dateList.map((date) => getData(mainIdx, date) as Data));
     setSubData(dateList.map((date) => getData(subIdx, date) as Data));
-  }, [dateList, getData, mainIdx, subIdx]);
+  }, [dateList, mainIdx, subIdx]);
 
   useEffect(() => {
     setMainDataRatio(
