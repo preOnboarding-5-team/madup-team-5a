@@ -27,8 +27,13 @@ type Data = {
 };
 
 type TableKey = 'roas' | 'cost' | 'imp' | 'click' | 'convValue' | 'sales';
+
 type Table = {
   [key in TableKey]: Data[];
+};
+
+type TableKeyUnitMap = {
+  [key in TableKey]: string;
 };
 
 interface CardStatTable {

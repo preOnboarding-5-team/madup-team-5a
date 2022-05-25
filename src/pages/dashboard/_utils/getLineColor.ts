@@ -1,4 +1,5 @@
-import { categoryAtom, subCategoryAtom } from 'pages/dashboard/_states/dashboard';
+import { categories } from 'pages/dashboard/_constants';
+import { subIdxAtom, mainIdxAtom } from 'pages/dashboard/_states/category';
 import { useRecoilValue } from 'recoil';
 
 const colors = {
@@ -11,11 +12,11 @@ const colors = {
 };
 
 export const mainColor = () => {
-  const category = useRecoilValue(categoryAtom);
-  return colors[category];
+  const mainIdx = useRecoilValue(mainIdxAtom);
+  return colors[categories[mainIdx]];
 };
 
 export const subColor = () => {
-  const subCategory = useRecoilValue(subCategoryAtom);
-  return colors[subCategory];
+  const subIdx = useRecoilValue(subIdxAtom);
+  return colors[categories[subIdx]];
 };

@@ -1,6 +1,3 @@
-import { mainColor, subColor } from './../../../_utils/getLineColor';
-import { ScalePropType } from 'victory-core';
-
 export const options = {
   width: 960,
   height: 240,
