@@ -1,17 +1,42 @@
-export const COLORS = {
-  TRANSPARENT: 'transparent',
-  KEY: '#0FB9B9',
-  WHITE: '#FFFFFF',
-  CYAN: '#0FB9B9',
-  GRAY_A: '#AAAAAA',
-  GRAY_D: '#DDDDDD',
-  RED: '#ff3b30',
-  ORANGE: '#ff9500',
-  YELLOW: '#ffcc00',
-  GREEN: '#34c759',
-  TEAL: '#5ac8fa',
-  BLUE: '#007aff',
-  INDIGO: '#5856d6',
-  PURPLE: '#af52de',
-  PINK: '#ff2d55',
+import { ScalePropType } from 'victory-core';
+
+export const options = {
+  width: 960,
+  height: 240,
 };
+
+export const axisStyle = {
+  axis: { stroke: 'transparent' },
+  ticks: { stroke: 'transparent' },
+  grid: { stroke: 'transparent' },
+  tickLabels: { fontSize: 12, padding: 5, fill: '#94a2ad' },
+};
+
+export const dependentAxisStyle = {
+  axis: { stroke: 'transparent' },
+  ticks: { stroke: 'transparent' },
+  grid: { stroke: '#edeff1', strokeDasharray: 0, strokeWidth: 1 },
+};
+
+export const mainLineStyle = {
+  data: { stroke: '#4FADF7' },
+  parent: { border: '1px solid #ccc' },
+};
+
+export const subLineStyle = {
+  data: { stroke: '#85DA47' },
+  parent: { border: '1px solid #ccc' },
+};
+
+// import dayjs from "dayjs";
+
+// const start = dayjs("2022-02-01");
+// const end = dayjs("2022-02-10");
+// const diff = start.diff(end, "day");
+// const dates = [];
+
+// for (let i = 0; i < -diff; i++) {
+//   dates.push(dayjs(start).add(i, "d").format("YYYY-MM-DD"));
+// }
+
+// console.log(dates);

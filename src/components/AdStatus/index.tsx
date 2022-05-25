@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import DropButton from 'components/common/DropButton';
 import StatusCards from './StatusCards';
 import Term from './Term';
-import TestChart from './TestChart';
 import styles from './style.module.scss';
+import StatusChart from './StatusChart';
 
 const AdStatus = () => {
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -31,7 +31,7 @@ const AdStatus = () => {
           <Term />
         </div>
         <div className={styles.chartWrapper}>
-          <TestChart />
+          <StatusChart />
         </div>
       </div>
     </section>

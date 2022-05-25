@@ -1,47 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
+import { useRecoilState } from 'recoil';
 import dayjs from 'dayjs';
 
 import TRAND_DATA from '../../data/wanted_FE_trend-data-set.json';
-import { COLORS } from './statusChartOption';
 
 import styles from './StatusChart.module.scss';
-import { ScalePropType } from 'victory-core';
-import { Daily } from 'types/trend';
-import { convertData } from 'utils/convertStatusData';
-import type { TableKey, Data } from 'utils/convertStatusData';
 
-// ROAS, 광고비, 노출수, 클릭수, 전환 수, 매출 중 선택가능.
-// 첫 드롭다운에서 선택한 지표를 두번째 드롭다운에서 선택할 수 없으며, 두번재 드롭다운 선택은 옵셔널임
-// 주간 일별로 선택가능
+import { Daily } from 'types/adTrend';
 
-const options = {
-  width: 960,
-  height: 300,
-  padding: {
-    left: 60,
-    top: 60,
-    right: 60,
-    bottom: 30,
-  },
-  scale: { x: 'time' as ScalePropType },
-};
+import { convertData } from 'pages/dashboard/_utils/convertStatusData';
+import type { TableKey, Data } from 'pages/dashboard/_utils/convertStatusData';
+import { axisStyle, dependentAxisStyle, mainLineStyle, options, subLineStyle } from './statusChartOption';
+import { getMax } from 'pages/dashboard/_utils/getMax';
 
-// const categories: TableKey[] = ['click' ,'imp' ,'cost' ,'conv' , 'ctr']
+import { categoryAtom, datesAtom, subCategoryAtom } from 'pages/dashboard/_states/dashboard';
 
 const StatusChart = () => {
   const table = convertData(TRAND_DATA.report.daily as Daily[]);
 
+  //무한리랜더 에러남... 왜지...
   const [dates, setDates] = useState(['2022-02-01', '2022-02-02', '2022-02-03', '2022-02-04']);
-  const [category, setCategory] = useState<TableKey>('imp');
-  const [subCategory, setSubCategory] = useState<TableKey>('conv');
-  // const [category, setCategory] = useState(0);
-  // const [subCategory, setSubCategory] = useState(0);
-  const [dayOrWeek, setDayOrWeek] = useState(true);
 
-  const getMax = (arr: { x: string; y: number }[]) => {
-    return Math.max(...arr.map((d) => d.y));
-  };
+  const [category, setCategory] = useRecoilState(categoryAtom);
+  const [subCategory, setSubCategory] = useRecoilState(subCategoryAtom);
+  const [dayOrWeek, setDayOrWeek] = useState(true);
 
   // 일별
   let dailyMainData: Data[] = [];
@@ -49,10 +32,7 @@ const StatusChart = () => {
 
   dates.forEach((date) => {
     dailyMainData.push(table[category].find((data) => data.x === date) as Data);
-    // convertDailyMain.push(table[category].find((data) => data.x === date) as Data);
-
     dailySubData.push(table[subCategory].find((data) => data.x === date) as Data);
-    // convertDailySub.push(table[subCategory].find((data) => data.x === date) as Data);
   });
 
   // 1주일치
@@ -79,10 +59,6 @@ const StatusChart = () => {
 
   convertWeeklyMain.map((data) => (data.y = data.y / getMax(weeklyMainData)));
   convertWeeklySub.map((data) => (data.y = data.y / getMax(weeklySubData)));
-  console.log(weeklySubData);
-  console.log(convertWeeklySub);
-  console.log(getMax(weeklySubData));
-  console.log(37 / 84);
 
   const handleClick = () => {
     setDayOrWeek((prev) => !prev);
@@ -94,50 +70,46 @@ const StatusChart = () => {
         <VictoryChart
           theme={VictoryTheme.material}
           domain={{ y: [0, 1] }}
+          animate={{
+            onLoad: { duration: 1000 },
+          }}
           containerComponent={
             <VictoryVoronoiContainer
               voronoiDimension="x"
-              labels={({ datum }) => `${datum.childName}: ${datum.y}`}
+              labels={({ datum }) => `${datum.childName}: ${datum.labelq}`}
               labelComponent={<VictoryTooltip cornerRadius={0} flyoutStyle={{ fill: 'white' }} />}
             />
           }
           {...options}
         >
-          <VictoryAxis tickValues={dayOrWeek ? dates : weekly} tickFormat={(t) => `${dayjs(t).format('M월 D일')}`} />
+          <VictoryAxis
+            style={axisStyle}
+            tickValues={dayOrWeek ? dates : weekly}
+            tickFormat={(t) => `${dayjs(t).format('M월 D일')}`}
+            offsetX={50}
+          />
           <VictoryAxis
             dependentAxis
             orientation="left"
-            tickValues={[0.25, 0.5, 0.75, 1]}
+            tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
             tickFormat={(t) =>
               dayOrWeek ? `${Math.floor(t * getMax(dailyMainData))}` : Math.floor(t * getMax(weeklyMainData))
             }
+            style={dependentAxisStyle}
+            offsetX={50}
           />
           <VictoryAxis
             dependentAxis
             orientation="right"
-            tickValues={[0.25, 0.5, 0.75, 1]}
+            tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
             tickFormat={(t) =>
               dayOrWeek ? Math.floor(t * getMax(dailySubData)) : Math.floor(t * getMax(weeklySubData))
             }
+            style={dependentAxisStyle}
+            offsetX={50}
           />
-
-          <VictoryLine
-            name="main"
-            style={{
-              data: { stroke: COLORS.YELLOW },
-              parent: { border: '1px solid #ccc' },
-            }}
-            data={dayOrWeek ? convertDailyMain : convertWeeklyMain}
-          />
-          {/* 옵셔널 그래프 */}
-          <VictoryLine
-            name="sub"
-            style={{
-              data: { stroke: COLORS.ORANGE },
-              parent: { border: '1px solid #ccc' },
-            }}
-            data={dayOrWeek ? convertDailySub : convertWeeklySub}
-          />
+          <VictoryLine name="main" style={mainLineStyle} data={dayOrWeek ? convertDailyMain : convertWeeklyMain} />
+          <VictoryLine name="sub" style={subLineStyle} data={dayOrWeek ? convertDailySub : convertWeeklySub} />
         </VictoryChart>
       </div>
       <button onClick={handleClick}>button</button>
@@ -145,6 +117,3 @@ const StatusChart = () => {
   );
 };
 export default StatusChart;
-
-// 카테고리, 서브카테고리, 돈인지 비율인지 state 넘겨받을지 다른파일에서
-// weekly인지 daily인지,
