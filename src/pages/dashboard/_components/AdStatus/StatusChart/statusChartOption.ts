@@ -1,3 +1,4 @@
+import { mainColor, subColor } from './../../../_utils/getLineColor';
 import { ScalePropType } from 'victory-core';
 
 export const options = {
@@ -13,17 +14,8 @@ export const axisStyle = {
 };
 
 export const dependentAxisStyle = {
-  axis: { stroke: 'transparent' },
-  ticks: { stroke: 'transparent' },
+  axis: { display: 'none' },
+  ticks: { display: 'none' },
+  tickLabels: { fontSize: 10, fill: '#94a2ad', textAnchor: 'left' },
   grid: { stroke: '#edeff1', strokeDasharray: 0, strokeWidth: 1 },
-};
-
-export const mainLineStyle = {
-  data: { stroke: '#4FADF7' },
-  parent: { border: '1px solid #ccc' },
-};
-
-export const subLineStyle = {
-  data: { stroke: '#85DA47' },
-  parent: { border: '1px solid #ccc' },
 };

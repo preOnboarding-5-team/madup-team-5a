@@ -1,7 +1,7 @@
 import React from 'react';
 import { TableKey } from '../_utils/convertStatusData';
 
-const useUnit = (category: TableKey) => {
+const useUnit = (category: TableKey): string => {
   const categories: string = {
     roas: '%',
     cost: '만원',
