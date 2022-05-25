@@ -50,6 +50,7 @@ const StatusChart = () => {
     }[categories[idx]];
     return color;
   };
+
   const getData = useCallback(
     (idx: number, date: string | Dayjs) => {
       if (idx < 0) return [];
@@ -57,6 +58,7 @@ const StatusChart = () => {
     },
     [table]
   );
+
   const diff = dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') + 1 : 7;
 
   useEffect(() => {
@@ -66,7 +68,8 @@ const StatusChart = () => {
   useEffect(() => {
     setMainData(dateList.map((date) => getData(mainIdx, date) as Data));
     setSubData(dateList.map((date) => getData(subIdx, date) as Data));
-  }, [dateList, getData, mainIdx, subIdx]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dateList, mainIdx, subIdx]);
 
   useEffect(() => {
     setMainDataRatio(
@@ -96,7 +99,7 @@ const StatusChart = () => {
               voronoiDimension="x"
               labels={({ datum }) => (datum ? `${datum.name}: ${datum.labelq}` : '')}
               labelComponent={
-                <VictoryTooltip cornerRadius={0} flyoutWidth={100} flyoutHeight={40} flyoutStyle={{ fill: 'white' }} />
+                <VictoryTooltip cornerRadius={0} flyoutWidth={120} flyoutHeight={40} flyoutStyle={{ fill: 'white' }} />
               }
             />
           }
