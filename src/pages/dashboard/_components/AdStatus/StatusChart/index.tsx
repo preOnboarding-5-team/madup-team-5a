@@ -16,11 +16,11 @@ import { convertStatusData } from 'pages/dashboard/_utils/convertStatusData';
 import { getMax } from 'pages/dashboard/_utils/getMax';
 import { datesAtom, dayOrWeeklyAtom } from 'pages/dashboard/_states/dashboard';
 import TREND_DATA from 'data/wanted_FE_trend-data-set.json';
-import { axisStyle, dependentAxisStyle, options } from './statusChartOption';
-import styles from './StatusChart.module.scss';
 import { mainIdxAtom, subIdxAtom } from 'pages/dashboard/_states/category';
 import { categories } from 'pages/dashboard/_constants';
-import { useTicks } from 'pages/dashboard/_hooks/useTicks';
+import { getTick } from 'pages/dashboard/_utils/getTick';
+import { axisStyle, dependentAxisStyle, options } from './statusChartOption';
+import styles from './style.module.scss';
 
 const StatusChart = () => {
   const table = convertStatusData(TREND_DATA.report.daily as Daily[]);
@@ -105,7 +105,7 @@ const StatusChart = () => {
             tickLabelComponent={<VictoryLabel dx={-30} dy={-10} />}
             orientation="left"
             tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
-            tickFormat={(t) => useTicks(t, mainData, mainIdx)}
+            tickFormat={(t) => getTick(t, mainData, mainIdx)}
             style={dependentAxisStyle}
           />
           {categories[subIdx] && (
@@ -114,7 +114,7 @@ const StatusChart = () => {
               orientation="right"
               tickLabelComponent={<VictoryLabel dy={-10} />}
               tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
-              tickFormat={(t) => useTicks(t, subData, subIdx)}
+              tickFormat={(t) => getTick(t, subData, subIdx)}
               style={dependentAxisStyle}
               offsetX={100}
             />
