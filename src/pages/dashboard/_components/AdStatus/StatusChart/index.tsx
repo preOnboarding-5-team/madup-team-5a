@@ -28,8 +28,6 @@ const StatusChart = () => {
   const dailyMainData: Data[] = [];
   const dailySubData: Data[] = [];
 
-  console.log(table[category]);
-
   dates.forEach((date) => {
     dailyMainData.push(table[category].find((data) => data.x === date) as Data);
     dailySubData.push(table[subCategory].find((data) => data.x === date) as Data);

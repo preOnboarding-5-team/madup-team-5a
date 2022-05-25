@@ -1,36 +1,38 @@
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
 import cx from 'classnames';
 
+import DropButton from 'components/_common/DropButton';
+import { currentServiceIdxAtom, serviceListAtom } from 'states/serviceType';
 import { GuideIcon, Circle, DashBoardIcon, ManageIcon } from 'assets/svgs';
 import logo from 'assets/images/Lever_BI 1.png';
-import DropButton from 'components/_common/DropButton';
-import { useRecoilValue } from 'recoil';
-import { serviceListState } from './_states/serviceList';
 import styles from './style.module.scss';
 
 const SideNav = () => {
-  const services = useRecoilValue(serviceListState);
-  const [, setCurrentIdx] = useState(0);
+  const [services, setServices] = useRecoilState(serviceListAtom);
+  const [, setServiceIdx] = useRecoilState(currentServiceIdxAtom);
   const router = useRouter();
 
   return (
     <nav className={styles.sideNavWrapper}>
       <header className={styles.sideNavHeader}>
-        <picture className={styles.logo}>
-          <Image src={logo} />
-        </picture>
+        <Link href="/">
+          <picture className={styles.logo}>
+            <Image src={logo} />
+          </picture>
+        </Link>
       </header>
       <main className={styles.sideNavMain}>
         <section className={styles.service}>
           <p className={styles.title}>서비스</p>
           <DropButton
-            dropItems={services}
             larger
             additional
-            setCurrentIdx={setCurrentIdx}
+            dropItems={services}
+            setDropItems={setServices}
+            setCurrentIdx={setServiceIdx}
             className={styles.serviceDropButton}
           />
         </section>
