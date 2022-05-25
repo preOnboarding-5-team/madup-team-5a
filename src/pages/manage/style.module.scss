@@ -3,23 +3,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Stylish&display=swap');
 
 .manageWrapper {
+  width: 1120px;
+
   .title {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 1120px;
+    position: relative;
+    width: 100%;
     height: 80px;
+    padding-top: 25px;
+    padding-left: 40px;
     background: #f6f7f8;
 
     .titleText {
-      position: absolute;
-      top: 25px;
-      left: 40px;
-      display: flex;
-      flex: none;
-      flex-grow: 0;
-      align-items: center;
-      order: 0;
       height: 30px;
       font-family: Roboto, sans-serif;
       font-size: 26px;
@@ -31,273 +25,69 @@
   }
 
   .main {
-    position: absolute;
-    top: 160px;
-    left: 0;
-    width: 1120px;
-    height: 1050px;
+    width: 100%;
+    padding: 30px 40px;
     background: #f6f7f8;
 
     .container {
-      position: relative;
-      top: 30px;
-      left: 40px;
-      width: 1039px;
-      height: 1020px;
+      padding: 40px 0;
       background: #ffffff;
       border-radius: 20px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 4%);
 
-      .dropDown {
-        position: absolute;
-        top: 40px;
-        left: 40px;
-        box-sizing: border-box;
-        width: 123px;
-        height: 40px;
-        background: #ffffff;
-        border: 1px solid #d1d8dc;
-        border-radius: 10px;
-        border-radius: 10px;
+      .dropDownBox {
+        @include flexbox.flexbox(between, center);
 
-        .dropDownText {
-          position: absolute;
-          top: 12px;
-          left: 20px;
-          height: 16px;
-          font-family: Roboto, sans-serif;
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 500;
-          line-height: 16px;
-          color: #3a474e;
-        }
+        .dropDown {
+          position: relative;
+          box-sizing: border-box;
+          width: 130px;
+          height: 40px;
+          padding: 12px 16px;
+          margin-left: 40px;
+          background: #ffffff;
+          border: 1px solid #d1d8dc;
+          border-radius: 10px;
+          @include flexbox.flexbox(center, center);
 
-        .dropDownIcon {
-          position: absolute;
-          top: 8px;
-          right: 10px;
-          width: 24px;
-          height: 24px;
-        }
-      }
-
-      .addButton {
-        position: absolute;
-        top: 40px;
-        left: 891px;
-        @include flexbox.flexbox(center, center);
-        gap: 10px;
-        width: 108px;
-        height: 40px;
-        padding: 12px 20px;
-        background: #586cf5;
-        border-radius: 10px;
-
-        .addButtonText {
-          flex: none;
-          flex-grow: 0;
-          order: 0;
-          height: 16px;
-          font-family: Roboto, sans-serif;
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 700;
-          line-height: 16px;
-          color: #ffffff;
-        }
-      }
-
-      .adCard {
-        position: relative;
-        top: 120px;
-        left: 20px;
-        box-sizing: border-box;
-        display: inline-block;
-        width: 305px;
-        height: 420px;
-        margin-bottom: 20px;
-        margin-left: 20px;
-        background: #ffffff;
-        border: 1px solid #d1d8dc;
-        border-radius: 10px;
-        transition: all 0.2s ease;
-
-        &.selected {
-          border: 1px solid #586cf5;
-        }
-
-        form {
-          position: absolute;
-          top: 40px;
-          left: 20px;
-          width: 265px;
-          height: 299px;
-
-          .formTitle {
-            position: absolute;
-            height: 19px;
+          .dropDownText {
+            height: 16px;
+            margin-right: 19px;
             font-family: Roboto, sans-serif;
-            font-size: 16px;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 16px;
+            color: #3a474e;
+          }
+
+          .dropDownIcon {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+        .addButton {
+          width: 110px;
+          height: 40px;
+          padding: 12px 0;
+          margin-right: 40px;
+          text-align: center;
+          background: #586cf5;
+          border-radius: 10px;
+
+          .addButtonText {
+            height: 16px;
+            font-family: Roboto, sans-serif;
+            font-size: 14px;
             font-style: normal;
             font-weight: 700;
-            line-height: 19px;
-            color: #3a474e;
-            user-select: none;
-          }
-
-          .table {
-            position: absolute;
-            top: 59px;
-            left: 0;
-            width: 265px;
-            height: 240px;
-
-            .category {
-              position: absolute;
-              top: 0;
-              left: 0;
-
-              label {
-                position: absolute;
-                left: 0;
-                width: 72px;
-                height: 14px;
-                font-family: Roboto, sans-serif;
-                font-size: 12px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 14px;
-                color: #94a2ad;
-                user-select: none;
-              }
-
-              input {
-                position: absolute;
-                width: 100px;
-                height: 14px;
-                font-family: Roboto, sans-serif;
-                font-size: 12px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 14px;
-                color: #3a474e;
-                letter-spacing: 0.01em;
-              }
-
-              .statusLabel,
-              .statusInput {
-                top: 13px;
-              }
-
-              .startDateLabel,
-              .startDateInput {
-                top: 53px;
-              }
-
-              .budgetLabel,
-              .budgetInput {
-                top: 93px;
-              }
-
-              .roasLabel,
-              .roasInput {
-                top: 133px;
-              }
-
-              .convValueLabel,
-              .convValueInput {
-                top: 173px;
-              }
-
-              .costLabel,
-              .costInput {
-                top: 213px;
-              }
-
-              .statusInput,
-              .startDateInput,
-              .budgetInput,
-              .roasInput,
-              .convValueInput,
-              .costInput {
-                left: 103px;
-              }
-
-              .endDate {
-                position: absolute;
-                top: 53px;
-                left: 170px;
-                width: 100px;
-                height: 14px;
-                font-family: Roboto, sans-serif;
-                font-size: 12px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 14px;
-                color: #ee1e1e;
-              }
-            }
-          }
-
-          .edit {
-            position: absolute;
-            top: 319px;
-            left: 0;
-            box-sizing: border-box;
-            @include flexbox.flexbox(center, center);
-            gap: 10px;
-            height: 40px;
-            padding: 12px 20px;
-            background: #ffffff;
-            border: 1px solid #d1d8dc;
-            border-radius: 10px;
-
-            .editText {
-              width: 100%;
-              height: 16px;
-              font-family: Roboto, sans-serif;
-              font-size: 14px;
-              font-style: normal;
-              font-weight: 700;
-              line-height: 16px;
-              color: #3a474e;
-            }
-          }
-
-          .line {
-            position: absolute;
-            width: 265px;
-            height: 0;
-            border: 1px solid #edeff1;
-
-            &.line1 {
-              top: 59px;
-            }
-
-            &.line2 {
-              top: 99px;
-            }
-
-            &.line3 {
-              top: 139px;
-            }
-
-            &.line4 {
-              top: 179px;
-            }
-
-            &.line5 {
-              top: 219px;
-            }
-
-            &.line6 {
-              top: 259px;
-            }
-
-            &.line7 {
-              top: 299px;
-            }
+            line-height: 16px;
+            color: #ffffff;
+            text-align: center;
           }
         }
       }

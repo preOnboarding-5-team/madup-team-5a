@@ -44,5 +44,5 @@ function convertFormat(num: number) {
 
   const resultStr = splitNumber.join(',');
 
-  return hasZero ? resultStr.substring(0, resultStr.length - 1) + '원' : resultStr + '천원';
+  return hasZero ? `${resultStr.substring(0, resultStr.length - 1)}원` : `${resultStr}천원`;
 }

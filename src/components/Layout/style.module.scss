@@ -1,14 +1,16 @@
 @use 'styles/constants/colors';
+@use 'styles/mixins/flexbox';
 
-.mainWrapper {
-  position: absolute;
-  top: 0;
-  left: 320px;
-  width: calc(100vw - 320px);
+.wrap {
+  display: flex;
+  width: 1440px;
+  margin: 100px auto;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 10%);
 
-  .pageWrapper {
-    width: 1120px;
-    height: 1836px;
-    background-color: colors.$BG_G;
+  .mainWrapper {
+    .pageWrapper {
+      padding-bottom: 98px;
+      background-color: colors.$BG_G;
+    }
   }
 }

@@ -4,11 +4,11 @@
 
 .sideNavWrapper {
   @include flexbox.vertical(baseline, center);
-  float: left;
+  position: relative;
+  z-index: 20;
   width: 320px;
-  height: 2598px;
   background-color: colors.$BG_W;
-  box-shadow: 4 0 10 0 colors.$SHADOW_BANNER;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 4%);
 
   .sideNavHeader {
     @include flexbox.vertical(center, baseline);
@@ -61,7 +61,6 @@
 
         &:hover {
           color: colors.$GREY_800;
-          // border: 1px solid colors.$PRIMARY;
           background-color: rgba(colors.$PRIMARY, 6%);
         }
 
