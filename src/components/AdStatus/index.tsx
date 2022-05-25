@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import DropButton from 'components/common/DropButton';
 import StatusCards from './StatusCards';
 import Term from './Term';
 import styles from './style.module.scss';
 import StatusChart from './StatusChart';
+import { categoryAtom } from 'pages/dashboard/_states/dashboard';
+import { useRecoilState } from 'recoil';
+import { TableKey } from 'pages/dashboard/_utils/convertStatusData';
 
 const AdStatus = () => {
   const [currentIdx, setCurrentIdx] = useState(0);
+  const [category, setCategory] = useRecoilState(categoryAtom);
+  const categories: TableKey[] = ['roas', 'cost', 'imp', 'convValue', 'sales'];
+
+  useEffect(() => {
+    if (currentIdx > -1) setCategory(categories[currentIdx]);
+  }, [currentIdx]);
+
   const items: DropItem[] = [
     {
       color: '#4FADF7',
@@ -15,9 +25,22 @@ const AdStatus = () => {
     },
     {
       color: '#85DA47',
-      title: '클릭수',
+      title: '광고비',
+    },
+    {
+      color: '#541690',
+      title: '노출수',
+    },
+    {
+      color: '#FF4949',
+      title: '전환수',
+    },
+    {
+      color: '#FFCD38',
+      title: '매출',
     },
   ];
+
   return (
     <section className={styles.adManageMainWrapper}>
       <h1>통합 광고 현황</h1>

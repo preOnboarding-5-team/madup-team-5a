@@ -3,12 +3,12 @@ import { TableKey } from '../_utils/convertStatusData';
 
 export const categoryAtom = atom<TableKey>({
   key: 'categoryAtom',
-  default: 'imp',
+  default: 'click',
 });
 
 export const subCategoryAtom = atom<TableKey>({
   key: 'subCategoryAtom',
-  default: 'cost',
+  default: 'sales',
 });
 
 export const datesAtom = atom<string[]>({
