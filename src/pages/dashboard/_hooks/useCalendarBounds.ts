@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
 import { datesAtom } from '../_states/dashboard';
