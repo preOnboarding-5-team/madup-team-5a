@@ -60,10 +60,6 @@ const DropButton = ({
 
   const handleClickAdd = () => {};
 
-  if (additional) {
-    console.log(dropItems.length);
-  }
-
   const dropMenu = (
     <ul className={styles.dropMenu}>
       {[...dropItemsToRender.slice(0, topIdx), ...dropItemsToRender.slice(topIdx + 1)].map(({ color, title }, idx) => {
