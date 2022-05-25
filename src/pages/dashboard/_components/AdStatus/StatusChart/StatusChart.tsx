@@ -14,7 +14,7 @@ import type { Dayjs } from 'dayjs';
 
 import { convertStatusData } from 'pages/dashboard/_utils/convertStatusData';
 import { getMax } from 'pages/dashboard/_utils/getMax';
-import { datesAtom } from 'pages/dashboard/_states/dashboard';
+import { datesAtom, dayOrWeeklyAtom } from 'pages/dashboard/_states/dashboard';
 import TREND_DATA from 'data/wanted_FE_trend-data-set.json';
 import { axisStyle, dependentAxisStyle, options } from './statusChartOption';
 import styles from './StatusChart.module.scss';
@@ -28,8 +28,8 @@ const StatusChart = () => {
   const dates = useRecoilValue(datesAtom);
   const mainIdx = useRecoilValue(mainIdxAtom);
   const subIdx = useRecoilValue(subIdxAtom);
+  const dayOrWeekly = useRecoilValue(dayOrWeeklyAtom);
 
-  const [dayOrWeek, setDayOrWeek] = useState(true);
   const [mainData, setMainData] = useState<Data[]>([]);
   const [subData, setSubData] = useState<Data[]>([]);
   const [mainDataRatio, setMainDataRatio] = useState<Data[]>([]);
@@ -53,11 +53,11 @@ const StatusChart = () => {
     if (idx < 0) return [];
     return table[categories[idx]].find((data) => dayjs(data.x).isSame(date));
   };
-  const diff = dayOrWeek ? dayjs(dates.end).diff(dates.start, 'day') : 7;
+  const diff = dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') : 7;
 
   useEffect(() => {
     setDateList([...Array(diff).keys()].map((i) => dayjs(dates.start).add(i, 'day').format('YYYY-MM-DD')));
-  }, [dayOrWeek, dates]);
+  }, [dayOrWeekly, dates]);
   useEffect(() => {
     setMainData(dateList.map((date) => getData(mainIdx, date) as Data));
     setSubData(dateList.map((date) => getData(subIdx, date) as Data));
@@ -77,10 +77,6 @@ const StatusChart = () => {
       })
     );
   }, [mainData, subData]);
-
-  const handleClick = () => {
-    setDayOrWeek((prev) => !prev);
-  };
 
   return (
     <section className={styles.chart}>
@@ -148,7 +144,6 @@ const StatusChart = () => {
           )}
         </VictoryChart>
       </div>
-      <button onClick={handleClick}>button</button>
     </section>
   );
 };
