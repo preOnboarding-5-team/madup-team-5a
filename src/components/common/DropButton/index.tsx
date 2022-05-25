@@ -25,8 +25,17 @@ const DropButton = ({
         setIsOpen(false);
       }
     };
+    const handleWindowBlur = () => {
+      setIsOpen(false);
+    };
+
     document.addEventListener('click', handleOuterClick);
-    return () => document.removeEventListener('click', handleOuterClick);
+    window.addEventListener('blur', handleWindowBlur);
+
+    return () => {
+      document.removeEventListener('click', handleOuterClick);
+      window.removeEventListener('blur', handleWindowBlur);
+    };
   }, []);
 
   useEffect(() => {

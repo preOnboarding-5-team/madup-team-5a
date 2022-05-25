@@ -3,7 +3,7 @@
 @use 'styles/mixins/flexbox';
 
 .wrapper {
-  position: absolute;
+  position: relative;
   z-index: levels.$DROPDOWN;
   width: 123px;
   min-height: 40px;
@@ -33,12 +33,13 @@
   }
 
   .dropMenu {
+    width: 100%;
     border-radius: 2px;
   }
 }
 
 .menu {
-  max-width: 100%;
+  width: 100%;
   height: 40px;
   cursor: pointer;
 
@@ -52,10 +53,11 @@
 }
 
 .addMenu {
-  background-color: colors.$BG_G;
+  // background-color: colors.$BG_G;
+  // border-top: 1px solid rgba(colors.$PRIMARY, 30%);
 
   &:hover {
-    background-color: colors.$GREY_50;
+    background-color: colors.$BG_G;
   }
 }
 
@@ -79,17 +81,26 @@
   @include flexbox.horizontal(baseline, center);
   margin-left: 20px;
 
-  .addIcon {
-    transform: scale(50%);
-  }
-
   .title {
     margin-left: 10px;
   }
 }
 
+.addItem {
+  margin-left: 10px;
+
+  .addIcon {
+    fill: colors.$GREY_300;
+    transform: scale(50%);
+  }
+
+  .addTitle {
+    margin-left: 5px;
+    color: colors.$GREY_300;
+  }
+}
+
 .largerWrapper {
-  top: 200px;
   width: 240px;
   min-height: 60px;
   font-size: 14px; // TODO after font: 16px
