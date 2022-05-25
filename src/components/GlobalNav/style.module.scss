@@ -1,64 +1,67 @@
 @use 'styles/constants/colors';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Stylish&display=swap');
 
 .globalNavBar {
-  width: 1120px;
+  position: relative;
+  width: 100%;
+  min-width: 789px;
+  max-width: 1120px;
   height: 80px;
-  background-color: colors.$BG_G;
+  background: colors.$BG_G;
 
   .contentContainer {
     position: absolute;
     top: 20px;
-    left: 870px;
+    right: 54px;
     width: 210px;
     height: 40px;
 
-    .new {
+    li {
       position: absolute;
-      top: 6px;
-      left: 21px;
-      width: 5px;
-      height: 5px;
-      background: #ea3a4b;
-      border-radius: 50%;
-    }
 
-    .notify {
-      position: absolute;
-      top: 8px;
-      left: 0;
-      width: 24px;
-      height: 24px;
-    }
+      &.new {
+        top: 6px;
+        left: 21px;
+        width: 5px;
+        height: 5px;
+        background: colors.$SECONDARY_02;
+        border-radius: 50%;
+      }
 
-    .setting {
-      position: absolute;
-      top: 8px;
-      left: 54px;
-      width: 24px;
-      height: 24px;
-    }
+      &.notify {
+        top: 8px;
+        left: 0;
+        width: 24px;
+        height: 24px;
+      }
 
-    .myPage {
-      position: absolute;
-      top: 0;
-      left: 108px;
-      width: 102px;
-      height: 40px;
-      // @include flexbox.flexbox(center, center);
+      &.setting {
+        top: 8px;
+        left: 54px;
+        width: 24px;
+        height: 24px;
+      }
 
-      .name {
-        position: absolute;
-        top: 12px;
-        left: 50px;
-        width: 54px; // TODO: figma에서는 52px인데 폰트가 없어서 54px로 설정해야 한줄로 들어옴
-        height: 16px;
+      &.myPage {
+        top: 0;
+        left: 108px;
+        width: 102px;
+        height: 40px;
 
-        // font-family: 'Roboto'; TODO: 폰트 찾아볼 것
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 16px;
-        color: #3a474e;
+        .name {
+          position: absolute;
+          top: 12px;
+          right: 25px;
+          width: 54px;
+          height: 16px;
+          font-family: Roboto, sans-serif;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 16px;
+          color: colors.$GREY_800;
+          transform: translateX(50%);
+        }
       }
     }
   }
@@ -66,9 +69,11 @@
   .horizonBar {
     position: absolute;
     top: 80px;
-    left: 40px;
-    width: 1040px;
+    right: 50%;
+    z-index: 10;
+    width: 92%;
     height: 0;
-    border: 1px solid #edeff1;
+    border: 1px solid colors.$GREY_50;
+    transform: translateX(50%);
   }
 }

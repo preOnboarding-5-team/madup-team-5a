@@ -1,17 +1,17 @@
 @use 'styles/constants/colors';
 @use 'styles/mixins/flexbox';
 
-.wrapper {
-  @include flexbox.vertical(baseline, center);
+.dashboardWrapper {
   width: 100%;
-  height: 100%;
-  padding: 0 40px;
   color: colors.$GREY_800;
 
   .pageHeader {
-    @include flexbox.horizontal(between, center);
+    position: relative;
+    display: flex;
     width: 100%;
     height: 80px;
+    padding-top: 25px;
+    padding-left: 40px;
 
     .pageTitle {
       font-size: 26px;
