@@ -16,7 +16,7 @@ const StatusCards = () => {
     <>
       <li>
         <div className={styles.leftBox}>
-          <h2>ROAS</h2>
+          <p className={styles.category}>ROAS</p>
           <p className={styles.value}>697%</p>
         </div>
         <div className={styles.rightBox}>
@@ -26,7 +26,7 @@ const StatusCards = () => {
       </li>
       <li>
         <div className={styles.leftBox}>
-          <h2>광고비</h2>
+          <p className={styles.category}>광고비</p>
           <p className={styles.value}>3,799만 원</p>
         </div>
         <div className={styles.rightBox}>
@@ -36,7 +36,7 @@ const StatusCards = () => {
       </li>
       <li>
         <div className={styles.leftBox}>
-          <h2>노출 수</h2>
+          <p className={styles.category}>노출 수</p>
           <p className={styles.value}>971만 회</p>
         </div>
         <div className={styles.rightBox}>
@@ -46,7 +46,7 @@ const StatusCards = () => {
       </li>
       <li>
         <div className={styles.leftBox}>
-          <h2>클릭수</h2>
+          <p className={styles.category}>클릭수</p>
           <p className={styles.value}>9.4만 회</p>
         </div>
         <div className={styles.rightBox}>
@@ -56,7 +56,7 @@ const StatusCards = () => {
       </li>
       <li>
         <div className={styles.leftBox}>
-          <h2>전환 수</h2>
+          <p className={styles.category}>전환 수</p>
           <p className={styles.value}>8,523회</p>
         </div>
         <div className={styles.rightBox}>
@@ -66,7 +66,7 @@ const StatusCards = () => {
       </li>
       <li>
         <div className={styles.leftBox}>
-          <h2>매출</h2>
+          <p className={styles.category}>매출</p>
           <p className={styles.value}>2.6억 원</p>
         </div>
         <div className={styles.rightBox}>

@@ -1,13 +1,13 @@
 @use 'styles/constants/colors';
 
-.adManageMainWrapper {
+.adStatusWrapper {
   box-sizing: border-box;
   width: 1120px;
   height: 743px;
   margin-top: 20px;
   background-color: colors.$BG_DG;
 
-  h1 {
+  .sectionTitle {
     margin-top: 21px;
     margin-left: 40px;
     font-size: 16px;
@@ -17,7 +17,7 @@
     color: colors.$GREY_800;
   }
 
-  .adManageMain {
+  .adStatus {
     width: 1039px;
     height: 654px;
     padding: 40px;
@@ -50,7 +50,7 @@
         border-radius: 10px;
 
         .leftBox {
-          h2 {
+          .category {
             width: 31px;
             height: 14px;
             font-size: 12px;
@@ -107,9 +107,10 @@
       height: 40px;
       margin-top: 42px;
 
-      .dropButtonWrapper {
-        position: static;
-        margin-right: 10px;
+      .dropButton {
+        + .dropButton {
+          margin-left: 10px;
+        }
       }
 
       .menu {

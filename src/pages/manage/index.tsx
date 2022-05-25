@@ -1,6 +1,8 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 
-import UPDATED_DATA from 'data/index';
+import { AdManageFormItemsType } from 'types/adManage';
+import { UPDATED_DATA } from 'data/wanted_FE_ad-list-data-set';
+import AD_DATA from 'data/wanted_FE_ad-list-data-set.json';
 
 import cx from 'classnames';
 
@@ -8,6 +10,13 @@ import { ArrowDownIcon } from 'assets/svgs';
 import styles from './style.module.scss';
 
 const Manage = () => {
+  // const { ads } = AD_DATA; 광고 만들기용 원본 데이터
+  const [dataList, setDataList] = useState<AdManageFormItemsType[] | []>([]);
+
+  useEffect(() => {
+    setDataList(UPDATED_DATA);
+  }, []);
+
   const grids: string[] = new Array(7).fill('line');
   const gridLine = grids.map((line, idx) => {
     const key = `gird-line-${idx + 1}`;
@@ -15,16 +24,29 @@ const Manage = () => {
   });
 
   const onClickAdCard = (e: MouseEvent<HTMLDivElement>) => {
-    const target = e.currentTarget;
-    const { id } = target.dataset;
+    const { id } = e.currentTarget.dataset;
+    setDataList((prev) => {
+      const targetIndex = prev.findIndex((data) => data.id === Number(id));
+      const newList = dataList.map((data) => {
+        data.selected = false;
+        return { ...data };
+      });
+      newList[targetIndex].selected = true;
+      return newList;
+    });
   };
 
-  const createAdCard = UPDATED_DATA.map((card) => {
+  const createAdCard = dataList.map((card) => {
     const key = `ad-card-${card.id}`;
 
     return (
-      // TODO: dl dt dd
-      <div data-id={card.id} key={key} className={styles.adCard} role="presentation" onClick={onClickAdCard}>
+      <div
+        data-id={card.id}
+        key={key}
+        className={cx(styles.adCard, { [styles.selected]: card.selected })}
+        role="presentation"
+        onClick={onClickAdCard}
+      >
         <form className={styles.adForm}>
           <legend className={styles.formTitle}>
             <h3>{card.adType}</h3>

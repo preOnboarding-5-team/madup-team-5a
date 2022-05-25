@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import type { PropsWithChildren, Dispatch, SetStateAction } from 'react';
 import cx from 'classnames';
-import { DropIcon } from 'assets/svgs';
+
+import { DropIcon, AddIcon } from 'assets/svgs';
 import ColorIndicator from './ColorIndicator';
 import styles from './style.module.scss';
-import AddMenu from './AddMenu';
 
 const DropButton = ({
   className,
@@ -25,8 +25,17 @@ const DropButton = ({
         setIsOpen(false);
       }
     };
+    const handleWindowBlur = () => {
+      setIsOpen(false);
+    };
+
     document.addEventListener('click', handleOuterClick);
-    return () => document.removeEventListener('click', handleOuterClick);
+    window.addEventListener('blur', handleWindowBlur);
+
+    return () => {
+      document.removeEventListener('click', handleOuterClick);
+      window.removeEventListener('blur', handleWindowBlur);
+    };
   }, []);
 
   useEffect(() => {
@@ -51,6 +60,10 @@ const DropButton = ({
 
   const handleClickAdd = () => {};
 
+  if (additional) {
+    console.log(dropItems.length);
+  }
+
   const dropMenu = (
     <ul className={styles.dropMenu}>
       {[...dropItemsToRender.slice(0, topIdx), ...dropItemsToRender.slice(topIdx + 1)].map(({ color, title }, idx) => {
@@ -59,7 +72,8 @@ const DropButton = ({
           <li
             className={cx(styles.menu, {
               [styles.largerMenu]: larger,
-              [styles.roundBottom]: !additional && idx === dropItemsToRender.length - 1,
+              [styles.roundTop]: idx === 0,
+              [styles.roundBottom]: !additional && idx === dropItemsToRender.length - 2,
             })}
             key={key}
           >
@@ -78,7 +92,21 @@ const DropButton = ({
           </li>
         );
       })}
-      {additional && <AddMenu larger={larger} onClick={handleClickAdd} />}
+      {additional && (
+        <li
+          className={cx(styles.menu, styles.addMenu, styles.roundBottom, {
+            [styles.largerMenu]: larger,
+            [styles.roundTop]: dropItems.length === 1,
+          })}
+        >
+          <div className={styles.itemWrapper} onClick={handleClickAdd} role="menuitem" tabIndex={-1}>
+            <div className={cx(styles.item, styles.addItem)}>
+              <AddIcon className={styles.addIcon} />
+              <p className={styles.addTitle}>항목 추가</p>
+            </div>
+          </div>
+        </li>
+      )}
     </ul>
   );
 

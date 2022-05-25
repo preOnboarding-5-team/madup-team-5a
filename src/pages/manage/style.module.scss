@@ -21,7 +21,7 @@
       align-items: center;
       order: 0;
       height: 30px;
-      font-family: Roboto;
+      font-family: Roboto, sans-serif;
       font-size: 26px;
       font-style: normal;
       font-weight: 900;
@@ -65,7 +65,7 @@
           top: 12px;
           left: 20px;
           height: 16px;
-          font-family: Roboto;
+          font-family: Roboto, sans-serif;
           font-size: 14px;
           font-style: normal;
           font-weight: 500;
@@ -99,7 +99,7 @@
           flex-grow: 0;
           order: 0;
           height: 16px;
-          font-family: Roboto;
+          font-family: Roboto, sans-serif;
           font-size: 14px;
           font-style: normal;
           font-weight: 700;
@@ -121,6 +121,11 @@
         background: #ffffff;
         border: 1px solid #d1d8dc;
         border-radius: 10px;
+        transition: all 0.2s ease;
+
+        &.selected {
+          border: 1px solid #586cf5;
+        }
 
         form {
           position: absolute;
@@ -132,7 +137,7 @@
           .formTitle {
             position: absolute;
             height: 19px;
-            font-family: Roboto;
+            font-family: Roboto, sans-serif;
             font-size: 16px;
             font-style: normal;
             font-weight: 700;
@@ -158,7 +163,7 @@
                 left: 0;
                 width: 72px;
                 height: 14px;
-                font-family: Roboto;
+                font-family: Roboto, sans-serif;
                 font-size: 12px;
                 font-style: normal;
                 font-weight: 500;
@@ -171,12 +176,13 @@
                 position: absolute;
                 width: 100px;
                 height: 14px;
-                font-family: Roboto;
+                font-family: Roboto, sans-serif;
                 font-size: 12px;
                 font-style: normal;
                 font-weight: 700;
                 line-height: 14px;
                 color: #3a474e;
+                letter-spacing: 0.01em;
               }
 
               .statusLabel,
@@ -224,7 +230,7 @@
                 left: 170px;
                 width: 100px;
                 height: 14px;
-                font-family: Roboto;
+                font-family: Roboto, sans-serif;
                 font-size: 12px;
                 font-style: normal;
                 font-weight: 700;
@@ -250,7 +256,7 @@
             .editText {
               width: 100%;
               height: 16px;
-              font-family: Roboto;
+              font-family: Roboto, sans-serif;
               font-size: 14px;
               font-style: normal;
               font-weight: 700;
@@ -293,10 +299,6 @@
               top: 299px;
             }
           }
-        }
-
-        .selectedCard {
-          border: 1px solid #586cf5;
         }
       }
     }
