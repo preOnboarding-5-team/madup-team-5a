@@ -19,7 +19,7 @@ $FONT_MAP: (
   @return map-get($FONT_MAP, $key);
 }
 
-@mixin titleFont($) {
+@mixin titleFont() {
   font-family: Roboto, sans-serif;
   font-size: 26px;
   font-style: normal;

@@ -1,4 +1,4 @@
-import AdManageList from 'components/AdManageList';
+import AdManageList from 'pages/manage/_components/AdManageList';
 import { ArrowDownIcon } from 'assets/svgs';
 import styles from './style.module.scss';
 
