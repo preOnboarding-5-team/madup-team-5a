@@ -59,6 +59,10 @@ const DropButton = ({
 
   const handleClickAdd = () => {};
 
+  if (additional) {
+    console.log(dropItems.length);
+  }
+
   const dropMenu = (
     <ul className={styles.dropMenu}>
       {[...dropItemsToRender.slice(0, topIdx), ...dropItemsToRender.slice(topIdx + 1)].map(({ color, title }, idx) => {
@@ -67,6 +71,7 @@ const DropButton = ({
           <li
             className={cx(styles.menu, {
               [styles.largerMenu]: larger,
+              [styles.roundTop]: idx === 0,
               [styles.roundBottom]: !additional && idx === dropItemsToRender.length - 2,
             })}
             key={key}
@@ -90,6 +95,7 @@ const DropButton = ({
         <li
           className={cx(styles.menu, styles.addMenu, styles.roundBottom, {
             [styles.largerMenu]: larger,
+            [styles.roundTop]: dropItems.length === 1,
           })}
         >
           <div className={styles.itemWrapper} onClick={handleClickAdd} role="menuitem" tabIndex={-1}>
