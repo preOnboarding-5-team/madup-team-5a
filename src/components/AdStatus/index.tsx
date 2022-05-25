@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
+import dynamic from 'next/dynamic';
 
 import DropButton from 'components/common/DropButton';
 import StatusCards from './StatusCards';
 import Term from './Term';
+
 import styles from './style.module.scss';
 import dynamic from 'next/dynamic';
 
 const TestChart = dynamic(() => import('./TestChart'), { ssr: false });
-
+  
 const AdStatus = () => {
-  const [currentIdx, setCurrentIdx] = useState(0);
+  const [mainIdx, setMainIdx] = useState(0);
+  const [subIdx, setSubIdx] = useState(0);
   const items: DropItem[] = [
     {
       color: '#4FADF7',
@@ -29,8 +33,10 @@ const AdStatus = () => {
           <StatusCards />
         </ul>
         <div className={styles.selectWrapper}>
-          <DropButton dropItems={items} setCurrentIdx={setCurrentIdx} className={styles.dropButtonWrapper} />
-          <DropButton dropItems={items} setCurrentIdx={setCurrentIdx} className={styles.dropButtonWrapper} optional />
+          <div className={styles.dropButtons}>
+            <DropButton dropItems={items} setCurrentIdx={setMainIdx} className={styles.dropButton} />
+            <DropButton dropItems={items} setCurrentIdx={setSubIdx} className={styles.dropButton} optional />
+          </div>
           <Term />
         </div>
         <div className={styles.chartWrapper}>
