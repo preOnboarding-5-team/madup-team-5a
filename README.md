@@ -1,34 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 매드업 프론트엔드 기업 과제 5A팀
+### 개발자
 
-## Getting Started
+* 곽태훈, 민지원, 박휘건, 장재혁
 
-First, run the development server:
+### 기술스택
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+* React, Recoil, Scss
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 개발 기간
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+* 2022/5/24 ~ 2022/5/26 
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## OverView
+원티드 프리온보딩 코스 5-A조 매드업 과제 프로젝트입니다.
+ 주어진 figma 디자인을 기반으로 클론 코딩을 하였습니다.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 실행 화면과 기능
+### 대시보드
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+### 광고 현황
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Directory
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Dependencies
+Days
+Next’s
+Recoil
+Victory
 
-## Deploy on Vercel
+## 느낀점
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### 박휘건
+chartjs는 이용해 본 적 있으나 victory는 요번에 처음 공부하고 사용했는데 개별성이 강해서 각각의 상호작용을 위한 작업들이 굉장히 어려웠습니다. 특히 그래프를 두 개 이용할 때 데이터를 평준화 시켜주는 작업에 상당히 많은 시간을 할애하게 되었고 규모가 커질 수록 상태관리 구조의 중요성을 깨닫고 중간에 몇 번이고 상태관리 flow를 변경하게 되어 시간을 많이 소비하였습니다. 차트쪽에서 animation이나 커스텀 스타일링이 많이 아쉬웠고 css용어가 아니라 스타일링에 부족함을 느껴 아쉬웠습니다. 
