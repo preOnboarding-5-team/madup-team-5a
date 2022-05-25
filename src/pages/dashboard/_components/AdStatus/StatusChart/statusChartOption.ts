@@ -1,13 +1,14 @@
 export const options = {
   width: 960,
-  height: 240,
+  height: 400,
+  parent: { height: '120%' },
 };
 
 export const axisStyle = {
   axis: { stroke: 'transparent' },
   ticks: { stroke: 'transparent' },
   grid: { stroke: 'transparent' },
-  tickLabels: { fontSize: 12, padding: 5, fill: '#94a2ad' },
+  tickLabels: { fontSize: 10, padding: 5, fill: '#94a2ad' },
 };
 
 export const dependentAxisStyle = {
