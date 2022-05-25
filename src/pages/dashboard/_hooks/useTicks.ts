@@ -3,7 +3,6 @@ import { useRecoilValue } from 'recoil';
 import { getMax } from './../_utils/getMax';
 
 import { categoryAtom } from 'pages/dashboard/_states/dashboard';
-import { Data } from '../_utils/convertStatusData';
 
 export const useTicks = (dataList: Data[]) => {
   const ts: number[] = [0.2, 0.4, 0.6, 0.8, 1];

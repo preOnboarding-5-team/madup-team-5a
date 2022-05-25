@@ -7,7 +7,6 @@ import Term from './Term';
 import styles from './style.module.scss';
 import { categoryAtom, subCategoryAtom } from 'pages/dashboard/_states/dashboard';
 import { useRecoilState } from 'recoil';
-import { TableKey } from 'pages/dashboard/_utils/convertStatusData';
 import { mainDropDown, subDropDown } from './StatusChart/categoryDropDowns';
 import useUnit from 'pages/dashboard/_hooks/useUnit';
 
@@ -35,9 +34,7 @@ const AdStatus = () => {
     <section className={styles.adStatusWrapper}>
       <h2 className={styles.sectionTitle}>통합 광고 현황</h2>
       <div className={styles.adStatus}>
-        <ul className={styles.statusCardsWrapper}>
-          <StatusCards />
-        </ul>
+        <StatusCards />
         <div className={styles.selectWrapper}>
           <DropButton dropItems={mainDropDown} setCurrentIdx={setMainIdx} className={styles.dropButton} />
           <DropButton dropItems={subDropDown} setCurrentIdx={setSubIdx} className={styles.dropButton} optional />

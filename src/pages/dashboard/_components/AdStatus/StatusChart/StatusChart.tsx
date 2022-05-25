@@ -10,29 +10,31 @@ import {
 } from 'victory';
 import { useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
+import type { Dayjs } from 'dayjs';
 
+import { convertStatusData } from 'pages/dashboard/_utils/convertStatusData';
+import { getMax } from 'pages/dashboard/_utils/getMax';
+import { categoryAtom, datesAtom, subCategoryAtom } from 'pages/dashboard/_states/dashboard';
+import useUnit from 'pages/dashboard/_hooks/useUnit';
 import TRAND_DATA from 'data/wanted_FE_trend-data-set.json';
-
+import { axisStyle, dependentAxisStyle, options } from './statusChartOption';
 import styles from './StatusChart.module.scss';
 
-import { Daily } from 'types/adTrend';
-
-import { TableKey, Data, convertData } from 'pages/dashboard/_utils/convertStatusData';
-import { getMax } from 'pages/dashboard/_utils/getMax';
-import useUnit from 'pages/dashboard/_hooks/useUnit';
-import { axisStyle, dependentAxisStyle, options } from './statusChartOption';
-
-import { categoryAtom, datesAtom, subCategoryAtom } from 'pages/dashboard/_states/dashboard';
-
 const StatusChart = () => {
-  const table = convertData(TRAND_DATA.report.daily as Daily[]);
+  const table = convertStatusData(TRAND_DATA.report.daily as Daily[]);
 
   //무한리랜더 에러남... 왜지...
-  const [dates, setDates] = useState(['2022-02-01', '2022-02-02', '2022-02-03', '2022-02-04']);
-
+  const dates = useRecoilValue(datesAtom);
   const category = useRecoilValue(categoryAtom);
   const subCategory = useRecoilValue(subCategoryAtom);
+
   const [dayOrWeek, setDayOrWeek] = useState(true);
+  const [mainData, setMainData] = useState<Data[]>([]);
+  const [subData, setSubData] = useState<Data[]>([]);
+  const [mainDataRatio, setMainDataRatio] = useState<Data[]>([]);
+  const [subDataRatio, setSubDataRatio] = useState<Data[]>([]);
+  const [dateList, setDateList] = useState<string[]>([]);
+
   const getColor = (category: TableKey) => {
     const color = {
       roas: '#4FADF7',
@@ -45,39 +47,73 @@ const StatusChart = () => {
     return color;
   };
 
-  // 일별
-  let dailyMainData: Data[] = [];
-  let dailySubData: Data[] = [];
+  const getData = (category: TableKey, date: string | Dayjs) => {
+    return table[category].find((data) => dayjs(data.x).isSame(date));
+  };
 
-  dates.forEach((date) => {
-    dailyMainData.push(table[category].find((data) => data.x === date) as Data);
-    dailySubData.push(table[subCategory].find((data) => data.x === date) as Data);
-  });
+  useEffect(() => {
+    const diff = dayOrWeek ? dayjs(dates.end).diff(dates.start, 'day') : 7;
+    setDateList([...Array(diff).keys()].map((i) => dayjs(dates.start).add(i, 'day').format('YYYY-MM-DD')));
+  }, [dayOrWeek, dates]);
+
+  useEffect(() => {
+    setMainData(dateList.map((date) => getData(category, date) as Data));
+    setSubData(dateList.map((date) => getData(subCategory, date) as Data));
+  }, [dateList, category, subCategory]);
+
+  useEffect(() => {
+    // const convertedMain: Data[] = JSON.parse(JSON.stringify(mainData));
+    // convertedMain.map((data) => (data.y = data.y / getMax(mainData)));
+
+    setMainDataRatio(
+      mainData.map(({ x, y, labelq }) => ({
+        x,
+        labelq,
+        y: y / getMax(mainData),
+      }))
+    );
+    setSubDataRatio(
+      subData.map(({ x, y, labelq }) => ({
+        x,
+        labelq,
+        y: y / getMax(subData),
+      }))
+    );
+  }, [mainData, subData]);
+
+  // 일별
+  // let dailyMainData: Data[] = [];
+  // let dailySubData: Data[] = [];
+
+  // for (let i = 0; i < dayjs(dates.end).diff(dates.start, 'day'); i++) {
+  //   dailyMainData.push(table[category].find((data) => data.x === date) as Data);
+  //   dailySubData.push(table[subCategory].find((data) => data.x === date) as Data);
+  // }
 
   // 1주일치
-  const weekly = [];
-  let weeklyMainData: Data[] = [];
-  let weeklySubData: Data[] = [];
+  // const weekly = [];
+  // let weeklyMainData: Data[] = [];
+  // let weeklySubData: Data[] = [];
 
-  for (let i = 0; i < 7; i++) {
-    weekly.push(dayjs(dates[0]).add(i, 'd').format('YYYY-MM-DD'));
-  }
-  weekly.forEach((date) => {
-    weeklyMainData.push(table[category].find((data) => data.x === date) as Data);
-    weeklySubData.push(table[subCategory].find((data) => data.x === date) as Data);
-  });
+  // for (let i = 0; i < 7; i++) {
+  //   weekly.push(dayjs(dates[0]).add(i, 'd').format('YYYY-MM-DD'));
+  // }
+  // weekly.forEach((date) => {
+  //   weeklyMainData.push(table[category].find((data) => data.x === date) as Data);
+  //   weeklySubData.push(table[subCategory].find((data) => data.x === date) as Data);
+  // });
 
   // 0과 1값으로 가공처리
-  const convertDailyMain: Data[] = JSON.parse(JSON.stringify(dailyMainData));
-  const convertDailySub: Data[] = JSON.parse(JSON.stringify(dailySubData));
-  const convertWeeklyMain: Data[] = JSON.parse(JSON.stringify(weeklyMainData));
-  const convertWeeklySub: Data[] = JSON.parse(JSON.stringify(weeklySubData));
+  // const convertDailyMain: Data[] = JSON.parse(JSON.stringify(dailyMainData));
+  // const convertDailySub: Data[] = JSON.parse(JSON.stringify(dailySubData));
+  // const convertWeeklyMain: Data[] = JSON.parse(JSON.stringify(weeklyMainData));
+  // const convertWeeklySub: Data[] = JSON.parse(JSON.stringify(weeklySubData));
 
-  convertDailyMain.map((data) => (data.y = data.y / getMax(dailyMainData)));
-  convertDailySub.map((data) => (data.y = data.y / getMax(dailySubData)));
+  // convertDailyMain.map((data) => (data.y = data.y / getMax(dailyMainData)));
+  // convertDailySub.map((data) => (data.y = data.y / getMax(dailySubData)));
 
-  convertWeeklyMain.map((data) => (data.y = data.y / getMax(weeklyMainData)));
-  convertWeeklySub.map((data) => (data.y = data.y / getMax(weeklySubData)));
+  // convertWeeklyMain.map((data) => (data.y = data.y / getMax(weeklyMainData)));
+  // convertWeeklySub.map((data) => (data.y = data.y / getMax(weeklySubData)));
 
   const handleClick = () => {
     setDayOrWeek((prev) => !prev);
@@ -100,12 +136,12 @@ const StatusChart = () => {
           domainPadding={{ x: [0, 50] }}
           domain={{ y: [0, 1] }}
           animate={{
-            onLoad: { duration: 1000 },
+            onLoad: { duration: 200 },
           }}
           containerComponent={
             <VictoryVoronoiContainer
               voronoiDimension="x"
-              labels={({ datum }) => `${datum.childName}: ${datum.labelq}`}
+              labels={({ datum }) => `${category}: ${datum.labelq} ${subCategory}: ${datum.labelq}`}
               labelComponent={<VictoryTooltip cornerRadius={0} flyoutStyle={{ fill: 'white' }} />}
             />
           }
@@ -113,7 +149,7 @@ const StatusChart = () => {
         >
           <VictoryAxis
             style={axisStyle}
-            tickValues={dayOrWeek ? dates : weekly}
+            tickValues={dateList}
             tickFormat={(t) => `${dayjs(t).format('M월 D일')}`}
             offsetX={50}
           />
@@ -123,9 +159,7 @@ const StatusChart = () => {
             orientation="left"
             tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
             tickFormat={(t) =>
-              dayOrWeek
-                ? `${Math.floor(useSpliceNum(t * getMax(dailyMainData)))}${useUnit(category)}`
-                : `${Math.floor(useSpliceNum(t * getMax(weeklyMainData)))}${useUnit(subCategory)}`
+              `${Math.floor(useSpliceNum(t * getMax(mainData))).toLocaleString('en')}${useUnit(category)}`
             }
             style={dependentAxisStyle}
           />
@@ -136,22 +170,19 @@ const StatusChart = () => {
               tickLabelComponent={<VictoryLabel dy={-10} />}
               tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
               tickFormat={(t) =>
-                dayOrWeek
-                  ? `${Math.floor(useSpliceNum(t * getMax(dailySubData)))}${useUnit(category)}`
-                  : `${Math.floor(useSpliceNum(t * getMax(weeklySubData)))}${useUnit(subCategory)}`
+                `${Math.floor(useSpliceNum(t * getMax(subData))).toLocaleString('en')}${useUnit(subCategory)}`
               }
               style={dependentAxisStyle}
               offsetX={100}
             />
           ) : null}
-
           <VictoryLine
             name="main"
             style={{
               data: { stroke: `${getColor(category)}` },
               parent: { border: '2px solid #ccc' },
             }}
-            data={dayOrWeek ? convertDailyMain : convertWeeklyMain}
+            data={mainDataRatio}
           />
           <VictoryLine
             name="sub"
@@ -159,7 +190,7 @@ const StatusChart = () => {
               data: { stroke: `${getColor(subCategory)}` },
               parent: { border: '2px solid #ccc' },
             }}
-            data={dayOrWeek ? convertDailySub : convertWeeklySub}
+            data={subDataRatio}
           />
         </VictoryChart>
       </div>

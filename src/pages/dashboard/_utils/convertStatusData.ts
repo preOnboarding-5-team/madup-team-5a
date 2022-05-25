@@ -1,17 +1,4 @@
-import { Daily } from 'types/adTrend';
-
-export type Data = {
-  x: string;
-  y: number;
-  labelq?: string;
-};
-
-export type TableKey = 'roas' | 'cost' | 'imp' | 'click' | 'convValue' | 'sales';
-export type Table = {
-  [key in TableKey]: Data[];
-};
-
-export const convertData = (data: Daily[]): Table => {
+export const convertStatusData = (data: Daily[]): Table => {
   const table: Table = {
     roas: [],
     cost: [],

@@ -1,12 +1,12 @@
-export interface RootObject {
+interface RootObject {
   report: Report;
 }
 
-export interface Report {
+interface Report {
   daily: Daily[];
 }
 
-export interface Daily {
+interface Daily {
   imp: number;
   click: number;
   cost: number;
@@ -18,4 +18,27 @@ export interface Daily {
   cpa: number;
   roas: number;
   date: string;
+}
+
+type Data = {
+  x: string;
+  y: number;
+  labelq?: string;
+};
+
+type TableKey = 'roas' | 'cost' | 'imp' | 'click' | 'convValue' | 'sales';
+type Table = {
+  [key in TableKey]: Data[];
+};
+
+interface CardStatTable {
+  cost: number;
+  imp: number;
+  click: number;
+  convValue: number;
+  sale: number;
+}
+
+interface CardTable extends CardStatTable {
+  roas: number;
 }

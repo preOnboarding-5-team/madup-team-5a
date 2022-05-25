@@ -1,5 +1,4 @@
 import { atom } from 'recoil';
-import { TableKey } from '../_utils/convertStatusData';
 
 export const categoryAtom = atom<TableKey>({
   key: 'categoryAtom',
@@ -13,7 +12,7 @@ export const subCategoryAtom = atom<TableKey>({
 
 export const datesAtom = atom<Duration>({
   key: 'datesAtom',
-  default: { start: '2022-02-01', end: '2022-02-04' },
+  default: { start: '2022-02-01', end: '2022-02-10' },
 });
 
 export const weeklyAtom = atom<string[]>({
