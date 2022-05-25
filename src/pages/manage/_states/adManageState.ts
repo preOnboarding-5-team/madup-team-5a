@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 
-export const setMainIdx = atom<number>({
-  key: 'setMainIdx',
+export const setCategoryIdx = atom<number>({
+  key: 'setCategoryIdx',
   default: 0,
 });
 

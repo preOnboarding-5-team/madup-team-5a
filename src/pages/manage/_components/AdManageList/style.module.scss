@@ -6,12 +6,12 @@
 .adCardContainer {
   display: flex;
   flex-wrap: wrap;
+  width: 1040px;
   padding: 0 20px;
   margin-top: 40px;
 
   .adCard {
     position: relative;
-    z-index: 5;
     box-sizing: border-box;
     width: 305px;
     height: 420px;
@@ -35,7 +35,7 @@
       .formTitle {
         height: 19px;
         margin-bottom: 40px;
-        @include font.font('Roboto', '16px', '700');
+        @include font.font('Roboto', '16', '700');
         line-height: 19px;
         color: #3a474e;
         user-select: none;
@@ -95,7 +95,6 @@
       }
 
       .edit {
-        z-index: 7;
         box-sizing: border-box;
         width: 92px;
         height: 40px;
