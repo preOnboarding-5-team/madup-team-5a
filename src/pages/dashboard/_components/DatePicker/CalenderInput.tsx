@@ -15,8 +15,7 @@ const CalenderInput = () => {
   const [value, setValue] = useState(toYearMonth(duration.start));
   const [selectedStart, setSelectedStart] = useState<Dayjs | null>(null);
   const [selectedEnd, setSelectedEnd] = useState<Dayjs | null>(null);
-  const { firstDayInCalendar, daysInMonth, firstDayOfCurrentMonth, setFirstDayOfCurrentMonth, firstDayOffset } =
-    useCalendarBounds();
+  const { firstDayInCalendar, firstDayOfCurrentMonth, setFirstDayOfCurrentMonth } = useCalendarBounds();
 
   useEffect(() => {
     setValue(toYearMonth(firstDayOfCurrentMonth));
