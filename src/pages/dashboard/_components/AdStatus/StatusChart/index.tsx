@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import {
   VictoryAxis,
   VictoryChart,
@@ -49,19 +49,24 @@ const StatusChart = () => {
     return color;
   };
 
-  const getData = (idx: number, date: string | Dayjs) => {
-    if (idx < 0) return [];
-    return table[categories[idx]].find((data) => dayjs(data.x).isSame(date));
-  };
+  const getData = useCallback(
+    (idx: number, date: string | Dayjs) => {
+      if (idx < 0) return [];
+      return table[categories[idx]].find((data) => dayjs(data.x).isSame(date));
+    },
+    [table]
+  );
   const diff = dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') : 7;
 
   useEffect(() => {
     setDateList([...Array(diff).keys()].map((i) => dayjs(dates.start).add(i, 'day').format('YYYY-MM-DD')));
-  }, [dayOrWeekly, dates]);
+  }, [dayOrWeekly, dates, diff]);
+
   useEffect(() => {
     setMainData(dateList.map((date) => getData(mainIdx, date) as Data));
     setSubData(dateList.map((date) => getData(subIdx, date) as Data));
-  }, [dateList, categories[mainIdx], subIdx]);
+  }, [dateList, getData, mainIdx, subIdx]);
+
   useEffect(() => {
     setMainDataRatio(
       mainData.map(({ x, y, labelq }) => {
