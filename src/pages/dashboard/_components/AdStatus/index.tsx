@@ -5,46 +5,31 @@ import dynamic from 'next/dynamic';
 import StatusCards from './StatusCards';
 import Term from './Term';
 import styles from './style.module.scss';
-import { categoryAtom } from 'pages/dashboard/_states/dashboard';
+import { categoryAtom, subCategoryAtom } from 'pages/dashboard/_states/dashboard';
 import { useRecoilState } from 'recoil';
 import { TableKey } from 'pages/dashboard/_utils/convertStatusData';
+import { mainDropDown, subDropDown } from './StatusChart/categoryDropDowns';
+import useUnit from 'pages/dashboard/_hooks/useUnit';
 
 const StatusChart = dynamic(() => import('./StatusChart/StatusChart'), { ssr: false });
 
 const AdStatus = () => {
-  const [currentIdx, setCurrentIdx] = useState(0);
   const [category, setCategory] = useRecoilState(categoryAtom);
-  const categories: TableKey[] = ['roas', 'cost', 'imp', 'convValue', 'sales'];
-
-  useEffect(() => {
-    if (currentIdx > -1) setCategory(categories[currentIdx]);
-  }, [currentIdx]);
+  const [subCategory, setSubCategory] = useRecoilState(subCategoryAtom);
 
   const [mainIdx, setMainIdx] = useState(0);
   const [subIdx, setSubIdx] = useState(0);
 
-  const items: DropItem[] = [
-    {
-      color: '#4FADF7',
-      title: 'ROAS',
-    },
-    {
-      color: '#85DA47',
-      title: '광고비',
-    },
-    {
-      color: '#541690',
-      title: '노출수',
-    },
-    {
-      color: '#FF4949',
-      title: '전환수',
-    },
-    {
-      color: '#FFCD38',
-      title: '매출',
-    },
-  ];
+  const categories: TableKey[] = ['roas', 'cost', 'imp', 'convValue', 'click', 'sales'];
+
+  useEffect(() => {
+    if (mainIdx > -1) setCategory(categories[mainIdx]);
+    if (subIdx > -1) setSubCategory(categories[subIdx]);
+  }, [mainIdx, subIdx]);
+  useEffect(() => {
+    useUnit(category);
+    useUnit(subCategory);
+  }, []);
 
   return (
     <section className={styles.adStatusWrapper}>
@@ -54,8 +39,8 @@ const AdStatus = () => {
           <StatusCards />
         </ul>
         <div className={styles.selectWrapper}>
-          <DropButton dropItems={items} setCurrentIdx={setMainIdx} className={styles.dropButton} />
-          <DropButton dropItems={items} setCurrentIdx={setSubIdx} className={styles.dropButton} optional />
+          <DropButton dropItems={mainDropDown} setCurrentIdx={setMainIdx} className={styles.dropButton} />
+          <DropButton dropItems={subDropDown} setCurrentIdx={setSubIdx} className={styles.dropButton} optional />
           <Term />
         </div>
         <div className={styles.chartWrapper}>

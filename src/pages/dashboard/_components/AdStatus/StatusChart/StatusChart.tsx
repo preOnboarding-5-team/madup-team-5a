@@ -1,21 +1,28 @@
-import { useState } from 'react';
-import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, VictoryTooltip, VictoryVoronoiContainer } from 'victory';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useEffect, useState } from 'react';
+import {
+  VictoryAxis,
+  VictoryChart,
+  VictoryLabel,
+  VictoryLine,
+  VictoryTheme,
+  VictoryTooltip,
+  VictoryVoronoiContainer,
+} from 'victory';
+import { useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 
-import TRAND_DATA from '../../../../../data/wanted_FE_trend-data-set.json';
+import TRAND_DATA from 'data/wanted_FE_trend-data-set.json';
 
 import styles from './StatusChart.module.scss';
 
 import { Daily } from 'types/adTrend';
 
-import { convertData } from 'pages/dashboard/_utils/convertStatusData';
-import type { TableKey, Data } from 'pages/dashboard/_utils/convertStatusData';
-import { axisStyle, dependentAxisStyle, mainLineStyle, options, subLineStyle } from './statusChartOption';
+import { TableKey, Data, convertData } from 'pages/dashboard/_utils/convertStatusData';
 import { getMax } from 'pages/dashboard/_utils/getMax';
+import useUnit from 'pages/dashboard/_hooks/useUnit';
+import { axisStyle, dependentAxisStyle, options } from './statusChartOption';
 
 import { categoryAtom, datesAtom, subCategoryAtom } from 'pages/dashboard/_states/dashboard';
-import useUnit from 'pages/dashboard/_hooks/useUnit';
 
 const StatusChart = () => {
   const table = convertData(TRAND_DATA.report.daily as Daily[]);
@@ -24,14 +31,23 @@ const StatusChart = () => {
   const [dates, setDates] = useState(['2022-02-01', '2022-02-02', '2022-02-03', '2022-02-04']);
 
   const category = useRecoilValue(categoryAtom);
-  const [subCategory, setSubCategory] = useRecoilState(subCategoryAtom);
+  const subCategory = useRecoilValue(subCategoryAtom);
   const [dayOrWeek, setDayOrWeek] = useState(true);
+  const getColor = (category: TableKey) => {
+    const color = {
+      roas: '#4FADF7',
+      cost: '#85DA47',
+      imp: '#541690',
+      click: '#A25B5B',
+      convValue: '#FF4949',
+      sales: '#FFCD38',
+    }[category];
+    return color;
+  };
 
   // 일별
   let dailyMainData: Data[] = [];
   let dailySubData: Data[] = [];
-
-  console.log(table[category]);
 
   dates.forEach((date) => {
     dailyMainData.push(table[category].find((data) => data.x === date) as Data);
@@ -81,7 +97,7 @@ const StatusChart = () => {
       <div className={styles.centering}>
         <VictoryChart
           theme={VictoryTheme.material}
-          domainPadding={{ x: [100, 100] }}
+          domainPadding={{ x: [0, 50] }}
           domain={{ y: [0, 1] }}
           animate={{
             onLoad: { duration: 1000 },
@@ -103,30 +119,48 @@ const StatusChart = () => {
           />
           <VictoryAxis
             dependentAxis
+            tickLabelComponent={<VictoryLabel dx={-30} dy={-10} />}
             orientation="left"
             tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
             tickFormat={(t) =>
               dayOrWeek
                 ? `${Math.floor(useSpliceNum(t * getMax(dailyMainData)))}${useUnit(category)}`
-                : `${Math.floor(useSpliceNum(t * getMax(weeklyMainData)))}${useUnit(category)}`
+                : `${Math.floor(useSpliceNum(t * getMax(weeklyMainData)))}${useUnit(subCategory)}`
             }
             style={dependentAxisStyle}
-            offsetX={50}
           />
-          <VictoryAxis
-            dependentAxis
-            orientation="right"
-            tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
-            tickFormat={(t) =>
-              dayOrWeek
-                ? `${Math.floor(useSpliceNum(t * getMax(dailySubData)))}${useUnit(category)}`
-                : `${Math.floor(useSpliceNum(t * getMax(weeklySubData)))}${useUnit(category)}`
-            }
-            style={dependentAxisStyle}
-            offsetX={100}
+          {subCategory ? (
+            <VictoryAxis
+              dependentAxis
+              orientation="right"
+              tickLabelComponent={<VictoryLabel dy={-10} />}
+              tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
+              tickFormat={(t) =>
+                dayOrWeek
+                  ? `${Math.floor(useSpliceNum(t * getMax(dailySubData)))}${useUnit(category)}`
+                  : `${Math.floor(useSpliceNum(t * getMax(weeklySubData)))}${useUnit(subCategory)}`
+              }
+              style={dependentAxisStyle}
+              offsetX={100}
+            />
+          ) : null}
+
+          <VictoryLine
+            name="main"
+            style={{
+              data: { stroke: `${getColor(category)}` },
+              parent: { border: '2px solid #ccc' },
+            }}
+            data={dayOrWeek ? convertDailyMain : convertWeeklyMain}
           />
-          <VictoryLine name="main" style={mainLineStyle} data={dayOrWeek ? convertDailyMain : convertWeeklyMain} />
-          <VictoryLine name="sub" style={subLineStyle} data={dayOrWeek ? convertDailySub : convertWeeklySub} />
+          <VictoryLine
+            name="sub"
+            style={{
+              data: { stroke: `${getColor(subCategory)}` },
+              parent: { border: '2px solid #ccc' },
+            }}
+            data={dayOrWeek ? convertDailySub : convertWeeklySub}
+          />
         </VictoryChart>
       </div>
       <button onClick={handleClick}>button</button>
