@@ -12,6 +12,7 @@ const TestChart = dynamic(() => import('./TestChart'), { ssr: false });
 const AdStatus = () => {
   const [mainIdx, setMainIdx] = useState(0);
   const [subIdx, setSubIdx] = useState(0);
+
   const items: DropItem[] = [
     {
       color: '#4FADF7',

@@ -1,0 +1,93 @@
+@use 'styles/constants/colors';
+@use 'styles/constants/levels';
+@use 'styles/mixins/flexbox';
+
+.wrapper {
+  position: relative;
+  width: 274px;
+  height: 20px;
+
+  .currentDate {
+    @include flexbox.horizontal(center, between);
+    position: absolute;
+    right: 0;
+
+    .currentDateText {
+      width: 100%;
+      font-size: 12px; // TODO 14px after font
+      font-weight: 500;
+      line-height: 16px;
+      text-align: right;
+      white-space: nowrap;
+      user-select: none; // TODO 현재 적용 안됨
+    }
+
+    .dropIcon {
+      position: relative;
+      top: 3px;
+      margin-left: 10px;
+    }
+  }
+
+  .calenderWrapper {
+    position: absolute;
+    right: -5px;
+    bottom: -100px;
+    width: 235px;
+    height: 130px;
+    background-color: colors.$BG_W;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(colors.$BLACK, 4%);
+
+    .month {
+      @include flexbox.horizontal(around, center);
+      width: 100px;
+      padding: 0 5px;
+      margin: 10px auto;
+      font-size: 16px;
+
+      button[type='button'] {
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: colors.$BG_G;
+        }
+      }
+
+      .toLeft {
+        transform: rotate(90deg);
+      }
+
+      .toRight {
+        transform: rotate(-90deg);
+      }
+
+      .monthText {
+        width: 100px;
+        height: 100%;
+        margin: auto 0;
+        font-weight: 700;
+        line-height: 100%;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 5px;
+
+        &:focus {
+          border: 1px solid;
+        }
+      }
+    }
+  }
+
+  .datesWrapper {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
+    width: 90%;
+    height: 85px;
+    margin: 0 auto;
+    border: 1px solid blue;
+  }
+}
