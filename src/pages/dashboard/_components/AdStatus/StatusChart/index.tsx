@@ -66,7 +66,7 @@ const StatusChart = () => {
 
   useEffect(() => {
     setDateList([...Array(diff).keys()].map((i) => dayjs(dates.start).add(i, 'day').format('YYYY-MM-DD')));
-  }, [diff]);
+  }, [diff, dates.start]);
 
   useEffect(() => {
     setMainData(dateList.map((date) => getData(mainIdx, date) as Data));
