@@ -1,5 +1,6 @@
 @use 'styles/constants/colors';
 @use 'styles/mixins/flexbox';
+@use 'styles/mixins/font';
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Stylish&display=swap');
 
 .adCardContainer {
@@ -10,11 +11,12 @@
 
   .adCard {
     position: relative;
+    z-index: 5;
     box-sizing: border-box;
     width: 305px;
     height: 420px;
-    margin-bottom: 20px;
-    margin-left: 20px;
+    margin: 0 0 20px 20px;
+    cursor: pointer;
     background: #ffffff;
     border: 1px solid #d1d8dc;
     border-radius: 10px;
@@ -33,10 +35,7 @@
       .formTitle {
         height: 19px;
         margin-bottom: 40px;
-        font-family: Roboto, sans-serif;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
+        @include font.font('Roboto', '16px', '700');
         line-height: 19px;
         color: #3a474e;
         user-select: none;
@@ -68,11 +67,8 @@
           label {
             width: 40%;
             height: 14px;
-            font-family: Roboto, sans-serif;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 500;
             line-height: 14px;
+            @include font.font('Roboto', '12', '500');
             color: #94a2ad;
             user-select: none;
           }
@@ -80,23 +76,18 @@
           input {
             width: 60%;
             height: 14px;
-            font-family: Roboto, sans-serif;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 700;
+            @include font.font('Roboto', '12', '700');
             line-height: 14px;
             color: #3a474e;
             letter-spacing: 0.01em;
+            cursor: pointer;
           }
 
           .endDate {
             position: absolute;
             right: 5%;
             height: 14px;
-            font-family: Roboto, sans-serif;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 700;
+            @include font.font('Roboto', '12', '700');
             line-height: 14px;
             color: #ee1e1e;
           }
@@ -104,6 +95,7 @@
       }
 
       .edit {
+        z-index: 7;
         box-sizing: border-box;
         width: 92px;
         height: 40px;
@@ -116,10 +108,7 @@
 
         .editText {
           height: 16px;
-          font-family: Roboto, sans-serif;
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 700;
+          @include font.font('Roboto', '14', '700');
           line-height: 16px;
           color: #3a474e;
         }

@@ -102,7 +102,7 @@ const StatusChart = () => {
               voronoiDimension="x"
               labels={({ datum }) => (datum ? `${datum.name}: ${datum.labelq}` : '')}
               labelComponent={
-                <VictoryTooltip cornerRadius={0} flyoutWidth={100} flyoutHeight={40} flyoutStyle={{ fill: 'white' }} />
+                <VictoryTooltip cornerRadius={0} flyoutWidth={120} flyoutHeight={40} flyoutStyle={{ fill: 'white' }} />
               }
             />
           }
@@ -112,14 +112,14 @@ const StatusChart = () => {
             style={axisStyle}
             tickValues={dateList}
             tickFormat={(t) => (diff < 20 ? `${dayjs(t).format('M월D일')}` : ``)}
-            offsetX={50}
+            offsetY={50}
           />
           <VictoryAxis
             dependentAxis
             tickLabelComponent={<VictoryLabel dx={-30} dy={-10} />}
             orientation="left"
-            tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
-            tickFormat={(t) => getTick(t, mainData, mainIdx)}
+            tickValues={[0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1]}
+            tickFormat={(t) => (t === 0 ? '' : getTick(t, mainData, mainIdx))}
             style={dependentAxisStyle}
           />
           {categories[subIdx] && (
@@ -127,8 +127,8 @@ const StatusChart = () => {
               dependentAxis
               orientation="right"
               tickLabelComponent={<VictoryLabel dy={-10} />}
-              tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
-              tickFormat={(t) => getTick(t, subData, subIdx)}
+              tickValues={[0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1]}
+              tickFormat={(t) => (t === 0 ? '' : getTick(t, subData, subIdx))}
               style={dependentAxisStyle}
               offsetX={100}
             />
