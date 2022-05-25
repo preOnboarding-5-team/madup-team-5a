@@ -85,11 +85,6 @@ const StatusChart = () => {
           theme={VictoryTheme.material}
           domainPadding={{ x: [0, 50] }}
           domain={{ y: [0, 1] }}
-          animate={{
-            onLoad: {
-              duration: 500,
-            },
-          }}
           containerComponent={
             <VictoryVoronoiContainer
               voronoiDimension="x"
