@@ -1,4 +1,4 @@
-import { NotifyIcon, SettingIcon, Profile } from '../../assets/svgs';
+import { NotifyIcon, SettingIcon, ProfileIcon } from '../../assets/svgs';
 import styles from './style.module.scss';
 
 const GlobalNav = () => {
@@ -7,14 +7,22 @@ const GlobalNav = () => {
       <ul className={styles.contentContainer}>
         <li className={styles.new} />
         <li className={styles.notify}>
-          <NotifyIcon />
+          <button type="button">
+            <NotifyIcon />
+          </button>
         </li>
         <li className={styles.setting}>
-          <SettingIcon />
+          <button type="button">
+            <SettingIcon />
+          </button>
         </li>
         <li className={styles.myPage}>
-          <Profile />
-          <p className={styles.name}>원티드님</p>
+          <button type="button">
+            <ProfileIcon />
+          </button>
+          <button type="button">
+            <p className={styles.name}>원티드님</p>
+          </button>
         </li>
       </ul>
       <div className={styles.horizonBar} />

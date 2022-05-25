@@ -1,11 +1,11 @@
 {
   "extends": [
-    "next/core-web-vitals", 
-    "airbnb", 
-    "airbnb/hooks", 
-    "react-app", 
-    "prettier", 
-    "plugin:react/recommended", 
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb/hooks",
+    "react-app",
+    "prettier",
+    "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
   "env": {
@@ -17,7 +17,7 @@
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }, 
+      },
       "typescript": {
         "alwaysTryTypes": true,
         "project": "tsconfig.json"
@@ -36,10 +36,7 @@
     "semi": ["warn", "always"],
     "react/function-component-definition": ["warn", { "namedComponents": "arrow-function" }],
     "react/jsx-one-expression-per-line": "off",
-    "react/jsx-filename-extension": [
-      "error",
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ],
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/jsx-indent": "warn",
     "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "warn",
@@ -52,7 +49,7 @@
     "import/no-anonymous-default-export": "off",
     "import/no-extraneous-dependencies": [
       "error",
-      { 
+      {
         "devDependencies": [".storybook/**", "src/stories/**"]
       }
     ],
@@ -68,10 +65,7 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      { "argsIgnorePattern": "^_" }
-    ],
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "prefer-const": ["warn"],
     "prefer-destructuring": ["error", { "object": true, "array": false }],
     "lines-between-class-members": "off",

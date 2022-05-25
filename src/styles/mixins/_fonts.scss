@@ -1,0 +1,49 @@
+$FLEX_MAP: (
+  'around': space-around,
+  'between': space-between,
+  'center': center,
+  'end': flex-end,
+  'start': flex-start,
+  'stretch': stretch,
+);
+
+$FONT_MAP: (
+  'title': '26px',
+  'form': '16px',
+  'button': '14px',
+  'input': '12px',
+  'input': '12px',
+);
+
+@function _getFont($key) {
+  @return map-get($FONT_MAP, $key);
+}
+
+@mixin titleFont() {
+  font-family: Roboto, sans-serif;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 30px;
+}
+
+@mixin flexbox($jc: center, $ai: center) {
+  display: flex;
+  align-items: _getFlexValue($ai);
+  justify-content: _getFlexValue($jc);
+}
+
+@mixin vertical($jc: center, $ai: center) {
+  @include flexbox($jc, $ai);
+  flex-direction: column;
+}
+
+@mixin horizontal($jc: center, $ai: center) {
+  @include flexbox($jc, $ai);
+  flex-direction: row;
+}
+
+@mixin cubicBezier($duration) {
+  transition: $duration;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
