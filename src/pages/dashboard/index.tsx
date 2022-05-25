@@ -1,9 +1,11 @@
-import AdStatus from 'components/AdStatus';
-import MediaStatus from 'components/MediaStatus';
+import AdStatus from 'pages/dashboard/_components/AdStatus';
+import MediaStatus from 'pages/dashboard/_components/MediaStatus';
 import dynamic from 'next/dynamic';
 import styles from './style.module.scss';
 
-const StatusChart = dynamic(() => import('components/AdStatus/StatusChart'), { ssr: false });
+const StatusChart = dynamic(() => import('pages/dashboard/_components/AdStatus/StatusChart/StatusChart'), {
+  ssr: false,
+});
 
 const DashBoard = () => {
   return (

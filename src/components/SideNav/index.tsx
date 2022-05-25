@@ -6,7 +6,7 @@ import cx from 'classnames';
 
 import { GuideIcon, Circle, DashBoardIcon, ManageIcon } from 'assets/svgs';
 import logo from 'assets/images/Lever_BI 1.png';
-import DropButton from 'components/common/DropButton';
+import DropButton from 'components/_common/DropButton';
 import { useRecoilValue } from 'recoil';
 import { serviceListState } from './_states/serviceList';
 import styles from './style.module.scss';

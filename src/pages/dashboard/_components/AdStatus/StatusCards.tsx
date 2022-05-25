@@ -1,8 +1,17 @@
+import { convertData } from 'pages/dashboard/_utils/convertStatusData';
 import React from 'react';
-import { DownPolygon, UpPolygon } from '../../assets/svgs';
+import { Daily } from 'types/adTrend';
+import { DownPolygon, UpPolygon } from '../../../../assets/svgs';
 import styles from './style.module.scss';
 
+import TRAND_DATA from 'data/wanted_FE_trend-data-set.json';
+import { datesAtom } from 'pages/dashboard/_states/dashboard';
+import { useRecoilValue } from 'recoil';
+
 const StatusCards = () => {
+  const table = convertData(TRAND_DATA.report.daily as Daily[]);
+  const dates = useRecoilValue(datesAtom);
+
   return (
     <>
       <li>

@@ -1,9 +1,9 @@
 import { useRecoilValue } from 'recoil';
 import { formatNumber } from 'services/formatNumber';
 import { packMediaData } from 'services/packMediaData';
-import { durationState } from 'states/durationState';
-import { mediaChannelsState } from 'states/mediaChannelsState';
-import { mediaGridAttributesStates } from 'states/mediaGridAttributesState';
+import { durationState } from 'pages/dashboard/_states/durationState';
+import { mediaChannelsState } from 'pages/dashboard/_states/mediaChannelsState';
+import { mediaGridAttributesStates } from 'pages/dashboard/_states/mediaGridAttributesState';
 
 import styles from './style.module.scss';
 
