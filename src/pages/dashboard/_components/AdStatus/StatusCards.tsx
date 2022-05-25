@@ -9,8 +9,6 @@ import { convertCardData } from 'pages/dashboard/_utils/convertCardData';
 import { datesAtom } from 'pages/dashboard/_states/dashboard';
 import styles from './style.module.scss';
 
-import styles from './style.module.scss';
-
 const StatusCards = () => {
   const dates = useRecoilValue(datesAtom);
 
