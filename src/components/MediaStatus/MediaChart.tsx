@@ -27,22 +27,7 @@ const MediaChart = () => {
     duration.start,
     duration.end
   );
-  {
-    /* <VictoryBar
-  data={sampleData}
-  labels={() => "HELLO"}
-  labelComponent={
-    <VictoryTooltip
-        center={{ x: l, y: 30 }}
-      pointerOrientation="bottom"
-      flyoutWidth={150}
-      flyoutHeight={50}
-      pointerWidth={150}
-      cornerRadius={0}
-    />
-  }
-/> */
-  }
+
   const bars = channels.map(({ key: chKey }, idx) => {
     const levelData = attributes.map(({ key: attrKey }) => {
       const agg = data.agg[attrKey];
