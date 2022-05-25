@@ -1,17 +1,4 @@
-import { Daily } from 'types/adTrend';
-
-export type Data = {
-  x: string;
-  y: number;
-  labelq?: string;
-};
-
-export type TableKey = 'roas' | 'cost' | 'imp' | 'click' | 'convValue' | 'sales';
-export type Table = {
-  [key in TableKey]: Data[];
-};
-
-export const convertData = (data: Daily[]): Table => {
+export const convertStatusData = (data: Daily[]): Table => {
   const table: Table = {
     roas: [],
     cost: [],
@@ -25,27 +12,27 @@ export const convertData = (data: Daily[]): Table => {
     table.roas.push({
       x: date,
       y: roas,
-      labelq: `${roas.toLocaleString('en')}회`,
+      labelq: `${Math.floor(roas).toLocaleString('en')}회`,
     });
     table.cost.push({
       x: date,
       y: cost,
-      labelq: `${cost.toLocaleString('en')}원`,
+      labelq: `${Math.floor(roas).toLocaleString('en')}원`,
     });
     table.imp.push({
       x: date,
       y: imp,
-      labelq: `${imp.toLocaleString('en')}회`,
+      labelq: `${Math.floor(roas).toLocaleString('en')}회`,
     });
     table.click.push({
       x: date,
       y: click,
-      labelq: `${click.toLocaleString('en')}회`,
+      labelq: `${Math.floor(roas).toLocaleString('en')}회`,
     });
     table.convValue.push({
       x: date,
       y: convValue,
-      labelq: `${convValue.toLocaleString('en')}회`,
+      labelq: `${Math.floor(roas).toLocaleString('en')}회`,
     });
     table.sales.push({
       x: date,

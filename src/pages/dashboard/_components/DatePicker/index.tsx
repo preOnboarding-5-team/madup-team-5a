@@ -1,13 +1,13 @@
 import { useRecoilValue } from 'recoil';
 import { formatKoreanDate } from 'services/formatDate';
-import { durationState } from 'pages/dashboard/_states/durationState';
+import { datesAtom } from 'pages/dashboard/_states/dashboard';
 import ShowMoreIcon from 'components/_common/ShowMoreIcon';
 import { useOpenDropdown } from 'hooks/useOpenDropdown';
 import CalenderInput from './CalenderInput';
 import styles from './style.module.scss';
 
 const DatePicker = () => {
-  const duration = useRecoilValue(durationState);
+  const duration = useRecoilValue(datesAtom);
   const { isOpen, toggleIsOpen, containerRef } = useOpenDropdown<HTMLDivElement>();
 
   const currentDateText = `${formatKoreanDate(duration.start)}~${formatKoreanDate(duration.end)}`;
