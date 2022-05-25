@@ -10,7 +10,7 @@ import { ArrowDownIcon } from 'assets/svgs';
 import styles from './style.module.scss';
 
 const Manage = () => {
-  // const { ads } = AD_DATA; 광고 만들기용 원본 데이터
+  const { ads } = AD_DATA;
   const [dataList, setDataList] = useState<AdManageFormItemsType[] | []>([]);
 
   useEffect(() => {
@@ -35,8 +35,20 @@ const Manage = () => {
       return newList;
     });
   };
+  const onClickEditAd = (e: MouseEvent<HTMLButtonElement>) => {
+    const { id } = e.currentTarget.dataset;
+    // setDataList((prev) => {
+    //   const targetIndex = prev.findIndex((data) => data.id === Number(id));
+    //   const newList = dataList.map((data) => {
+    //     data.selected = false;
+    //     return { ...data };
+    //   });
+    //   newList[targetIndex].selected = true;
+    //   return newList;
+    // });
+  };
 
-  const createAdCard = dataList.map((card) => {
+  const AdCards = dataList.map((card) => {
     const key = `ad-card-${card.id}`;
 
     return (
@@ -90,7 +102,7 @@ const Manage = () => {
               <input id={styles.cost} className={styles.costInput} value={card.report.cost} readOnly />
             </li>
           </ul>
-          <button type="button" className={styles.edit}>
+          <button type="button" data-id={card.id} className={styles.edit} onClick={onClickEditAd}>
             <span className={styles.editText}>수정하기</span>
           </button>
           {gridLine}
@@ -115,7 +127,7 @@ const Manage = () => {
           <button type="button" className={styles.addButton}>
             <p className={styles.addButtonText}>광고 만들기</p>
           </button>
-          {createAdCard}
+          {AdCards}
         </div>
       </main>
     </div>

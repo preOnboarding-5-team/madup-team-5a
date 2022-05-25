@@ -3,9 +3,9 @@ import type { PropsWithChildren, Dispatch, SetStateAction } from 'react';
 
 import cx from 'classnames';
 
+import { DropIcon } from 'assets/svgs';
 import ColorIndicator from './ColorIndicator';
 import AddMenu from './AddMenu';
-import { DropIcon } from 'assets/svgs';
 import styles from './style.module.scss';
 
 const DropButton = ({
