@@ -1,16 +1,14 @@
 import { useState } from 'react';
 
-import dynamic from 'next/dynamic';
-
 import DropButton from 'components/common/DropButton';
+import dynamic from 'next/dynamic';
 import StatusCards from './StatusCards';
 import Term from './Term';
 
 import styles from './style.module.scss';
-import dynamic from 'next/dynamic';
 
 const TestChart = dynamic(() => import('./TestChart'), { ssr: false });
-  
+
 const AdStatus = () => {
   const [mainIdx, setMainIdx] = useState(0);
   const [subIdx, setSubIdx] = useState(0);
