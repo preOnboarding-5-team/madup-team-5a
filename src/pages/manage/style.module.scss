@@ -45,7 +45,6 @@
           background: colors.$BG_W;
           border: 1px solid #d1d8dc;
           border-radius: 10px;
-          @include flexbox.flexbox(center, center);
 
           .dropDownText {
             height: 16px;

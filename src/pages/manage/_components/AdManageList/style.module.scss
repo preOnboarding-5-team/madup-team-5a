@@ -6,12 +6,12 @@
 .adCardContainer {
   display: flex;
   flex-wrap: wrap;
+  width: 1040px;
   padding: 0 20px;
   margin-top: 40px;
 
   .adCard {
     position: relative;
-    z-index: 5;
     box-sizing: border-box;
     width: 305px;
     height: 420px;
@@ -95,7 +95,6 @@
       }
 
       .edit {
-        z-index: 7;
         box-sizing: border-box;
         width: 92px;
         height: 40px;

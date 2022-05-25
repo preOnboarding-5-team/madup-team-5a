@@ -13,9 +13,6 @@ interface MediaStatDisplayMap {
   display: readonly string;
 }
 
-// type MediaDataAttribute = Exclude<keyof MediaData, 'channel'>;
-// type MediaStatAttribute = Exclude<keyof MediaStats, 'channel'>;
-
 type MediaDataAttribute = keyof MediaData;
 type MediaStatAttribute = keyof MediaStats;
 
