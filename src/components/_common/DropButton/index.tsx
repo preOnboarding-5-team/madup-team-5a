@@ -1,8 +1,10 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import type { PropsWithChildren, Dispatch, SetStateAction } from 'react';
 import cx from 'classnames';
 
-import { DropIcon, AddIcon } from 'assets/svgs';
+import { AddIcon } from 'assets/svgs';
+import { useOpenDropdown } from 'hooks/useOpenDropdown';
+import ShowMoreIcon from '../ShowMoreIcon';
 import ColorIndicator from './ColorIndicator';
 import styles from './style.module.scss';
 
@@ -15,28 +17,7 @@ const DropButton = ({
   additional = false,
 }: DropButtonProps) => {
   const [topIdx, setTopIdx] = useState(0);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const outerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleOuterClick = (e: MouseEvent) => {
-      if (!outerRef.current?.contains(e.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    const handleWindowBlur = () => {
-      setIsOpen(false);
-    };
-
-    document.addEventListener('click', handleOuterClick);
-    window.addEventListener('blur', handleWindowBlur);
-
-    return () => {
-      document.removeEventListener('click', handleOuterClick);
-      window.removeEventListener('blur', handleWindowBlur);
-    };
-  }, []);
+  const { isOpen, setIsOpen, toggleIsOpen, containerRef: outerRef } = useOpenDropdown<HTMLDivElement>();
 
   useEffect(() => {
     setCurrentIdx(topIdx - Number(optional));
@@ -48,10 +29,6 @@ const DropButton = ({
     return dropItems;
   }, [dropItems, optional]);
 
-  const handleClickTop = () => {
-    setIsOpen((prev) => !prev);
-  };
-
   const handleClickItem = (e: React.MouseEvent<HTMLElement>) => {
     if (e.currentTarget.dataset.idx === undefined) return;
     setTopIdx(Number(e.currentTarget.dataset.idx));
@@ -59,10 +36,6 @@ const DropButton = ({
   };
 
   const handleClickAdd = () => {};
-
-  if (additional) {
-    console.log(dropItems.length);
-  }
 
   const dropMenu = (
     <ul className={styles.dropMenu}>
@@ -117,7 +90,7 @@ const DropButton = ({
           [styles.highlightHover]: !isOpen,
           [styles.largerCurrentItemWrapper]: larger,
         })}
-        onClick={handleClickTop}
+        onClick={toggleIsOpen}
         role="button"
         tabIndex={-1}
       >
@@ -125,7 +98,7 @@ const DropButton = ({
           {dropItemsToRender[topIdx].color && <ColorIndicator color={dropItemsToRender[topIdx].color as string} />}
           <p className={styles.title}>{dropItemsToRender[topIdx].title}</p>
         </div>
-        <DropIcon className={styles.dropIcon} />
+        <ShowMoreIcon isOpen={isOpen} className={styles.dropIcon} />
       </div>
       {isOpen && dropMenu}
     </div>
