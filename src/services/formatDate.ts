@@ -5,5 +5,7 @@ export const formatKoreanDate = (s: string) => {
 
   const separator = 0;
 
+  console.log(dayjs('2020/03/01').isValid());
+
   const [year, month, date] = s.split('-');
 };
