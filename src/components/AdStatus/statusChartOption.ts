@@ -27,16 +27,3 @@ export const subLineStyle = {
   data: { stroke: '#85DA47' },
   parent: { border: '1px solid #ccc' },
 };
-
-// import dayjs from "dayjs";
-
-// const start = dayjs("2022-02-01");
-// const end = dayjs("2022-02-10");
-// const diff = start.diff(end, "day");
-// const dates = [];
-
-// for (let i = 0; i < -diff; i++) {
-//   dates.push(dayjs(start).add(i, "d").format("YYYY-MM-DD"));
-// }
-
-// console.log(dates);
