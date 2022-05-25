@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 import type { PropsWithChildren, Dispatch, SetStateAction } from 'react';
 import cx from 'classnames';
 
-import { DropIcon, AddIcon } from 'assets/svgs';
+import { AddIcon } from 'assets/svgs';
 import ShoeMoreIcon from '../ShowMoreIcon';
 import ColorIndicator from './ColorIndicator';
 import styles from './style.module.scss';
