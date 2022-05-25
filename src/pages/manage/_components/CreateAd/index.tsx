@@ -17,7 +17,9 @@ const CreateAd = ({ isShow, setIsShow }: Props) => {
     <div className={cx(styles.modalWrapper, { [styles.display]: isShow })}>
       <div className={styles.modal}>
         <form>
-          <legend>광고 만들기</legend>
+          <legend>
+            <h3>광고 만들기</h3>
+          </legend>
         </form>
         <button type="button" onClick={onClickHide}>
           <span>닫기</span>

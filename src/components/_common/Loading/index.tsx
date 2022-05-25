@@ -15,7 +15,7 @@ interface IProps {
 const Loading = ({ loading }: IProps) => {
   return (
     <div className={styles.container}>
-      <RingLoader color="#4FADF7" loading={loading} css={override} size={150} />
+      <RingLoader color="#4FADF7" loading={loading} css={override} size={80} />
     </div>
   );
 };

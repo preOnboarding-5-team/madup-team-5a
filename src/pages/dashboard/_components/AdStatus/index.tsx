@@ -9,11 +9,11 @@ import StatusCards from './StatusCards';
 import { mainDropDown, subDropDown } from './StatusChart/categoryDropDowns';
 import styles from './style.module.scss';
 
-const StatusChart = dynamic(() => import('./StatusChart/StatusChart'), { ssr: false });
+const StatusChart = dynamic(() => import('./StatusChart'), { ssr: false });
 
 const AdStatus = () => {
-  const [, setMainIdx] = useRecoilState(mainIdxAtom);
-  const [, setSubIdx] = useRecoilState(subIdxAtom);
+  const [mainIdx, setMainIdx] = useRecoilState(mainIdxAtom);
+  const [subIdx, setSubIdx] = useRecoilState(subIdxAtom);
 
   return (
     <section className={styles.adStatusWrapper}>
@@ -21,8 +21,19 @@ const AdStatus = () => {
       <div className={styles.adStatus}>
         <StatusCards />
         <div className={styles.selectWrapper}>
-          <DropButton dropItems={mainDropDown} setCurrentIdx={setMainIdx} className={styles.dropButton} />
-          <DropButton dropItems={subDropDown} setCurrentIdx={setSubIdx} className={styles.dropButton} optional />
+          <DropButton
+            dropItems={mainDropDown}
+            setCurrentIdx={setMainIdx}
+            className={styles.dropButton}
+            disabledIdx={[subIdx]}
+          />
+          <DropButton
+            dropItems={subDropDown}
+            setCurrentIdx={setSubIdx}
+            className={styles.dropButton}
+            disabledIdx={[mainIdx]}
+            optional
+          />
           <Term />
         </div>
         <div className={styles.chartWrapper}>

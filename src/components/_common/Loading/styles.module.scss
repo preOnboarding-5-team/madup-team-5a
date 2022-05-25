@@ -1,8 +1,8 @@
+@use 'styles/mixins/flexbox.scss';
+
 .container {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100vh;
   height: 60vh;
+  @include flexbox.flexbox(center, center);
 }

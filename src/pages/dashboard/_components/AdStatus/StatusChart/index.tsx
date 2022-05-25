@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import {
   VictoryAxis,
   VictoryChart,
@@ -22,7 +22,7 @@ import { getMax } from 'pages/dashboard/_utils/getMax';
 import { getTick } from 'pages/dashboard/_utils/getTick';
 import { axisStyle, dependentAxisStyle, options } from './statusChartOption';
 
-import styles from './StatusChart.module.scss';
+import styles from './style.module.scss';
 
 const StatusChart = () => {
   const table = convertStatusData(TREND_DATA.report.daily as Daily[]);
@@ -66,7 +66,7 @@ const StatusChart = () => {
 
   useEffect(() => {
     setDateList([...Array(diff).keys()].map((i) => dayjs(dates.start).add(i, 'day').format('YYYY-MM-DD')));
-  }, [dates, diff]);
+  }, [diff, dates.start]);
 
   useEffect(() => {
     setMainData(dateList.map((date) => getData(mainIdx, date) as Data));

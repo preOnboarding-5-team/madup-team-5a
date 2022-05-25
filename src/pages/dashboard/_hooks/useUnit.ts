@@ -1,4 +1,4 @@
-const useUnit = (category: TableKey): string => {
+export const useUnit = (category: TableKey): string => {
   const units: string = {
     roas: '%',
     cost: '만원',
@@ -9,5 +9,3 @@ const useUnit = (category: TableKey): string => {
   }[category];
   return units;
 };
-
-export default useUnit;
