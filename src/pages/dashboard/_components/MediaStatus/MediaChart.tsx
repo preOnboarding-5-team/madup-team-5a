@@ -86,7 +86,7 @@ const MediaChart = () => {
         orientation="horizontal"
         colorScale={COLORS}
         data={channels.map(({ display }) => ({ name: display }))}
-        style={{ labels: { fontSize: 10 }, parent: { display: 'flex', right: 0, bottom: 0 } }}
+        style={{ labels: { fontSize: 10 } }}
       />
     </VictoryChart>
   );
