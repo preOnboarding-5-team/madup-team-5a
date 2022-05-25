@@ -1,7 +1,7 @@
 import { convertData } from 'pages/dashboard/_utils/convertStatusData';
 import React from 'react';
 import { Daily } from 'types/adTrend';
-import { DownPolygon, UpPolygon } from '../../assets/svgs';
+import { DownPolygon, UpPolygon } from '../../../../assets/svgs';
 import styles from './style.module.scss';
 
 import TRAND_DATA from 'data/wanted_FE_trend-data-set.json';

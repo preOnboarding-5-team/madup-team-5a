@@ -3,7 +3,7 @@ import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, VictoryTooltip, V
 import { useRecoilState, useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 
-import TRAND_DATA from '../../data/wanted_FE_trend-data-set.json';
+import TRAND_DATA from '../../../../../data/wanted_FE_trend-data-set.json';
 
 import styles from './StatusChart.module.scss';
 

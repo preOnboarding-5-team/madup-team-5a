@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
-import DropButton from 'components/common/DropButton';
+import DropButton from 'components/_common/DropButton';
 import dynamic from 'next/dynamic';
 import StatusCards from './StatusCards';
 import Term from './Term';
 import styles from './style.module.scss';
-import StatusChart from './StatusChart';
 import { categoryAtom } from 'pages/dashboard/_states/dashboard';
 import { useRecoilState } from 'recoil';
 import { TableKey } from 'pages/dashboard/_utils/convertStatusData';
 
-const TestChart = dynamic(() => import('./TestChart'), { ssr: false });
+const StatusChart = dynamic(() => import('./StatusChart/StatusChart'), { ssr: false });
 
 const AdStatus = () => {
   const [currentIdx, setCurrentIdx] = useState(0);

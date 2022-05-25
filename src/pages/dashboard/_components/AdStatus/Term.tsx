@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-import { DropdownArrowIcon } from '../../assets/svgs';
+import { DropdownArrowIcon } from '../../../../assets/svgs';
 import styles from './style.module.scss';
 
 const Term = () => {

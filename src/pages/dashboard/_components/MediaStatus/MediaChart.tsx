@@ -1,10 +1,4 @@
 import { useRecoilValue } from 'recoil';
-import { formatNumber } from 'services/formatNumber';
-import { packMediaData } from 'services/packMediaData';
-import { durationState } from 'states/durationState';
-import { mediaChannelsState } from 'states/mediaChannelsState';
-import { mediaChartAttributesState } from 'states/mediaChartAttributesState';
-
 import {
   VictoryBar,
   VictoryChart,
@@ -14,6 +8,11 @@ import {
   VictoryLabel,
   VictoryTooltip,
 } from 'victory';
+import { formatNumber } from 'services/formatNumber';
+import { packMediaData } from 'services/packMediaData';
+import { durationState } from 'pages/dashboard/_states/durationState';
+import { mediaChannelsState } from 'pages/dashboard/_states/mediaChannelsState';
+import { mediaChartAttributesState } from 'pages/dashboard/_states/mediaChartAttributesState';
 
 const COLORS = ['#4fadf7', '#85da47', '#ac8af8', '#ffd43b'];
 
