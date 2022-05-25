@@ -13,7 +13,7 @@
 
 ## OverView
 원티드 프리온보딩 코스 5-A조 매드업 과제 프로젝트입니다.
- 주어진 figma 디자인을 기반으로 클론 코딩을 하였습니다.
+주어진 figma 디자인을 기반으로 클론 코딩을 하였습니다.
 
 ## 실행 화면과 기능
 
@@ -22,27 +22,27 @@
 #### 차트
 ![image](https://user-images.githubusercontent.com/64529155/170353845-8248a1c4-7672-4f9b-a2a0-54e3a866b2b1.png)
 
-카테고리 드랍다운을 이용하여 그래프 두 개를 화면에 동시에 표시할 수 있습니다.
+* 카테고리 드랍다운을 이용하여 그래프 두 개를 화면에 동시에 표시할 수 있습니다.
 단위에 맞게 y축에 표시하였습니다.
 
 ![image](https://user-images.githubusercontent.com/64529155/170353950-5d54b7e3-c415-4fcd-aff3-8881918e6e96.png)
 
-오른쪽 드랍다운은 옵셔널이기 때문에 선탁 안 함을 선택시 화면에는 하나의 그래프와 하나의 툴팁만 표시됩니다.
+* 오른쪽 드랍다운은 옵셔널이기 때문에 선탁 안 함을 선택시 화면에는 하나의 그래프와 하나의 툴팁만 표시됩니다.
 
 ![image](https://user-images.githubusercontent.com/64529155/170350731-e5163b14-8522-4374-9635-13156c8fa5f2.png)
 
-주간 일별 선택가능합니다.
+* 주간 일별 선택가능합니다.
 
 ![image](https://user-images.githubusercontent.com/64529155/170354048-a3fa6dbc-54bf-48c2-a56d-cae6c5b5902c.png)
 
-아래쪽 차트는 선택한 날짜의 광고 현황의 합계가 표시됩니다. 
+* 아래쪽 차트는 선택한 날짜의 광고 현황의 합계가 표시됩니다. 
 
 ![image](https://user-images.githubusercontent.com/64529155/170354195-d8924712-2294-4ac7-ae6c-dda8efaaf9b8.png)
 
 ### 로딩 화면 구현
 
-의도적으로 딜레이를 줘서 로딩 화면이 보이게끔 하였습니다.
-로딩 에니메이션은 react spinner라이브러리를 사용하였습니다.
+* 의도적으로 딜레이를 줘서 로딩 화면이 보이게끔 하였습니다.
+* 로딩 에니메이션은 react spinner라이브러리를 사용하였습니다.
 
 ![image](https://user-images.githubusercontent.com/64529155/170370427-dee8b5c3-e827-478b-9fae-48cbcf82d155.png)
 
