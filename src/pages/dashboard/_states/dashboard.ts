@@ -11,7 +11,7 @@ export const subCategoryAtom = atom<TableKey>({
   default: 'sales',
 });
 
-export const datesAtom = atom<{ start: string; end: string }>({
+export const datesAtom = atom<Duration>({
   key: 'datesAtom',
   default: { start: '2022-02-01', end: '2022-02-04' },
 });
