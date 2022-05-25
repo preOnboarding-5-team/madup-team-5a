@@ -2,7 +2,7 @@
 @use 'styles/mixins/flexbox';
 
 .dashboardWrapper {
-  width: 1120px;
+  width: 100%;
   color: colors.$GREY_800;
 
   .pageHeader {

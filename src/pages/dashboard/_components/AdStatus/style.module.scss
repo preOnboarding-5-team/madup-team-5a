@@ -2,6 +2,8 @@
 
 .adStatusWrapper {
   box-sizing: border-box;
+  width: 100%;
+  max-width: 1120px;
   padding: 21px 41px 29px 40px;
   background-color: colors.$BG_DG;
 
@@ -15,8 +17,8 @@
   }
 
   .adStatus {
-    width: 1039px;
-    height: 654px;
+    width: 100%;
+    max-width: 1039px;
     padding: 40px;
     background-color: colors.$BG_W;
     border-radius: 20px;
@@ -24,11 +26,11 @@
 
     .statusCardsWrapper {
       display: grid;
-      grid-template-columns: repeat(3, minmax(304px, 304px));
+      grid-template-columns: repeat(auto-fill, minmax(304px, 304px));
       row-gap: 22px;
       column-gap: 20px;
-      width: 956px;
-      height: 178px;
+      width: 100%;
+      max-width: 956px;
 
       li {
         box-sizing: border-box;
@@ -93,7 +95,8 @@
     .selectWrapper {
       position: relative;
       display: flex;
-      width: 950px;
+      width: 100%;
+      max-width: 950px;
       height: 40px;
       margin-top: 42px;
 
@@ -104,15 +107,12 @@
       }
 
       .menu {
-        position: absolute;
-        top: 35px;
-        left: 842px;
-        z-index: 10000;
         width: 123px;
         height: 40px;
         background: colors.$BG_W;
         border: 1px solid colors.$GREY_100;
         border-radius: 10px;
+        transform: translateX(-38%);
 
         button {
           width: 50%;
@@ -159,6 +159,8 @@
     }
 
     .chartWrapper {
+      width: 100%;
+      max-width: 960px;
       margin-top: 40px;
     }
   }
