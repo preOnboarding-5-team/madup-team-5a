@@ -24,12 +24,10 @@ const Term = () => {
 
   const handleWeekClick = () => {
     setTerm('주간');
-    setIsOpen(false);
   };
 
   const handleDayClick = () => {
     setTerm('일별');
-    setIsOpen(false);
   };
 
   const menu = (
@@ -48,8 +46,8 @@ const Term = () => {
       <button type="button" className={styles.termButton} onClick={handleTermClick}>
         <p className={styles.term}>{term}</p>
         <DropdownArrowIcon />
-        {isOpen && menu}
       </button>
+      {isOpen && menu}
     </div>
   );
 };

@@ -1,15 +1,12 @@
 @use 'styles/constants/colors';
 
-.adManageMainWrapper {
+.adStatusWrapper {
   box-sizing: border-box;
-  width: 1120px;
-  height: 743px;
-  margin-top: 20px;
+  padding: 21px 41px 29px 40px;
   background-color: colors.$BG_DG;
 
-  h1 {
-    margin-top: 21px;
-    margin-left: 40px;
+  .sectionTitle {
+    margin: 20px 0;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -17,48 +14,45 @@
     color: colors.$GREY_800;
   }
 
-  .adManageMain {
+  .adStatus {
     width: 1039px;
     height: 654px;
     padding: 40px;
-    margin-top: 20px;
-    margin-left: 40px;
     background-color: colors.$BG_W;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(colors.$SHADOW_BANNER, 0.04);
 
     .statusCardsWrapper {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(304px, 304px));
+      row-gap: 22px;
+      column-gap: 20px;
       width: 956px;
       height: 178px;
-      border: 0.5px solid colors.$GREY_50;
 
       li {
         box-sizing: border-box;
         display: flex;
-        flex-direction: row;
         gap: 146px;
         align-items: flex-end;
         justify-content: space-between;
         width: 304px;
         height: 79px;
         padding: 18px 40px;
-        margin-bottom: 20px;
         border: 0.5px solid colors.$GREY_50;
         border-radius: 10px;
 
         .leftBox {
-          h2 {
+          font-style: normal;
+          white-space: nowrap;
+
+          .category {
             width: 31px;
             height: 14px;
             font-size: 12px;
-            font-style: normal;
             font-weight: 500;
             line-height: 14px;
             color: colors.$GREY_300;
-            white-space: nowrap;
           }
 
           .value {
@@ -66,17 +60,14 @@
             height: 19px;
             margin-top: 10px;
             font-size: 16px;
-            font-style: normal;
             font-weight: 700;
             line-height: 19px;
             color: colors.$GREY_800;
-            white-space: nowrap;
           }
         }
 
         .rightBox {
           display: flex;
-          flex-direction: row;
 
           svg {
             width: 10px;
@@ -102,14 +93,14 @@
     .selectWrapper {
       position: relative;
       display: flex;
-      flex-direction: row;
       width: 950px;
       height: 40px;
       margin-top: 42px;
 
-      .dropButtonWrapper {
-        position: static;
-        margin-right: 10px;
+      .dropButton {
+        + .dropButton {
+          margin-left: 10px;
+        }
       }
 
       .menu {
@@ -168,9 +159,7 @@
     }
 
     .chartWrapper {
-      width: 960px;
-      height: 300px;
-      margin: 40px 0;
+      margin-top: 40px;
     }
   }
 }
