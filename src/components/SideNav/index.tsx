@@ -7,7 +7,6 @@ import cx from 'classnames';
 import { GuideIcon, Circle, DashBoardIcon, ManageIcon } from 'assets/svgs';
 import logo from 'assets/images/Lever_BI 1.png';
 import DropButton from 'components/common/DropButton';
-// import AdCenter from './AdCenter';
 import styles from './style.module.scss';
 
 const SERVICES: DropItem[] = [
@@ -20,7 +19,7 @@ const SERVICES: DropItem[] = [
 ];
 
 const SideNav = () => {
-  const [currentIdx, setCurrentIdx] = useState(0);
+  const [_, setCurrentIdx] = useState(0);
   const router = useRouter();
 
   return (
@@ -57,16 +56,16 @@ const SideNav = () => {
           </Link>
         </section>
         <section className={styles.guide}>
-          <Circle className={styles.circle} />
+          <Circle className={styles.guideCircle} />
           <GuideIcon className={styles.guideIcon} />
           <p className={styles.guideTitle}>레버 이용 가이드</p>
-          <Link href="#" className={styles.guideLink}>
-            시작하기 전에 알아보기
+          <Link href="#">
+            <p className={styles.guideLink}>시작하기 전에 알아보기</p>
           </Link>
         </section>
         <p className={styles.copywrite}>레버는 함께 만들어 갑니다.</p>
-        <Link href="#" className={styles.tosLink}>
-          이용약관
+        <Link href="#">
+          <p className={styles.tosLink}>이용약관</p>
         </Link>
       </main>
     </nav>
