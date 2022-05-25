@@ -2,6 +2,7 @@ import AdStatus from 'components/AdStatus';
 import styles from './style.module.scss';
 // import sStatusChart from 'components/AdStatus/StatusChart';
 import dynamic from 'next/dynamic';
+import { randomFillSync } from 'crypto';
 
 const StatusChart = dynamic(() => import('components/AdStatus/StatusChart'), { ssr: false });
 
