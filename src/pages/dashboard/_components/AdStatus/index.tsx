@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import DropButton from 'components/common/DropButton';
+import DropButton from 'components/_common/DropButton';
 import dynamic from 'next/dynamic';
 import StatusCards from './StatusCards';
 import Term from './Term';
-
 import styles from './style.module.scss';
+import { categoryAtom } from 'pages/dashboard/_states/dashboard';
+import { useRecoilState } from 'recoil';
+import { TableKey } from 'pages/dashboard/_utils/convertStatusData';
 
-const TestChart = dynamic(() => import('./TestChart'), { ssr: false });
+const StatusChart = dynamic(() => import('./StatusChart/StatusChart'), { ssr: false });
 
 const AdStatus = () => {
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [category, setCategory] = useRecoilState(categoryAtom);
+  const categories: TableKey[] = ['roas', 'cost', 'imp', 'convValue', 'sales'];
+
+  useEffect(() => {
+    if (currentIdx > -1) setCategory(categories[currentIdx]);
+  }, [currentIdx]);
+
   const [mainIdx, setMainIdx] = useState(0);
   const [subIdx, setSubIdx] = useState(0);
   const items: DropItem[] = [
@@ -19,7 +29,19 @@ const AdStatus = () => {
     },
     {
       color: '#85DA47',
-      title: '클릭수',
+      title: '광고비',
+    },
+    {
+      color: '#541690',
+      title: '노출수',
+    },
+    {
+      color: '#FF4949',
+      title: '전환수',
+    },
+    {
+      color: '#FFCD38',
+      title: '매출',
     },
   ];
 
@@ -36,7 +58,7 @@ const AdStatus = () => {
           <Term />
         </div>
         <div className={styles.chartWrapper}>
-          <TestChart />
+          <StatusChart />
         </div>
       </div>
     </section>
