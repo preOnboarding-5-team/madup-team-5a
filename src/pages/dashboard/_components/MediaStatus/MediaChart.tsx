@@ -13,13 +13,13 @@ import { packMediaData } from 'services/packMediaData';
 import { durationState } from 'pages/dashboard/_states/durationState';
 import { mediaChannelsState } from 'pages/dashboard/_states/mediaChannelsState';
 import { mediaChartAttributesState } from 'pages/dashboard/_states/mediaChartAttributesState';
-
-const COLORS = ['#4fadf7', '#85da47', '#ac8af8', '#ffd43b'];
+import { colorMapAtom } from 'states/colorMap';
 
 const MediaChart = () => {
   const duration = useRecoilValue(durationState);
   const attributes = useRecoilValue(mediaChartAttributesState);
   const channels = useRecoilValue(mediaChannelsState);
+  const COLORS = useRecoilValue(colorMapAtom);
 
   const data = packMediaData(
     channels.map(({ key }) => key),
@@ -39,7 +39,15 @@ const MediaChart = () => {
         style={{ data: { width: 30 } }}
         labels={attributes.map(({ key }) => formatNumber(data.channels[idx][key]))}
         labelComponent={
-          <VictoryTooltip width={100} height={40} pointerOrientation="bottom" style={{ fill: '#3a474e' }} />
+          <VictoryTooltip
+            width={100}
+            height={40}
+            pointerOrientation="bottom"
+            style={{ fill: '#ffffff', width: 100, height: 40 }}
+            flyoutStyle={{
+              fill: '#3a474e',
+            }}
+          />
         }
         key={`media-chart-${chKey}`}
       />
@@ -72,13 +80,7 @@ const MediaChart = () => {
         tickFormat={(l) => (l > 0 ? `${l * 100}%` : '')}
       />
 
-      <VictoryStack
-        colorScale={COLORS}
-        groupComponent={<g transform="translate(0, 0)" />}
-        style={{ data: { borderRadius: 10 } }}
-      >
-        {bars}
-      </VictoryStack>
+      <VictoryStack colorScale={COLORS}>{bars}</VictoryStack>
       <VictoryLegend
         x={643}
         y={250}
