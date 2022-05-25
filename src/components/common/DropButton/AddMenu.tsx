@@ -1,7 +1,9 @@
-// import type { MouseEventHandler } from 'react';
-// import cx from 'classnames';
-// import { AddIcon } from 'assets/svgs';
-// import styles from './style.module.scss';
+import type { MouseEventHandler } from 'react';
+
+import cx from 'classnames';
+
+import { AddIcon } from 'assets/svgs';
+import styles from './style.module.scss';
 
 // const AddMenu = ({ onClick, larger, empty }: AddMenuProps) => {
 //   return (

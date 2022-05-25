@@ -5,11 +5,12 @@ import dynamic from 'next/dynamic';
 import DropButton from 'components/common/DropButton';
 import StatusCards from './StatusCards';
 import Term from './Term';
-// import TestChart from './TestChart';
+
 import styles from './style.module.scss';
+import dynamic from 'next/dynamic';
 
 const TestChart = dynamic(() => import('./TestChart'), { ssr: false });
-
+  
 const AdStatus = () => {
   const [mainIdx, setMainIdx] = useState(0);
   const [subIdx, setSubIdx] = useState(0);
@@ -23,6 +24,7 @@ const AdStatus = () => {
       title: '클릭수',
     },
   ];
+
   return (
     <section className={styles.adManageMainWrapper}>
       <h1>통합 광고 현황</h1>

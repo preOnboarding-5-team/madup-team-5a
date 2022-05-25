@@ -7,6 +7,7 @@ export interface AdManageFormItemsType {
   startDate: string;
   status: string;
   title: string;
+  selected?: boolean;
 }
 
 export interface AdManageReportItemType {
