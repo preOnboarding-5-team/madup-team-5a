@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import DropButton from 'components/_common/DropButton';
 import dynamic from 'next/dynamic';
-import StatusCards from './StatusCards';
-import Term from './Term';
-import styles from './style.module.scss';
 import { categoryAtom } from 'pages/dashboard/_states/dashboard';
 import { useRecoilState } from 'recoil';
 import { TableKey } from 'pages/dashboard/_utils/convertStatusData';
+import StatusCards from './StatusCards';
+import Term from './Term';
+import styles from './style.module.scss';
 
-const StatusChart = dynamic(() => import('./StatusChart/StatusChart'), { ssr: false });
+const StatusChart = dynamic(() => import('./StatusChart'), { ssr: false });
 
 const AdStatus = () => {
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -55,7 +55,13 @@ const AdStatus = () => {
         </ul>
         <div className={styles.selectWrapper}>
           <DropButton dropItems={items} setCurrentIdx={setMainIdx} className={styles.dropButton} />
-          <DropButton dropItems={items} setCurrentIdx={setSubIdx} className={styles.dropButton} optional />
+          <DropButton
+            dropItems={items}
+            setCurrentIdx={setSubIdx}
+            className={styles.dropButton}
+            optional
+            disabledIdx={[mainIdx]}
+          />
           <Term />
         </div>
         <div className={styles.chartWrapper}>
