@@ -3,6 +3,7 @@ import type { PropsWithChildren, Dispatch, SetStateAction } from 'react';
 import cx from 'classnames';
 
 import { DropIcon, AddIcon } from 'assets/svgs';
+import ShoeMoreIcon from '../ShowMoreIcon';
 import ColorIndicator from './ColorIndicator';
 import styles from './style.module.scss';
 
@@ -121,7 +122,7 @@ const DropButton = ({
           {dropItemsToRender[topIdx].color && <ColorIndicator color={dropItemsToRender[topIdx].color as string} />}
           <p className={styles.title}>{dropItemsToRender[topIdx].title}</p>
         </div>
-        <DropIcon className={styles.dropIcon} />
+        <ShoeMoreIcon isOpen={isOpen} className={styles.dropIcon} />
       </div>
       {isOpen && dropMenu}
     </div>
