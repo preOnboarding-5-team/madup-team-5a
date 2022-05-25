@@ -17,5 +17,5 @@ export const compareDatesAtom = atom<string[]>({
 
 export const dayOrWeeklyAtom = atom<boolean>({
   key: 'dayOrWeekAtom',
-  default: true,
+  default: false,
 });

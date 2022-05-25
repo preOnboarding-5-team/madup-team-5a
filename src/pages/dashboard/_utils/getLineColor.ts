@@ -11,12 +11,12 @@ const colors = {
   sales: '#FFCD38',
 };
 
-export const mainColor = () => {
+export const useMainColor = () => {
   const mainIdx = useRecoilValue(mainIdxAtom);
   return colors[categories[mainIdx]];
 };
 
-export const subColor = () => {
+export const useSubColor = () => {
   const subIdx = useRecoilValue(subIdxAtom);
   return colors[categories[subIdx]];
 };
