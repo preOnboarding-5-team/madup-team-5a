@@ -1,6 +1,7 @@
-import { useState, useEffect, useMemo } from 'react';
-import type { PropsWithChildren, Dispatch, SetStateAction } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import cx from 'classnames';
+
+import type { KeyboardEvent, PropsWithChildren, Dispatch, SetStateAction, MouseEvent, FormEvent } from 'react';
 
 import { AddIcon } from 'assets/svgs';
 import { useOpenDropdown } from 'hooks/useOpenDropdown';
@@ -11,17 +12,25 @@ import styles from './style.module.scss';
 const DropButton = ({
   className,
   dropItems,
+  setDropItems,
   setCurrentIdx,
+  disabledIdx,
   larger = false,
   optional = false,
   additional = false,
 }: DropButtonProps) => {
   const [topIdx, setTopIdx] = useState(0);
+  const [inputValue, setInputValue] = useState('');
   const { isOpen, setIsOpen, toggleIsOpen, containerRef: outerRef } = useOpenDropdown<HTMLDivElement>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setCurrentIdx(topIdx - Number(optional));
   }, [setCurrentIdx, topIdx, optional]);
+
+  useEffect(() => {
+    setInputValue('');
+  }, [isOpen]);
 
   const dropItemsToRender = useMemo<DropItem[]>(() => {
     const noneMenu = { title: '선택 안 함' };
@@ -30,12 +39,34 @@ const DropButton = ({
   }, [dropItems, optional]);
 
   const handleClickItem = (e: React.MouseEvent<HTMLElement>) => {
-    if (e.currentTarget.dataset.idx === undefined) return;
+    const { idx } = e.currentTarget.dataset;
+    if (idx === undefined || disabledIdx?.includes(Number(idx) - Number(optional))) return;
     setTopIdx(Number(e.currentTarget.dataset.idx));
     setIsOpen(false);
   };
 
-  const handleClickAdd = () => {};
+  const handleClickAddMenu = (e: MouseEvent<HTMLDivElement>) => {
+    if (!inputRef.current || e.currentTarget.contains(document.activeElement)) return;
+    inputRef.current.focus();
+  };
+
+  const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
+    setInputValue(e.currentTarget.value);
+  };
+
+  const handleEnterKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') addItem();
+  };
+
+  const addItem = () => {
+    if (!inputRef.current || !setDropItems || !inputValue) return;
+
+    const { value } = inputRef.current;
+    setDropItems((prev) => [...prev, { title: value }]);
+
+    inputRef.current.blur();
+    setInputValue('');
+  };
 
   const dropMenu = (
     <ul className={styles.dropMenu}>
@@ -47,6 +78,7 @@ const DropButton = ({
               [styles.largerMenu]: larger,
               [styles.roundTop]: idx === 0,
               [styles.roundBottom]: !additional && idx === dropItemsToRender.length - 2,
+              [styles.disabled]: disabledIdx?.includes(idx - Number(optional && idx < topIdx)),
             })}
             key={key}
           >
@@ -72,10 +104,18 @@ const DropButton = ({
             [styles.roundTop]: dropItems.length === 1,
           })}
         >
-          <div className={styles.itemWrapper} onClick={handleClickAdd} role="menuitem" tabIndex={-1}>
+          <div className={styles.itemWrapper} role="menuitem" tabIndex={-1} onClick={handleClickAddMenu}>
             <div className={cx(styles.item, styles.addItem)}>
-              <AddIcon className={styles.addIcon} />
-              <p className={styles.addTitle}>항목 추가</p>
+              <AddIcon className={styles.addIcon} onClick={addItem} />
+              <input
+                type="text"
+                className={styles.addTitle}
+                ref={inputRef}
+                value={inputValue}
+                onChange={handleInputChange}
+                onKeyUp={handleEnterKeyPress}
+                placeholder="항목 추가"
+              />
             </div>
           </div>
         </li>
@@ -106,8 +146,10 @@ const DropButton = ({
 };
 
 type DropButtonProps = PropsWithChildren<{
-  dropItems: DropItem[];
   setCurrentIdx: Dispatch<SetStateAction<number>>;
+  dropItems: DropItem[];
+  setDropItems?: Dispatch<SetStateAction<DropItem[]>>;
+  disabledIdx?: number[];
   larger?: boolean;
   optional?: boolean;
   additional?: boolean;
