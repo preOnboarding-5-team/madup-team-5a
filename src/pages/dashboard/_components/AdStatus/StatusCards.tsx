@@ -2,14 +2,13 @@ import { useRecoilValue } from 'recoil';
 
 import { DownPolygon, UpPolygon } from 'assets/svgs';
 
-import styles from './style.module.scss';
-
 import TREND_DATA from 'data/wanted_FE_trend-data-set.json';
 
 import { comparedDates } from 'pages/dashboard/_utils/comparedDates';
 import { convertCardData } from 'pages/dashboard/_utils/convertCardData';
-
 import { datesAtom } from 'pages/dashboard/_states/dashboard';
+
+import styles from './style.module.scss';
 
 const StatusCards = () => {
   const dates = useRecoilValue(datesAtom);
@@ -64,7 +63,7 @@ const StatusCards = () => {
         const polygon = (() => {
           if (diff > 0) return <UpPolygon />;
           if (diff < 0) return <DownPolygon />;
-          else return '-';
+          return '-';
         })();
         return (
           <li key={`cardList-${key}`}>

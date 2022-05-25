@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import type { FormEvent, MouseEvent } from 'react';
 import { useRecoilState } from 'recoil';
 import { DropIcon } from 'assets/svgs';
-import dayjs from 'dayjs';
 import cx from 'classnames';
 import type { Dayjs } from 'dayjs';
 import { toDateString, toYearMonth } from 'services/formatDate';

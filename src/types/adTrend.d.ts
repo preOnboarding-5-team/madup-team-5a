@@ -24,6 +24,7 @@ type Data = {
   x: string;
   y: number;
   labelq?: string;
+  name: string;
 };
 
 type TableKey = 'roas' | 'cost' | 'imp' | 'click' | 'convValue' | 'sales';

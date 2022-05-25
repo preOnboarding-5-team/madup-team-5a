@@ -1,5 +1,3 @@
-import React from 'react';
-
 const useUnit = (category: TableKey): string => {
   const units: string = {
     roas: '%',
