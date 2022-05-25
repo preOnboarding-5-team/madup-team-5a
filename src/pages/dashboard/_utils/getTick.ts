@@ -1,10 +1,7 @@
-import { subIdxAtom, mainIdxAtom } from 'pages/dashboard/_states/category';
-import { useRecoilValue } from 'recoil';
-
-import { getMax } from './../_utils/getMax';
+import { getMax } from './getMax';
 import { categoryUnits, categories } from '../_constants';
 
-export const useTicks = (t: number, dataList: Data[], idx: number) => {
+export const getTick = (t: number, dataList: Data[], idx: number) => {
   const unit = categoryUnits[categories[idx]];
   const maxData = getMax(dataList);
 
