@@ -3,24 +3,21 @@ import { VictoryAxis, VictoryChart, VictoryLine, VictoryTheme, VictoryTooltip, V
 import { useRecoilState, useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 
-import TRAND_DATA from '../../../../../data/wanted_FE_trend-data-set.json';
-
-import styles from './StatusChart.module.scss';
-
 import { Daily } from 'types/adTrend';
 
 import { convertData } from 'pages/dashboard/_utils/convertStatusData';
-import type { TableKey, Data } from 'pages/dashboard/_utils/convertStatusData';
-import { axisStyle, dependentAxisStyle, mainLineStyle, options, subLineStyle } from './statusChartOption';
+import type { Data } from 'pages/dashboard/_utils/convertStatusData';
 import { getMax } from 'pages/dashboard/_utils/getMax';
-
-import { categoryAtom, datesAtom, subCategoryAtom } from 'pages/dashboard/_states/dashboard';
+import { categoryAtom, subCategoryAtom } from 'pages/dashboard/_states/dashboard';
 import useUnit from 'pages/dashboard/_hooks/useUnit';
+import TRAND_DATA from 'data/wanted_FE_trend-data-set.json';
+import { axisStyle, dependentAxisStyle, mainLineStyle, options, subLineStyle } from './statusChartOption';
+import styles from './style.module.scss';
 
 const StatusChart = () => {
   const table = convertData(TRAND_DATA.report.daily as Daily[]);
 
-  //무한리랜더 에러남... 왜지...
+  // 무한리랜더 에러남... 왜지...
   const [dates, setDates] = useState(['2022-02-01', '2022-02-02', '2022-02-03', '2022-02-04']);
 
   const category = useRecoilValue(categoryAtom);
@@ -28,8 +25,8 @@ const StatusChart = () => {
   const [dayOrWeek, setDayOrWeek] = useState(true);
 
   // 일별
-  let dailyMainData: Data[] = [];
-  let dailySubData: Data[] = [];
+  const dailyMainData: Data[] = [];
+  const dailySubData: Data[] = [];
 
   console.log(table[category]);
 
@@ -40,10 +37,10 @@ const StatusChart = () => {
 
   // 1주일치
   const weekly = [];
-  let weeklyMainData: Data[] = [];
-  let weeklySubData: Data[] = [];
+  const weeklyMainData: Data[] = [];
+  const weeklySubData: Data[] = [];
 
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 7; i += 1) {
     weekly.push(dayjs(dates[0]).add(i, 'd').format('YYYY-MM-DD'));
   }
   weekly.forEach((date) => {
@@ -57,11 +54,11 @@ const StatusChart = () => {
   const convertWeeklyMain: Data[] = JSON.parse(JSON.stringify(weeklyMainData));
   const convertWeeklySub: Data[] = JSON.parse(JSON.stringify(weeklySubData));
 
-  convertDailyMain.map((data) => (data.y = data.y / getMax(dailyMainData)));
-  convertDailySub.map((data) => (data.y = data.y / getMax(dailySubData)));
+  convertDailyMain.map((data) => (data.y /= getMax(dailyMainData)));
+  convertDailySub.map((data) => (data.y /= getMax(dailySubData)));
 
-  convertWeeklyMain.map((data) => (data.y = data.y / getMax(weeklyMainData)));
-  convertWeeklySub.map((data) => (data.y = data.y / getMax(weeklySubData)));
+  convertWeeklyMain.map((data) => (data.y /= getMax(weeklyMainData)));
+  convertWeeklySub.map((data) => (data.y /= getMax(weeklySubData)));
 
   const handleClick = () => {
     setDayOrWeek((prev) => !prev);
