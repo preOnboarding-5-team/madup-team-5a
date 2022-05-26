@@ -24,7 +24,7 @@ yarn dev
 ```
 
 ## 배포 페이지
-[https://madup-team-5a.netlify.app/dashboard](https://madup-team-5a-redeploy.vercel.app/dashboard)
+https://madup-team-5a-redeploy.vercel.app
 
 ## 실행 화면과 기능
 
