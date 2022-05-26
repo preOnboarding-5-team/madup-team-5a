@@ -9,6 +9,7 @@ import { currentServiceIdxAtom, serviceListAtom } from 'states/serviceType';
 
 import { GuideIcon, Circle, DashBoardIcon, ManageIcon } from 'assets/svgs';
 import logo from 'assets/images/Lever_BI 1.png';
+import logoP from 'public/images/Lever_BI 1.png';
 
 import styles from './style.module.scss';
 
@@ -23,6 +24,7 @@ const SideNav = () => {
         <Link href="/">
           <picture className={styles.logo}>
             <Image src={logo} alt="LEVER" />
+            <Image src={logoP} alt="LEVER" />
           </picture>
         </Link>
       </header>
