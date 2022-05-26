@@ -77,10 +77,7 @@ const StatusChart = () => {
   useEffect(() => {
     setMainData(dateList.map((date) => getData(mainIdx, date) as Data));
     setSubData(dateList.map((date) => getData(subIdx, date) as Data));
-<<<<<<< HEAD:src/pages/dashboard/_components/AdStatus/StatusChart/StatusChart.tsx
-=======
     // eslint-disable-next-line react-hooks/exhaustive-deps
->>>>>>> a341cd9a1e887b8b5ea4d1a767fa0870ebbd081f:src/pages/dashboard/_components/AdStatus/StatusChart/index.tsx
   }, [dateList, mainIdx, subIdx]);
 
   useEffect(() => {

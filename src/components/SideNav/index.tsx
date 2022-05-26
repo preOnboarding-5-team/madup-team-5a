@@ -8,7 +8,7 @@ import DropButton from 'components/_common/DropButton';
 import { currentServiceIdxAtom, serviceListAtom } from 'states/serviceType';
 
 import { GuideIcon, Circle, DashBoardIcon, ManageIcon } from 'assets/svgs';
-import logo from 'assets/images/Lever_BI 1.png';
+import logo from 'assets/images/Lever_BI1.png';
 
 import styles from './style.module.scss';
 
