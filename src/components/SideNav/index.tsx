@@ -21,7 +21,7 @@ const SideNav = () => {
       <header className={styles.sideNavHeader}>
         <Link href="/">
           <picture className={styles.logo}>
-            <Image src="images/Lever_BI 1.png" alt="LEVER" />
+            <Image src="/images/Lever_BI 1.png" alt="LEVER" />
           </picture>
         </Link>
       </header>
