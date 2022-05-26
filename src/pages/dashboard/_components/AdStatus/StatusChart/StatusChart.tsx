@@ -60,13 +60,9 @@ const StatusChart = () => {
     [table]
   );
 
-<<<<<<< HEAD
   useEffect(() => {
     setDiff(dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') + 1 : 7);
   }, [dayOrWeekly, dates]);
-=======
-  const diff = dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') + 1 : 7;
->>>>>>> 417cd9f7d14fdfd32faef1d049eabcc74f2d2701
 
   useEffect(() => {
     setDateList([...Array(diff).keys()].map((i) => dayjs(dates.start).add(i, 'day').format('YYYY-MM-DD')));
@@ -75,10 +71,6 @@ const StatusChart = () => {
   useEffect(() => {
     setMainData(dateList.map((date) => getData(mainIdx, date) as Data));
     setSubData(dateList.map((date) => getData(subIdx, date) as Data));
-<<<<<<< HEAD
-=======
-    // eslint-disable-next-line react-hooks/exhaustive-deps
->>>>>>> 417cd9f7d14fdfd32faef1d049eabcc74f2d2701
   }, [dateList, mainIdx, subIdx]);
 
   useEffect(() => {
