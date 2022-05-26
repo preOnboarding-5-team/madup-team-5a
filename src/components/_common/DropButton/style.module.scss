@@ -4,9 +4,10 @@
 
 .wrapper {
   position: relative;
+  box-sizing: content-box;
   width: 123px;
   min-height: 40px;
-  font-size: 12px; // TODO after font: 14px
+  font-size: 14px;
   font-weight: 500;
   background-color: colors.$BG_W;
   border: 1px solid colors.$GREY_100;
@@ -47,7 +48,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: colors.$BG_G;
+    background-color: rgba(colors.$BG_G, 50%);
   }
 }
 
@@ -55,13 +56,8 @@
   height: 60px;
 }
 
-.addMenu {
-  // background-color: colors.$BG_G;
-  // border-top: 1px solid rgba(colors.$PRIMARY, 30%);
-
-  &:hover {
-    background-color: colors.$BG_G;
-  }
+.addMenu:hover {
+  background-color: colors.$BG_G;
 }
 
 .roundBottom {
@@ -74,9 +70,17 @@
   border-top-right-radius: 10px;
 }
 
+.disabled {
+  opacity: 0.2;
+
+  &:hover {
+    background-color: none;
+  }
+}
+
 .highlightHover {
   &:hover {
-    background-color: colors.$BG_G;
+    background-color: rgba(colors.$BG_G, 50%);
   }
 }
 
@@ -97,22 +101,35 @@
 
 .addItem {
   margin-left: 10px;
+  cursor: pointer;
 
   .addIcon {
+    border-radius: 5px;
     fill: colors.$GREY_300;
+    transition: 150ms;
     transform: scale(50%);
+
+    &:hover {
+      fill: colors.$GREY_800;
+      transform: scale(67%);
+    }
   }
 
   .addTitle {
     margin-left: 5px;
-    color: colors.$GREY_300;
+    color: colors.$GREY_800;
+    cursor: pointer;
+
+    &::placeholder {
+      color: colors.$GREY_300;
+    }
   }
 }
 
 .largerWrapper {
   width: 240px;
   min-height: 60px;
-  font-size: 14px; // TODO after font: 16px
+  font-size: 16px;
   font-weight: 700;
 }
 

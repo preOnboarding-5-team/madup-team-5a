@@ -19,7 +19,7 @@ const ALL_CHANNEL_MAPS: MediaChannelDisplayMap[] = [
   },
 ];
 
-export const mediaChannelsState = atom<MediaChannelDisplayMap[]>({
+export const mediaChannelsAtom = atom<MediaChannelDisplayMap[]>({
   key: '#channelsState',
   default: ALL_CHANNEL_MAPS,
 });

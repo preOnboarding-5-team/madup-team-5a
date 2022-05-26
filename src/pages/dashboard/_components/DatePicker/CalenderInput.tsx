@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react';
-import type { FormEvent, MouseEvent } from 'react';
 import { useRecoilState } from 'recoil';
-import { DropIcon } from 'assets/svgs';
 import cx from 'classnames';
 import type { Dayjs } from 'dayjs';
+
+import type { KeyboardEvent, FormEvent, MouseEvent } from 'react';
+
+import { DropIcon } from 'assets/svgs';
 import { toDateString, toYearMonth } from 'services/formatDate';
-import { datesAtom } from 'pages/dashboard/_states/dashboard';
+import { datesAtom } from 'pages/dashboard/_states/datesAtom';
 import { useCalendarBounds } from 'pages/dashboard/_hooks/useCalendarBounds';
+import { longestDuration } from 'pages/dashboard/_constants';
+
+import dayjs from 'dayjs';
 import styles from './style.module.scss';
 
 const CalenderInput = () => {
@@ -20,8 +25,26 @@ const CalenderInput = () => {
     setValue(toYearMonth(firstDayOfCurrentMonth));
   }, [firstDayOfCurrentMonth]);
 
+  const handleESCKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Escape') {
+      e.currentTarget.blur();
+    }
+  };
+
   const handleChangeTextInput = (e: FormEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.value);
+    let { value: inputValue } = e.currentTarget;
+
+    if (inputValue.length > 6) {
+      if (!inputValue.includes('-')) setValue(toYearMonth(firstDayOfCurrentMonth));
+      else if (dayjs(inputValue).isValid()) setFirstDayOfCurrentMonth(dayjs(inputValue).set('date', 1));
+      else if (dayjs(`${inputValue}-01`).isValid()) setFirstDayOfCurrentMonth(dayjs(`${inputValue}-01`));
+      else setValue(toYearMonth(firstDayOfCurrentMonth));
+      return;
+    }
+
+    if (!inputValue.includes('-') && inputValue.length === 4) inputValue += '-';
+
+    setValue(inputValue);
   };
 
   const handleClickNextMonth = () => {
@@ -41,8 +64,10 @@ const CalenderInput = () => {
       if (dayOnClick > selectedStart) {
         setSelectedEnd(dayOnClick);
         setDuration({ start: toDateString(selectedStart), end: toDateString(dayOnClick) });
-      } else {
-        setSelectedStart(null);
+      } else if (dayOnClick < selectedStart) {
+        setSelectedEnd(selectedStart);
+        setSelectedStart(dayOnClick);
+        setDuration({ start: toDateString(selectedStart), end: toDateString(dayOnClick) });
       }
     }
   };
@@ -53,7 +78,13 @@ const CalenderInput = () => {
         <button type="button" className={styles.toNextMonth} onClick={handleClickPrevMonth}>
           <DropIcon className={styles.toLeft} />
         </button>
-        <input type="text" className={styles.monthText} value={value} onChange={handleChangeTextInput} />
+        <input
+          type="text"
+          className={styles.monthText}
+          value={value}
+          onChange={handleChangeTextInput}
+          onKeyDown={handleESCKeyPress}
+        />
         <button type="button" className={styles.toNextMonth} onClick={handleClickNextMonth}>
           <DropIcon className={styles.toRight} />
         </button>
@@ -67,8 +98,10 @@ const CalenderInput = () => {
               type="button"
               className={cx(styles.date, {
                 [styles.start]: day.isSame(selectedStart),
+                [styles.tail]: day.month() !== firstDayOfCurrentMonth.month(),
                 [styles.inDuration]: selectedStart && day > selectedStart && selectedEnd && day < selectedEnd,
                 [styles.end]: day.isSame(selectedEnd),
+                [styles.noData]: day.isBefore(longestDuration.start) || day.isAfter(longestDuration.end),
               })}
               key={key}
               data-idx={dateOffset}

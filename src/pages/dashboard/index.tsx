@@ -1,10 +1,7 @@
-import AdStatus from './_components/AdStatus';
-import DatePicker from './_components/DatePicker';
-import MediaStatus from './_components/MediaStatus';
-// import dynamic from 'next/dynamic';
+import AdStatus from 'pages/dashboard/_components/AdStatus';
+import DatePicker from 'pages/dashboard/_components/DatePicker';
+import MediaStatus from 'pages/dashboard/_components/MediaStatus';
 import styles from './style.module.scss';
-
-// const StatusChart = dynamic(() => import('components/AdStatus/StatusChart'), { ssr: false });
 
 const DashBoard = () => {
   return (

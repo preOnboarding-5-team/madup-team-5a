@@ -2,8 +2,6 @@ import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
 
 export const getCalendarBoundsFromDate = (date?: string | Dayjs) => {
-  // if (!dayjs(date).isValid()) return;
-
   const firstDayOfMonth = dayjs(date).set('date', 1);
   const dayOfFirstDate = firstDayOfMonth.day();
   const firstDayOffset = dayOfFirstDate;
