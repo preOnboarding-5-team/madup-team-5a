@@ -22,7 +22,7 @@ import { categories } from 'pages/dashboard/_constants';
 import { convertStatusData } from 'pages/dashboard/_utils/convertStatusData';
 import { getMax } from 'pages/dashboard/_utils/getMax';
 import { getTick } from 'pages/dashboard/_utils/getTick';
-import { axisStyleNone, axisStyle, dependentAxisStyle, options } from './statusChartOption';
+import { axisStyle, dependentAxisStyle, options } from './statusChartOption';
 
 import styles from './style.module.scss';
 

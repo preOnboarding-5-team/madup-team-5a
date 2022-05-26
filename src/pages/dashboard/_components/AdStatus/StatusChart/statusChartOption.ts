@@ -11,9 +11,7 @@ export const axisStyle = {
   tickLabels: { fontSize: 12, padding: 5, fill: '#94a2ad' },
 };
 
-export const axisStyleNone = {
-  tickLabels: { display: 'none' },
-};
+export const axisStyleNone = { display: 'none' };
 
 export const dependentAxisStyle = {
   axis: { display: 'none' },
