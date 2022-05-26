@@ -22,7 +22,7 @@ import { categories } from 'pages/dashboard/_constants';
 import { convertStatusData } from 'pages/dashboard/_utils/convertStatusData';
 import { getMax } from 'pages/dashboard/_utils/getMax';
 import { getTick } from 'pages/dashboard/_utils/getTick';
-import { axisStyle, dependentAxisStyle, options } from './statusChartOption';
+import { axisStyleNone, axisStyle, dependentAxisStyle, options } from './statusChartOption';
 
 import styles from './style.module.scss';
 
@@ -71,10 +71,6 @@ const StatusChart = () => {
   }, [diff, dates.start]);
 
   useEffect(() => {
-    setDiff(dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') + 1 : 7);
-  }, [dayOrWeekly, dates]);
-
-  useEffect(() => {
     setDateList([...Array(diff).keys()].map((i) => dayjs(dates.start).add(i, 'day').format('YYYY-MM-DD')));
   }, [dates, diff]);
 
@@ -112,7 +108,13 @@ const StatusChart = () => {
               voronoiDimension="x"
               labels={({ datum }) => (datum ? `${datum.name}: ${datum.labelq}` : '')}
               labelComponent={
-                <VictoryTooltip cornerRadius={0} flyoutWidth={120} flyoutHeight={40} flyoutStyle={{ fill: 'white' }} />
+                <VictoryTooltip
+                  cornerRadius={5}
+                  flyoutWidth={120}
+                  flyoutHeight={40}
+                  flyoutStyle={{ fill: 'white' }}
+                  labelComponent={<VictoryLabel lineHeight={1.4} />}
+                />
               }
             />
           }
@@ -121,7 +123,7 @@ const StatusChart = () => {
           <VictoryAxis
             style={axisStyle}
             tickValues={dateList}
-            tickFormat={(t) => (diff < 20 ? `${dayjs(t).format('M월D일')}` : ``)}
+            tickFormat={(t) => (diff <= 20 ? `${dayjs(t).format('M월D일')}` : '')}
             offsetY={50}
           />
           <VictoryAxis
