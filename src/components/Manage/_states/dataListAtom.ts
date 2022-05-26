@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { UPDATED_DATA } from 'pages/manage/_utils/data';
+import { UPDATED_DATA } from 'components/Manage/_utils/data';
 
 export const dataListAtom = atom<AdManageFormItemsType[]>({
   key: 'dataListAtom',

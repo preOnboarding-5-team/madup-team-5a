@@ -1,6 +1,6 @@
-import AdStatus from 'pages/dashboard/_components/AdStatus';
-import DatePicker from 'pages/dashboard/_components/DatePicker';
-import MediaStatus from 'pages/dashboard/_components/MediaStatus';
+import AdStatus from 'components/Dashboard/_components/AdStatus';
+import DatePicker from 'components/Dashboard/_components/DatePicker';
+import MediaStatus from 'components/Dashboard/_components/MediaStatus';
 import styles from './style.module.scss';
 
 const DashBoard = () => {

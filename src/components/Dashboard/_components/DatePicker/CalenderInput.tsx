@@ -7,9 +7,9 @@ import type { KeyboardEvent, FormEvent, MouseEvent } from 'react';
 
 import { DropIcon } from 'assets/svgs';
 import { toDateString, toYearMonth } from 'services/formatDate';
-import { datesAtom } from 'pages/dashboard/_states/datesAtom';
-import { useCalendarBounds } from 'pages/dashboard/_hooks/useCalendarBounds';
-import { longestDuration } from 'pages/dashboard/_constants';
+import { datesAtom } from 'components/Dashboard/_states/datesAtom';
+import { useCalendarBounds } from 'components/Dashboard/_hooks/useCalendarBounds';
+import { longestDuration } from 'components/Dashboard/_constants';
 
 import dayjs from 'dayjs';
 import styles from './style.module.scss';

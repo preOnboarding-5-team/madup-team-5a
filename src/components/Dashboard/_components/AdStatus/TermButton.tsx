@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 
-import { dayOrWeeklyAtom } from 'pages/dashboard/_states/dayOrWeeklyAtom';
+import { dayOrWeeklyAtom } from 'components/Dashboard/_states/dayOrWeeklyAtom';
 import { useOpenDropdown } from 'hooks/useOpenDropdown';
 import { DropdownArrowIcon } from 'assets/svgs';
 import styles from './style.module.scss';

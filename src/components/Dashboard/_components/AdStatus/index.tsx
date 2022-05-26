@@ -2,8 +2,8 @@ import { useRecoilState } from 'recoil';
 import dynamic from 'next/dynamic';
 
 import DropButton from 'components/_common/DropButton';
-import { mainIdxAtom } from 'pages/dashboard/_states/mainIdxAtom';
-import { subIdxAtom } from 'pages/dashboard/_states/subIdxAtom';
+import { mainIdxAtom } from 'components/Dashboard/_states/mainIdxAtom';
+import { subIdxAtom } from 'components/Dashboard/_states/subIdxAtom';
 
 import TermButton from './TermButton';
 import StatusCards from './StatusCards';
