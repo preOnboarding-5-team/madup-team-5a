@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import {
   VictoryAxis,
   VictoryChart,
@@ -12,8 +12,10 @@ import { useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
 
-import { datesAtom, dayOrWeeklyAtom } from 'pages/dashboard/_states/dashboard';
-import { mainIdxAtom, subIdxAtom } from 'pages/dashboard/_states/category';
+import { datesAtom } from 'pages/dashboard/_states/datesAtom';
+import { dayOrWeeklyAtom } from 'pages/dashboard/_states/dayOrWeeklyAtom';
+import { mainIdxAtom } from 'pages/dashboard/_states/mainIdxAtom';
+import { subIdxAtom } from 'pages/dashboard/_states/subIdxAtom';
 import TREND_DATA from 'data/wanted_FE_trend-data-set.json';
 
 import { categories } from 'pages/dashboard/_constants';
@@ -37,6 +39,7 @@ const StatusChart = () => {
   const [mainDataRatio, setMainDataRatio] = useState<Data[]>([]);
   const [subDataRatio, setSubDataRatio] = useState<Data[]>([]);
   const [dateList, setDateList] = useState<string[]>([]);
+  const [diff, setDiff] = useState(0);
 
   const getColor = (idx: number) => {
     if (idx < 0) return '';
@@ -59,11 +62,17 @@ const StatusChart = () => {
     [table]
   );
 
-  const diff = dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') + 1 : 7;
+  useEffect(() => {
+    setDiff(dayOrWeekly ? dayjs(dates.end).diff(dates.start, 'day') + 1 : 7);
+  }, [dayOrWeekly, dates]);
 
   useEffect(() => {
     setDateList([...Array(diff).keys()].map((i) => dayjs(dates.start).add(i, 'day').format('YYYY-MM-DD')));
-  }, [dayOrWeekly, dates, diff]);
+  }, [diff, dates.start]);
+
+  useEffect(() => {
+    setDateList([...Array(diff).keys()].map((i) => dayjs(dates.start).add(i, 'day').format('YYYY-MM-DD')));
+  }, [dates, diff]);
 
   useEffect(() => {
     setMainData(dateList.map((date) => getData(mainIdx, date) as Data));
@@ -92,14 +101,20 @@ const StatusChart = () => {
       <div className={styles.centering}>
         <VictoryChart
           theme={VictoryTheme.material}
-          domainPadding={{ x: [0, 50] }}
+          domainPadding={{ x: [45, 55] }}
           domain={{ y: [0, 1] }}
           containerComponent={
             <VictoryVoronoiContainer
               voronoiDimension="x"
               labels={({ datum }) => (datum ? `${datum.name}: ${datum.labelq}` : '')}
               labelComponent={
-                <VictoryTooltip cornerRadius={0} flyoutWidth={120} flyoutHeight={40} flyoutStyle={{ fill: 'white' }} />
+                <VictoryTooltip
+                  cornerRadius={5}
+                  flyoutWidth={120}
+                  flyoutHeight={40}
+                  flyoutStyle={{ fill: 'white' }}
+                  labelComponent={<VictoryLabel lineHeight={1.4} />}
+                />
               }
             />
           }
@@ -108,7 +123,7 @@ const StatusChart = () => {
           <VictoryAxis
             style={axisStyle}
             tickValues={dateList}
-            tickFormat={(t) => (diff < 20 ? `${dayjs(t).format('M월D일')}` : ``)}
+            tickFormat={(t) => (diff <= 20 ? `${dayjs(t).format('M월D일')}` : '')}
             offsetY={50}
           />
           <VictoryAxis

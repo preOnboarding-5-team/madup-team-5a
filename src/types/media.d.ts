@@ -13,9 +13,6 @@ interface MediaStatDisplayMap {
   display: readonly string;
 }
 
-// type MediaDataAttribute = Exclude<keyof MediaData, 'channel'>;
-// type MediaStatAttribute = Exclude<keyof MediaStats, 'channel'>;
-
 type MediaDataAttribute = keyof MediaData;
 type MediaStatAttribute = keyof MediaStats;
 
@@ -36,7 +33,6 @@ interface MediaData extends MediaStats {
 }
 
 interface MediaStats {
-  // channel?: MediaChannel;
   cost: number; // cost
   click: number; // click
   sale: number; // roas * click / 100

@@ -16,7 +16,8 @@
 
     .titleText {
       height: 30px;
-      @include font.font('Roboto', '26', '900');
+      font-size: 26px;
+      font-weight: 900;
       line-height: 30px;
       color: colors.$GREY_800;
     }
@@ -45,7 +46,6 @@
           background: colors.$BG_W;
           border: 1px solid #d1d8dc;
           border-radius: 10px;
-          @include flexbox.flexbox(center, center);
 
           .dropDownText {
             height: 16px;
@@ -78,7 +78,8 @@
 
           .addButtonText {
             height: 16px;
-            @include font.font('Roboto', '14', '700');
+            font-size: 14px;
+            font-weight: 700;
             line-height: 16px;
             color: colors.$BG_W;
             text-align: center;

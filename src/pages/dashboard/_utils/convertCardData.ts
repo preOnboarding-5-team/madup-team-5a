@@ -19,5 +19,7 @@ export const convertCardData = (data: Daily[], start: string, end: string): Card
     aggTable.sale += (r * click) / 100;
   });
 
-  return { ...aggTable, roas: (aggTable.sale / aggTable.click) * 100 };
+  const roas = aggTable.click > 0 ? (aggTable.sale / aggTable.click) * 100 : 0;
+
+  return { ...aggTable, roas };
 };
