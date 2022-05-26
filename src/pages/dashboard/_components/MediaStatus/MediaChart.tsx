@@ -82,7 +82,7 @@ const MediaChart = () => {
 
       <VictoryStack colorScale={colorMap}>{bars}</VictoryStack>
       <VictoryLegend
-        x={643}
+        x={603}
         y={250}
         gutter={40}
         orientation="horizontal"
