@@ -1,9 +1,9 @@
 import { useRecoilValue } from 'recoil';
 import { formatNumber } from 'services/formatNumber';
 import { packMediaData } from 'services/packMediaData';
-import { datesAtom } from 'pages/dashboard/_states/datesAtom';
-import { mediaChannelsAtom } from 'pages/dashboard/_states/mediaChannelsAtom';
-import { mediaGridAttributesAtom } from 'pages/dashboard/_states/mediaGridAttributesAtom';
+import { datesAtom } from 'components/Dashboard/_states/datesAtom';
+import { mediaChannelsAtom } from 'components/Dashboard/_states/mediaChannelsAtom';
+import { mediaGridAttributesAtom } from 'components/Dashboard/_states/mediaGridAttributesAtom';
 
 import styles from './style.module.scss';
 

@@ -10,9 +10,9 @@ import {
 } from 'victory';
 import { formatNumber } from 'services/formatNumber';
 import { packMediaData } from 'services/packMediaData';
-import { datesAtom } from 'pages/dashboard/_states/datesAtom';
-import { mediaChannelsAtom } from 'pages/dashboard/_states/mediaChannelsAtom';
-import { mediaChartAttributesAtom } from 'pages/dashboard/_states/mediaChartAttributesAtom';
+import { mediaChannelsAtom } from 'components/Dashboard/_states/mediaChannelsAtom';
+import { mediaChartAttributesAtom } from 'components/Dashboard/_states/mediaChartAttributesAtom';
+import { datesAtom } from 'components/Dashboard/_states/datesAtom';
 import { colorMapAtom } from 'states/colorMap';
 
 const MediaChart = () => {

@@ -12,16 +12,16 @@ import { useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
 
-import { datesAtom } from 'pages/dashboard/_states/datesAtom';
-import { dayOrWeeklyAtom } from 'pages/dashboard/_states/dayOrWeeklyAtom';
-import { mainIdxAtom } from 'pages/dashboard/_states/mainIdxAtom';
-import { subIdxAtom } from 'pages/dashboard/_states/subIdxAtom';
+import { datesAtom } from 'components/Dashboard/_states/datesAtom';
+import { dayOrWeeklyAtom } from 'components/Dashboard/_states/dayOrWeeklyAtom';
+import { mainIdxAtom } from 'components/Dashboard/_states/mainIdxAtom';
+import { subIdxAtom } from 'components/Dashboard/_states/subIdxAtom';
 import TREND_DATA from 'data/wanted_FE_trend-data-set.json';
 
-import { categories } from 'pages/dashboard/_constants';
-import { convertStatusData } from 'pages/dashboard/_utils/convertStatusData';
-import { getMax } from 'pages/dashboard/_utils/getMax';
-import { getTick } from 'pages/dashboard/_utils/getTick';
+import { categories } from 'components/Dashboard/_constants';
+import { convertStatusData } from 'components/Dashboard/_utils/convertStatusData';
+import { getMax } from 'components/Dashboard/_utils/getMax';
+import { getTick } from 'components/Dashboard/_utils/getTick';
 import { axisStyle, dependentAxisStyle, options } from './statusChartOption';
 
 import styles from './style.module.scss';
