@@ -6,8 +6,10 @@ import cx from 'classnames';
 
 import DropButton from 'components/_common/DropButton';
 import { currentServiceIdxAtom, serviceListAtom } from 'states/serviceType';
+
 import { GuideIcon, Circle, DashBoardIcon, ManageIcon } from 'assets/svgs';
 import logo from 'assets/images/Lever_BI 1.png';
+
 import styles from './style.module.scss';
 
 const SideNav = () => {
@@ -20,7 +22,7 @@ const SideNav = () => {
       <header className={styles.sideNavHeader}>
         <Link href="/">
           <picture className={styles.logo}>
-            <Image src={logo} />
+            <Image src={logo} alt="LEVER" />
           </picture>
         </Link>
       </header>

@@ -7,7 +7,7 @@
   box-sizing: content-box;
   width: 123px;
   min-height: 40px;
-  font-size: 12px; // TODO after font: 14px
+  font-size: 14px;
   font-weight: 500;
   background-color: colors.$BG_W;
   border: 1px solid colors.$GREY_100;
@@ -129,7 +129,7 @@
 .largerWrapper {
   width: 240px;
   min-height: 60px;
-  font-size: 14px; // TODO after font: 16px
+  font-size: 16px;
   font-weight: 700;
 }
 

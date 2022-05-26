@@ -1,5 +1,4 @@
-import { AdManageFormItemsType } from 'types/adManage';
-import AD_DATA from './wanted_FE_ad-list-data-set.json';
+import AD_DATA from 'data/wanted_FE_ad-list-data-set.json';
 
 const { ads } = AD_DATA;
 

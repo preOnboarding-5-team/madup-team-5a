@@ -7,8 +7,9 @@ import type { KeyboardEvent, FormEvent, MouseEvent } from 'react';
 
 import { DropIcon } from 'assets/svgs';
 import { toDateString, toYearMonth } from 'services/formatDate';
-import { datesAtom } from 'pages/dashboard/_states/dashboard';
+import { datesAtom } from 'pages/dashboard/_states/datesAtom';
 import { useCalendarBounds } from 'pages/dashboard/_hooks/useCalendarBounds';
+import { longestDuration } from 'pages/dashboard/_constants';
 
 import dayjs from 'dayjs';
 import styles from './style.module.scss';
@@ -63,8 +64,10 @@ const CalenderInput = () => {
       if (dayOnClick > selectedStart) {
         setSelectedEnd(dayOnClick);
         setDuration({ start: toDateString(selectedStart), end: toDateString(dayOnClick) });
-      } else {
-        setSelectedStart(null);
+      } else if (dayOnClick < selectedStart) {
+        setSelectedEnd(selectedStart);
+        setSelectedStart(dayOnClick);
+        setDuration({ start: toDateString(selectedStart), end: toDateString(dayOnClick) });
       }
     }
   };
@@ -98,6 +101,7 @@ const CalenderInput = () => {
                 [styles.tail]: day.month() !== firstDayOfCurrentMonth.month(),
                 [styles.inDuration]: selectedStart && day > selectedStart && selectedEnd && day < selectedEnd,
                 [styles.end]: day.isSame(selectedEnd),
+                [styles.noData]: day.isBefore(longestDuration.start) || day.isAfter(longestDuration.end),
               })}
               key={key}
               data-idx={dateOffset}

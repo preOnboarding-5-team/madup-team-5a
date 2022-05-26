@@ -10,16 +10,16 @@ import {
 } from 'victory';
 import { formatNumber } from 'services/formatNumber';
 import { packMediaData } from 'services/packMediaData';
-import { datesAtom } from 'pages/dashboard/_states/dashboard';
-import { mediaChannelsState } from 'pages/dashboard/_states/mediaChannelsState';
-import { mediaChartAttributesState } from 'pages/dashboard/_states/mediaChartAttributesState';
+import { datesAtom } from 'pages/dashboard/_states/datesAtom';
+import { mediaChannelsAtom } from 'pages/dashboard/_states/mediaChannelsAtom';
+import { mediaChartAttributesAtom } from 'pages/dashboard/_states/mediaChartAttributesAtom';
 import { colorMapAtom } from 'states/colorMap';
 
 const MediaChart = () => {
   const duration = useRecoilValue(datesAtom);
-  const attributes = useRecoilValue(mediaChartAttributesState);
-  const channels = useRecoilValue(mediaChannelsState);
-  const COLORS = useRecoilValue(colorMapAtom);
+  const attributes = useRecoilValue(mediaChartAttributesAtom);
+  const channels = useRecoilValue(mediaChannelsAtom);
+  const colorMap = useRecoilValue(colorMapAtom);
 
   const data = packMediaData(
     channels.map(({ key }) => key),
@@ -80,15 +80,15 @@ const MediaChart = () => {
         tickFormat={(l) => (l > 0 ? `${l * 100}%` : '')}
       />
 
-      <VictoryStack colorScale={COLORS}>{bars}</VictoryStack>
+      <VictoryStack colorScale={colorMap}>{bars}</VictoryStack>
       <VictoryLegend
-        x={643}
+        x={603}
         y={250}
         gutter={40}
         orientation="horizontal"
-        colorScale={COLORS}
+        colorScale={colorMap}
         data={channels.map(({ display }) => ({ name: display }))}
-        style={{ labels: { fontSize: 10 } }}
+        style={{ labels: { fontSize: 12 } }}
       />
     </VictoryChart>
   );

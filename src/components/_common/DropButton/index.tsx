@@ -34,8 +34,14 @@ const DropButton = ({
 
   const dropItemsToRender = useMemo<DropItem[]>(() => {
     const noneMenu = { title: '선택 안 함' };
-    if (optional) return [noneMenu, ...dropItems];
-    return dropItems;
+    const parsedDropItems = dropItems.map((item) => {
+      if (typeof item === 'string') return { title: item };
+      return item;
+    }) as DropItem[];
+
+    if (optional) return [noneMenu, ...parsedDropItems];
+
+    return parsedDropItems;
   }, [dropItems, optional]);
 
   const handleClickItem = (e: React.MouseEvent<HTMLElement>) => {
@@ -78,7 +84,7 @@ const DropButton = ({
               [styles.largerMenu]: larger,
               [styles.roundTop]: idx === 0,
               [styles.roundBottom]: !additional && idx === dropItemsToRender.length - 2,
-              [styles.disabled]: disabledIdx?.includes(idx - Number(optional && idx < topIdx)),
+              [styles.disabled]: disabledIdx?.includes(Number(idx) - Number(topIdx > idx) - Number(optional) + 1),
             })}
             key={key}
           >
@@ -147,7 +153,7 @@ const DropButton = ({
 
 type DropButtonProps = PropsWithChildren<{
   setCurrentIdx: Dispatch<SetStateAction<number>>;
-  dropItems: DropItem[];
+  dropItems: DropItem[] | string[];
   setDropItems?: Dispatch<SetStateAction<DropItem[]>>;
   disabledIdx?: number[];
   larger?: boolean;

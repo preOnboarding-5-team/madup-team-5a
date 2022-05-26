@@ -12,8 +12,10 @@ import { useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
 
-import { datesAtom, dayOrWeeklyAtom } from 'pages/dashboard/_states/dashboard';
-import { mainIdxAtom, subIdxAtom } from 'pages/dashboard/_states/category';
+import { datesAtom } from 'pages/dashboard/_states/datesAtom';
+import { dayOrWeeklyAtom } from 'pages/dashboard/_states/dayOrWeeklyAtom';
+import { mainIdxAtom } from 'pages/dashboard/_states/mainIdxAtom';
+import { subIdxAtom } from 'pages/dashboard/_states/subIdxAtom';
 import TREND_DATA from 'data/wanted_FE_trend-data-set.json';
 
 import { categories } from 'pages/dashboard/_constants';
@@ -69,6 +71,10 @@ const StatusChart = () => {
   }, [diff, dates.start]);
 
   useEffect(() => {
+    setDateList([...Array(diff).keys()].map((i) => dayjs(dates.start).add(i, 'day').format('YYYY-MM-DD')));
+  }, [dates, diff]);
+
+  useEffect(() => {
     setMainData(dateList.map((date) => getData(mainIdx, date) as Data));
     setSubData(dateList.map((date) => getData(subIdx, date) as Data));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,14 +101,20 @@ const StatusChart = () => {
       <div className={styles.centering}>
         <VictoryChart
           theme={VictoryTheme.material}
-          domainPadding={{ x: [0, 50] }}
+          domainPadding={{ x: [45, 55] }}
           domain={{ y: [0, 1] }}
           containerComponent={
             <VictoryVoronoiContainer
               voronoiDimension="x"
               labels={({ datum }) => (datum ? `${datum.name}: ${datum.labelq}` : '')}
               labelComponent={
-                <VictoryTooltip cornerRadius={0} flyoutWidth={100} flyoutHeight={40} flyoutStyle={{ fill: 'white' }} />
+                <VictoryTooltip
+                  cornerRadius={5}
+                  flyoutWidth={120}
+                  flyoutHeight={40}
+                  flyoutStyle={{ fill: 'white' }}
+                  labelComponent={<VictoryLabel lineHeight={1.4} />}
+                />
               }
             />
           }
@@ -111,15 +123,15 @@ const StatusChart = () => {
           <VictoryAxis
             style={axisStyle}
             tickValues={dateList}
-            tickFormat={(t) => (diff < 20 ? `${dayjs(t).format('M월D일')}` : ``)}
-            offsetX={50}
+            tickFormat={(t) => (diff <= 20 ? `${dayjs(t).format('M월D일')}` : '')}
+            offsetY={50}
           />
           <VictoryAxis
             dependentAxis
             tickLabelComponent={<VictoryLabel dx={-30} dy={-10} />}
             orientation="left"
-            tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
-            tickFormat={(t) => getTick(t, mainData, mainIdx)}
+            tickValues={[0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1]}
+            tickFormat={(t) => (t === 0 ? '' : getTick(t, mainData, mainIdx))}
             style={dependentAxisStyle}
           />
           {categories[subIdx] && (
@@ -127,8 +139,8 @@ const StatusChart = () => {
               dependentAxis
               orientation="right"
               tickLabelComponent={<VictoryLabel dy={-10} />}
-              tickValues={[0.2, 0.4, 0.6, 0.8, 1]}
-              tickFormat={(t) => getTick(t, subData, subIdx)}
+              tickValues={[0, 1 / 6, 2 / 6, 3 / 6, 4 / 6, 5 / 6, 1]}
+              tickFormat={(t) => (t === 0 ? '' : getTick(t, subData, subIdx))}
               style={dependentAxisStyle}
               offsetX={100}
             />
