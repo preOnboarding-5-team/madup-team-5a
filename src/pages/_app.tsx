@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import { RecoilRoot } from 'recoil';
 import { useEffect, useState } from 'react';
 
@@ -35,6 +36,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <RecoilRoot>
+      <Head>
+        <title>MADUP</title>
+      </Head>
       <Layout>{loading ? <Loading loading={loading} /> : <Component {...pageProps} />}</Layout>
     </RecoilRoot>
   );

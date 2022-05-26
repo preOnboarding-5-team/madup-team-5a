@@ -22,11 +22,6 @@
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 4%);
 
-    // .sectionBodyInner {
-    //   @include flexbox.vertical(between, center);
-    //   width: 100%;
-    //   height: 100%;
-
     .chart {
       width: 100%;
     }
@@ -78,7 +73,6 @@
           border-bottom: 1px solid colors.$GREY_50;
         }
       }
-      // }
     }
   }
 }

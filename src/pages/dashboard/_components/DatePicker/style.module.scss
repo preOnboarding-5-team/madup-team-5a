@@ -31,8 +31,8 @@
 
   .calenderWrapper {
     position: absolute;
-    right: 10px;
-    bottom: -250px;
+    right: 25px;
+    bottom: -260px;
     z-index: levels.$DROPDOWN;
     width: 235px;
     height: 245px;
@@ -105,6 +105,10 @@
         }
       }
 
+      .tail {
+        color: colors.$GREY_300;
+      }
+
       .start {
         color: colors.$WHITE;
         background-color: colors.$PRIMARY;
@@ -120,6 +124,15 @@
 
         &:hover {
           background-color: colors.$ERROR;
+        }
+      }
+
+      .noData {
+        color: colors.$GREY_50;
+        cursor: auto;
+
+        &:hover {
+          background-color: colors.$BG_W;
         }
       }
 

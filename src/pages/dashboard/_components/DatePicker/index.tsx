@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { formatKoreanDate } from 'services/formatDate';
-import { datesAtom } from 'pages/dashboard/_states/dashboard';
+import { datesAtom } from 'pages/dashboard/_states/datesAtom';
 import ShowMoreIcon from 'components/_common/ShowMoreIcon';
 import { useOpenDropdown } from 'hooks/useOpenDropdown';
 import CalenderInput from './CalenderInput';

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
-import { datesAtom } from '../_states/dashboard';
+import { datesAtom } from '../_states/datesAtom';
 import { getCalendarBoundsFromDate } from '../_components/DatePicker/utils';
 
 export const useCalendarBounds = () => {

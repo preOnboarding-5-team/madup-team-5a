@@ -1,5 +1,6 @@
 import { categories } from 'pages/dashboard/_constants';
-import { subIdxAtom, mainIdxAtom } from 'pages/dashboard/_states/category';
+import { subIdxAtom } from 'pages/dashboard/_states/subIdxAtom';
+import { mainIdxAtom } from 'pages/dashboard/_states/mainIdxAtom';
 import { useRecoilValue } from 'recoil';
 
 const colors = {

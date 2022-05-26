@@ -11,12 +11,10 @@ const MediaStatus = () => {
         <h2 className={styles.sectionTitle}>매체 현황</h2>
       </header>
       <div className={styles.sectionBody}>
-        {/* <div className={styles.sectionBodyInner}> */}
         <div className={styles.chart}>
           <MediaChart />
         </div>
         <MediaGrid />
-        {/* </div> */}
       </div>
     </section>
   );

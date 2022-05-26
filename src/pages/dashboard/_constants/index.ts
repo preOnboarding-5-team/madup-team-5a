@@ -8,3 +8,8 @@ export const categoryUnits: TableKeyUnitMap = {
   convValue: '만회',
   sales: '만원',
 };
+
+export const longestDuration: Duration = {
+  start: '2022-02-01',
+  end: '2022-04-20',
+};

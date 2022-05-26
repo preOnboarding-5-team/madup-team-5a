@@ -10,16 +10,16 @@ import {
 } from 'victory';
 import { formatNumber } from 'services/formatNumber';
 import { packMediaData } from 'services/packMediaData';
-import { datesAtom } from 'pages/dashboard/_states/dashboard';
-import { mediaChannelsState } from 'pages/dashboard/_states/mediaChannelsState';
-import { mediaChartAttributesState } from 'pages/dashboard/_states/mediaChartAttributesState';
-
-const COLORS = ['#4fadf7', '#85da47', '#ac8af8', '#ffd43b'];
+import { datesAtom } from 'pages/dashboard/_states/datesAtom';
+import { mediaChannelsAtom } from 'pages/dashboard/_states/mediaChannelsAtom';
+import { mediaChartAttributesAtom } from 'pages/dashboard/_states/mediaChartAttributesAtom';
+import { colorMapAtom } from 'states/colorMap';
 
 const MediaChart = () => {
   const duration = useRecoilValue(datesAtom);
-  const attributes = useRecoilValue(mediaChartAttributesState);
-  const channels = useRecoilValue(mediaChannelsState);
+  const attributes = useRecoilValue(mediaChartAttributesAtom);
+  const channels = useRecoilValue(mediaChannelsAtom);
+  const colorMap = useRecoilValue(colorMapAtom);
 
   const data = packMediaData(
     channels.map(({ key }) => key),
@@ -39,7 +39,15 @@ const MediaChart = () => {
         style={{ data: { width: 30 } }}
         labels={attributes.map(({ key }) => formatNumber(data.channels[idx][key]))}
         labelComponent={
-          <VictoryTooltip width={100} height={40} pointerOrientation="bottom" style={{ fill: '#3a474e' }} />
+          <VictoryTooltip
+            width={100}
+            height={40}
+            pointerOrientation="bottom"
+            style={{ fill: '#ffffff', width: 100, height: 40 }}
+            flyoutStyle={{
+              fill: '#3a474e',
+            }}
+          />
         }
         key={`media-chart-${chKey}`}
       />
@@ -72,21 +80,15 @@ const MediaChart = () => {
         tickFormat={(l) => (l > 0 ? `${l * 100}%` : '')}
       />
 
-      <VictoryStack
-        colorScale={COLORS}
-        groupComponent={<g transform="translate(0, 0)" />}
-        style={{ data: { borderRadius: 10 } }}
-      >
-        {bars}
-      </VictoryStack>
+      <VictoryStack colorScale={colorMap}>{bars}</VictoryStack>
       <VictoryLegend
         x={643}
         y={250}
         gutter={40}
         orientation="horizontal"
-        colorScale={COLORS}
+        colorScale={colorMap}
         data={channels.map(({ display }) => ({ name: display }))}
-        style={{ labels: { fontSize: 10 } }}
+        style={{ labels: { fontSize: 12 } }}
       />
     </VictoryChart>
   );

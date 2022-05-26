@@ -6,7 +6,7 @@ import TREND_DATA from 'data/wanted_FE_trend-data-set.json';
 
 import { comparedDates } from 'pages/dashboard/_utils/comparedDates';
 import { convertCardData } from 'pages/dashboard/_utils/convertCardData';
-import { datesAtom } from 'pages/dashboard/_states/dashboard';
+import { datesAtom } from 'pages/dashboard/_states/datesAtom';
 
 import styles from './style.module.scss';
 

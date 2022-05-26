@@ -1,6 +1,4 @@
-import { Dispatch, MouseEvent, SetStateAction } from 'react';
-
-import cx from 'classnames';
+import type { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 import AdManageCard from './AdManageCard';
 import styles from './style.module.scss';

@@ -1,16 +1,16 @@
 import { useRecoilValue } from 'recoil';
 import { formatNumber } from 'services/formatNumber';
 import { packMediaData } from 'services/packMediaData';
-import { datesAtom } from 'pages/dashboard/_states/dashboard';
-import { mediaChannelsState } from 'pages/dashboard/_states/mediaChannelsState';
-import { mediaGridAttributesStates } from 'pages/dashboard/_states/mediaGridAttributesState';
+import { datesAtom } from 'pages/dashboard/_states/datesAtom';
+import { mediaChannelsAtom } from 'pages/dashboard/_states/mediaChannelsAtom';
+import { mediaGridAttributesAtom } from 'pages/dashboard/_states/mediaGridAttributesAtom';
 
 import styles from './style.module.scss';
 
 const MediaGrid = () => {
   const duration = useRecoilValue(datesAtom);
-  const attributes = useRecoilValue(mediaGridAttributesStates);
-  const channels = useRecoilValue(mediaChannelsState);
+  const attributes = useRecoilValue(mediaGridAttributesAtom);
+  const channels = useRecoilValue(mediaChannelsAtom);
 
   const data = packMediaData(
     channels.map(({ key }) => key),
