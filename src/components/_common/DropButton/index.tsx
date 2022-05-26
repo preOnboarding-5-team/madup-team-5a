@@ -84,7 +84,7 @@ const DropButton = ({
               [styles.largerMenu]: larger,
               [styles.roundTop]: idx === 0,
               [styles.roundBottom]: !additional && idx === dropItemsToRender.length - 2,
-              [styles.disabled]: disabledIdx?.includes(idx - Number(optional && idx < topIdx)),
+              [styles.disabled]: disabledIdx?.includes(Number(idx) - Number(topIdx > idx) - Number(optional) + 1),
             })}
             key={key}
           >
@@ -153,7 +153,7 @@ const DropButton = ({
 
 type DropButtonProps = PropsWithChildren<{
   setCurrentIdx: Dispatch<SetStateAction<number>>;
-  dropItems: DropItem[];
+  dropItems: DropItem[] | string[];
   setDropItems?: Dispatch<SetStateAction<DropItem[]>>;
   disabledIdx?: number[];
   larger?: boolean;

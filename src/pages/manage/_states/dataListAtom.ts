@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { UPDATED_DATA } from 'data/wanted_FE_ad-list-data-set';
+import { UPDATED_DATA } from 'pages/manage/_utils/data';
 
 export const dataListAtom = atom<AdManageFormItemsType[]>({
   key: 'dataListAtom',

@@ -12,8 +12,10 @@ import { useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
 
-import { datesAtom, dayOrWeeklyAtom } from 'pages/dashboard/_states/dashboard';
-import { mainIdxAtom, subIdxAtom } from 'pages/dashboard/_states/category';
+import { datesAtom } from 'pages/dashboard/_states/datesAtom';
+import { dayOrWeeklyAtom } from 'pages/dashboard/_states/dayOrWeeklyAtom';
+import { mainIdxAtom } from 'pages/dashboard/_states/mainIdxAtom';
+import { subIdxAtom } from 'pages/dashboard/_states/subIdxAtom';
 import TREND_DATA from 'data/wanted_FE_trend-data-set.json';
 
 import { categories } from 'pages/dashboard/_constants';
@@ -103,7 +105,7 @@ const StatusChart = () => {
       <div className={styles.centering}>
         <VictoryChart
           theme={VictoryTheme.material}
-          domainPadding={{ x: [0, 50] }}
+          domainPadding={{ x: [45, 55] }}
           domain={{ y: [0, 1] }}
           containerComponent={
             <VictoryVoronoiContainer

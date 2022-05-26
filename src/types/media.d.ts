@@ -33,7 +33,6 @@ interface MediaData extends MediaStats {
 }
 
 interface MediaStats {
-  // channel?: MediaChannel;
   cost: number; // cost
   click: number; // click
   sale: number; // roas * click / 100

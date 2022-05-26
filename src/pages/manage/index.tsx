@@ -1,13 +1,13 @@
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { MouseEvent, useEffect, useState } from 'react';
-import { UPDATED_DATA } from 'data/wanted_FE_ad-list-data-set';
+import { MouseEvent, useEffect } from 'react';
+import { UPDATED_DATA } from 'pages/manage/_utils/data';
 
 import AdManageList from 'pages/manage/_components/AdManageList';
 import DropButton from 'components/_common/DropButton';
 import { categories, setCategoryIdx } from './_states/adManageState';
 import styles from './style.module.scss';
 import CreateAd from './_components/CreateAd';
-import { dataListAtom } from './_states/dataList';
+import { dataListAtom } from './_states/dataListAtom';
 
 const Manage = () => {
   const [dataList, setDataList] = useRecoilState(dataListAtom);
@@ -30,11 +30,9 @@ const Manage = () => {
         })
       );
     }
-  }, [dropdownIndex]);
+  }, [dropdownIndex, setDataList]);
 
-  const onClickCreateAdd = (e: MouseEvent<HTMLButtonElement>) => {
-    console.log(e);
-  };
+  const onClickCreateAdd = (e: MouseEvent<HTMLButtonElement>) => {};
 
   return (
     <div className={styles.manageWrapper}>

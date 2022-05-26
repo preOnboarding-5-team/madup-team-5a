@@ -2,12 +2,13 @@ import { useRecoilState } from 'recoil';
 import dynamic from 'next/dynamic';
 
 import DropButton from 'components/_common/DropButton';
-import { mainIdxAtom, subIdxAtom } from 'pages/dashboard/_states/category';
+import { mainIdxAtom } from 'pages/dashboard/_states/mainIdxAtom';
+import { subIdxAtom } from 'pages/dashboard/_states/subIdxAtom';
 
-import Term from './Term';
+import TermButton from './TermButton';
 import StatusCards from './StatusCards';
-import { mainDropDown, subDropDown } from './StatusChart/categoryDropDowns';
 import styles from './style.module.scss';
+import { mainDropDown, subDropDown } from './StatusChart/dropDownCategories';
 
 const StatusChart = dynamic(() => import('./StatusChart'), { ssr: false });
 
@@ -34,7 +35,7 @@ const AdStatus = () => {
             disabledIdx={[mainIdx]}
             optional
           />
-          <Term />
+          <TermButton />
         </div>
         <div className={styles.chartWrapper}>
           <StatusChart />
