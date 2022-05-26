@@ -1,34 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 매드업 프론트엔드 기업 과제 5A팀
+### 개발자
 
-## Getting Started
+* 곽태훈, 민지원, 박휘건, 장재혁
 
-First, run the development server:
+### 기술스택
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+* React, Recoil, Scss
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 개발 기간
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+* 2022/5/24 ~ 2022/5/26 
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## OverView
+원티드 프리온보딩 코스 5-A조 매드업 과제 프로젝트입니다.
+주어진 figma 디자인을 기반으로 클론 코딩을 하였습니다.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 실행 화면과 기능
 
-## Learn More
+### 대시보드
 
-To learn more about Next.js, take a look at the following resources:
+#### 차트
+![image](https://user-images.githubusercontent.com/64529155/170353845-8248a1c4-7672-4f9b-a2a0-54e3a866b2b1.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* 카테고리 드랍다운을 이용하여 그래프 두 개를 화면에 동시에 표시할 수 있습니다.
+단위에 맞게 y축에 표시하였습니다.
+* 단위는 기본 만 단위로 지정해주었고 툴팁표시는 보다 정확한 정보표시를 위해 정보를 변경하지 않았습니다.
+* roas같은 경우는 %가 기본 단위이기 때문에 반영해주었습니다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![image](https://user-images.githubusercontent.com/64529155/170353950-5d54b7e3-c415-4fcd-aff3-8881918e6e96.png)
 
-## Deploy on Vercel
+* 오른쪽 드랍다운은 옵셔널이기 때문에 선택 안함을 선택시 화면에는 하나의 그래프와 하나의 툴팁만 표시됩니다.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![image](https://user-images.githubusercontent.com/64529155/170350731-e5163b14-8522-4374-9635-13156c8fa5f2.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* 주간 일별 선택가능합니다.
+* 일별 선택의 경우 지정한 날짜 전부 데이터를 표시해주고
+* 주간의 경우 데이트 피커로 선택한 날짜의 첫 번쨰 날을 기준으로 7일간의 데이터를 표시해 줍니다.
+
+![image](https://user-images.githubusercontent.com/64529155/170354048-a3fa6dbc-54bf-48c2-a56d-cae6c5b5902c.png)
+
+* 아래쪽 차트는 선택한 날짜의 광고 현황의 합계가 표시됩니다. 
+* 마찬가지로 마우스를 올렸을 때 각 회사 별로 툴팁이 제공되고 데이트 피커를 통해 지정한 날짜를 기반으로 데이터를 불러옵니다. 
+
+* 아래쪽 차트는 선택한 날짜의 광고 현황의 합계가 표시됩니다.
+![image](https://user-images.githubusercontent.com/64529155/170354195-d8924712-2294-4ac7-ae6c-dda8efaaf9b8.png)
+
+### 로딩 화면 구현
+
+* 의도적으로 딜레이를 줘서 로딩 화면이 보이게끔 하였습니다.
+* 로딩 에니메이션은 react spinner라이브러리를 사용하였습니다.
+
+![image](https://user-images.githubusercontent.com/64529155/170370427-dee8b5c3-e827-478b-9fae-48cbcf82d155.png)
+
+### 광고 현황
+
+
+## Directory
+
+## Dependencies
+Days
+Next’s
+Recoil
+Victory
+
+## 느낀점
+
+### 박휘건
+chartjs는 이용해 본 적 있으나 victory는 요번에 처음 공부하고 사용했는데 개별성이 강해서 각각의 상호작용을 위한 작업들이 굉장히 어려웠습니다. 특히 그래프를 두 개 이용할 때 데이터를 평준화 시켜주는 작업에 상당히 많은 시간을 할애하게 되었고 규모가 커질 수록 상태관리 구조의 중요성을 깨닫고 중간에 몇 번이고 상태관리 flow를 변경하게 되어 시간을 많이 소비하였습니다. 차트쪽에서 animation이나 커스텀 스타일링이 많이 아쉬웠고 css용어가 아니라 스타일링에 부족함을 느껴 아쉬웠습니다. 

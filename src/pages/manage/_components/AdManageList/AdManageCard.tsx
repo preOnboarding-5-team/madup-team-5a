@@ -1,13 +1,10 @@
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
 import cx from 'classnames';
 
 import type { MouseEventHandler } from 'react';
-import { dataListAtom } from 'pages/manage/_states/dataListAtom';
 import styles from './style.module.scss';
 
 const AdManageCard = ({ card, onClickSelectCard }: AdManageCardProps) => {
-  // const [, setDataList] = useRecoilState(dataListAtom);
   const [isEditing, setIsEditing] = useState(false);
 
   const handleClickEdit = () => {
