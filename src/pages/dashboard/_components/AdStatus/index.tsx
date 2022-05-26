@@ -9,7 +9,7 @@ import StatusCards from './StatusCards';
 import { mainDropDown, subDropDown } from './StatusChart/categoryDropDowns';
 import styles from './style.module.scss';
 
-const StatusChart = dynamic(() => import('./StatusChart/StatusChart'), { ssr: false });
+const StatusChart = dynamic(() => import('./StatusChart'), { ssr: false });
 
 const AdStatus = () => {
   const [, setMainIdx] = useRecoilState(mainIdxAtom);

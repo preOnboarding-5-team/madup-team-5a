@@ -22,7 +22,7 @@ import { getMax } from 'pages/dashboard/_utils/getMax';
 import { getTick } from 'pages/dashboard/_utils/getTick';
 import { axisStyle, dependentAxisStyle, options } from './statusChartOption';
 
-import styles from './StatusChart.module.scss';
+import styles from './style.module.scss';
 
 const StatusChart = () => {
   const table = convertStatusData(TREND_DATA.report.daily as Daily[]);
